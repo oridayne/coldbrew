@@ -59,3 +59,10 @@ function undo(){
 	addListItem(item);
 
 }
+
+
+function popUp(){
+	var popup = document.getElementById("zeng");
+    popup.classList.toggle("show");
+
+}
