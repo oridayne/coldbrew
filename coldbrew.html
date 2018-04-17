@@ -6,6 +6,8 @@
 
 <!-- Load style sheets -->
 <link rel="stylesheet" href="brewStyle.css">
+<script src="brew.js"></script>
+
 </head>
 <body>
 
@@ -14,20 +16,20 @@
 	<div class="colOutline" id="pickUP">
 		<h2>Package Pick Up </h2>
 		<div id="container">
-			<button class="button">Check All</button>
-			<button class="button">Picked Up</button>
-			<button class="button" id="delete">Delete</button>
+			<button class="button" onclick="checkAll()">Check All</button>
+			<button class="button" onclick="removePackage()">Picked Up</button>
+			<button class="button" onclick="removePackage()" id="delete">Delete</button>
 			<button class="button">Undo</button>
 		</div>
 
-		<div id="packageList">
-			<ul class="package">
-			    <li> <input type="checkbox"> Package 1</li>
-			    <li> <input type="checkbox"> Package 2</li>
-			    <li> <input type="checkbox"> Package 3</li>
-			    <li> <input type="checkbox"> Package 4</li>
-			 </ul>
-		</div>
+		
+		<ul class="package" id="packageList">
+		    <li> <input type="checkbox"> Anson, Caroline</li>
+		    <li> <input type="checkbox"> Burke, Richard</li>
+		    <li> <input type="checkbox"> Deng, Lisa</li>
+		    <li> <input type="checkbox"> Zeng, Aaron</li>
+		 </ul>
+		
 
 	</div>
 
