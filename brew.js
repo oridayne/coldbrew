@@ -1,7 +1,7 @@
 var deletedPackages = []; // list of package objects deleted. This helps with undo.
 
 // not implemented yet, but here's skeleton code
-// this is should be used when Add Packages is implemented. 
+// this should be used when Add Packages is implemented. 
 function addPackage(){
 	// TODO: create a list item based on package input, then add it using addListItem function
     // addListItem(li);
@@ -55,6 +55,7 @@ function undo(){
 		return;
 	}
 	var item = deletedPackages.pop();
+	item.children[0].checked=false; // uncheck the item
 	addListItem(item);
 
 }

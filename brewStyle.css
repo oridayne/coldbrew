@@ -28,12 +28,16 @@ ol.package{
 	list-style-type: none;
 }
 
+h1{
+	text-align: center;
+}
 h2{
 	text-align: center;
 }
 
-h1{
-	/*color: blue;*/
+#search{
+	text-align:center;
+
 }
 
 #container {
