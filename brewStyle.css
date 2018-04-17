@@ -1,0 +1,61 @@
+:root {
+
+	--color-green: #4CAF50;
+	--color-red: hsl(0, 80%, 48%);
+
+}
+
+
+#layout{
+	display: grid;
+	margin-top: 10px;
+	grid-column-gap: 1px;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-rows: 1fr;
+}
+
+.label{
+	text-align: center;
+}
+
+.colOutline{
+	height: 600px;
+	outline: 1px solid black;
+	outline-style: dashed;
+}
+
+ul.package{
+	list-style-type: none;
+}
+
+h2{
+	text-align: center;
+}
+
+h1{
+	/*color: blue;*/
+}
+
+#container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+}
+
+.button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 10px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+#delete{
+	background-color: var(--color-red);
+}
