@@ -17,10 +17,10 @@
 		<h2>Package Pick Up </h2>
 		<div id="search"><input type="textbox" placeholder="Search"></div>
 		<div id="container">
-			<button class="button" onclick="checkAll()">Check All</button>
-			<button class="button" onclick="removePackage()">Picked Up</button>
-			<button class="button" onclick="removePackage()" id="delete">Delete</button>
-			<button class="button" onclick="undo()">Undo</button>
+			<button class="button" id="checkAll">Check All</button>
+			<button class="button" id="pickedUp">Picked Up</button>
+			<button class="button" id="delete">Delete</button>
+			<button class="button" id="undo">Undo</button>
 		</div>
 
 		
@@ -28,7 +28,7 @@
 		    <li><input type="checkbox">Anson, Caroline</li>
 		    <li><input type="checkbox">Burke, Richard</li>
 		    <li><input type="checkbox">Deng, Lisa</li>
-		   <li class="popup" onclick="popUp()"><input type="checkbox">Zeng, Aaron
+		   <li id="popExample" class="popup"><input type="checkbox">Zeng, Aaron
 			<span class="popuptext" id="zeng">Bin #5</span>
 		   </li>
 		 </ol>

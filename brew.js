@@ -1,5 +1,16 @@
 var deletedPackages = []; // list of package objects deleted. This helps with undo.
 
+
+document.addEventListener("DOMContentLoaded", function(){
+
+	document.getElementById("checkAll").addEventListener("click", function(){ checkAll();});
+	document.getElementById("pickedUp").addEventListener("click", function(){ removePackage();});
+	document.getElementById("delete").addEventListener("click", function(){ removePackage();});
+	document.getElementById("undo").addEventListener("click", function(){ undo();});
+	document.getElementById("popExample").addEventListener("click", function(){  popUp();});
+
+});
+
 // not implemented yet, but here's skeleton code
 // this should be used when Add Packages is implemented. 
 function addPackage(){
