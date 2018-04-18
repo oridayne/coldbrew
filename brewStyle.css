@@ -2,7 +2,7 @@
 
 	--color-green: #4CAF50;
 	--color-red: hsl(0, 80%, 48%);
-
+	--color-light-gray: hsl(220, 10%, 85%);
 }
 
 
@@ -11,17 +11,32 @@
 	margin-top: 10px;
 	grid-column-gap: 1px;
 	grid-template-columns: 1fr 1fr 1fr;
-	grid-template-rows: 1fr;
+	grid-template-rows: .1fr 1fr;
+}
+
+#menu{
+	grid-column: 1/4;
+	grid-row: 1;
+	display: grid;
+	grid-column-gap: 1px;
+	grid-template-columns: repeat(7, 1fr);
 }
 
 .label{
 	text-align: center;
 }
 
+.colHeader{
+	outline: 1px solid var(--color-light-gray);
+	text-align: center;
+	margin: 0 0px 0px 0;
+
+}
 .colOutline{
 	height: 600px;
-	outline: 1px solid black;
-	outline-style: dashed;
+	outline: 1px solid var(--color-light-gray);
+	margin: 0;
+
 }
 
 ol.package{
@@ -47,8 +62,16 @@ h2{
   margin: auto;
 }
 
+#packageForm{
+	margin-left: 20px;
+}
+
+.entry{
+
+}
+
 .button {
-    background-color: #4CAF50;
+    background-color: var(--color-green);
     border: none;
     color: white;
     padding: 15px 10px;

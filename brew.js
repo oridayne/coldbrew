@@ -1,5 +1,5 @@
 var deletedPackages = []; // list of package objects deleted. This helps with undo.
-
+var isChecked = true;
 
 document.addEventListener("DOMContentLoaded", function(){
 
@@ -15,9 +15,14 @@ document.addEventListener("DOMContentLoaded", function(){
 // this should be used when Add Packages is implemented. 
 function addPackage(){
 	// TODO: create a list item based on package input, then add it using addListItem function
+	// var li = createListItem(blah blah blah);
     // addListItem(li);
 }
 
+// TODO: make this thingy
+function createListItem(){
+
+}
 
 // Given a list item, add it to it's correct place (alphabetically) in the package list.
 function addListItem(listItem){
@@ -41,9 +46,11 @@ function checkAll(){
 	var packages = ol.children;
 	for(x=packages.length-1;x>=0; x--){
 		var item = packages[x];
-		item.children[0].checked=true;
+		item.children[0].checked=true;	
 	}
 }
+
+
 
 // removes checked packages from the packages list
 function removePackage(){
