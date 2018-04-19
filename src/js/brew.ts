@@ -1,86 +1,90 @@
-var deletedPackages = []; // list of package objects deleted. This helps with undo.
-var isChecked = true;
+ // stack of package objects deleted. This helps with undo.
+const deletedPackages: HTMLLIElement[] = [];
 
-document.addEventListener("DOMContentLoaded", function(){
+/**
+ * Get an element by ID or throw if it does not exist.
+ */
+function getElementById(id: string): HTMLElement {
+    const elt = document.getElementById(id);
+    if (elt == null) {
+        throw new Error("no such element with id");
+    }
+    return elt;
+}
 
-	document.getElementById("checkAll").addEventListener("click", function(){ checkAll();});
-	document.getElementById("pickedUp").addEventListener("click", function(){ removePackage();});
-	document.getElementById("delete").addEventListener("click", function(){ removePackage();});
-	document.getElementById("undo").addEventListener("click", function(){ undo();});
-	document.getElementById("popExample").addEventListener("click", function(){  popUp();});
+document.addEventListener("DOMContentLoaded", () => {
+
+    getElementById("checkAll").addEventListener("click", checkAll);
+    getElementById("pickedUp").addEventListener("click", removeCheckedPackages);
+    getElementById("delete").addEventListener("click", removeCheckedPackages);
+    getElementById("undo").addEventListener("click", undo);
+    getElementById("popExample").addEventListener("click", popUp);
 
 });
 
 // not implemented yet, but here's skeleton code
-// this should be used when Add Packages is implemented. 
-function addPackage(){
-	// TODO: create a list item based on package input, then add it using addListItem function
-	// var li = createListItem(blah blah blah);
+// this should be used when Add Packages is implemented.
+function addPackage() {
+    // TODO: create a list item based on package input, then add it using addListItem function
+    // var li = createListItem(blah blah blah);
     // addListItem(li);
 }
 
 // TODO: make this thingy
-function createListItem(){
+function createListItem() {
+}
+
+// Given a list item, add it to its correct place (alphabetically) in the package list.
+function addListItem(listItem: HTMLLIElement) {
+    const addName = listItem.innerText;
+    const ol = getElementById("packageList");
+    for (const li of ol.children) {
+        const itemName = li.textContent || "";
+        // if it comes before
+        if (addName.localeCompare(itemName) < 0) {
+            ol.insertBefore(listItem, li);
+            return;
+        }
+    }
+    ol.appendChild(listItem);
 
 }
 
-// Given a list item, add it to it's correct place (alphabetically) in the package list.
-function addListItem(listItem){
-	var addName = listItem.innerText;
-	var ol = document.getElementById("packageList");
-	var packages = ol.children;
-	for(x=0; x<packages.length; x++){
-		var itemName = packages[x].innerText;
-		//if it comes before
-		if(addName.localeCompare(itemName)==-1){
-			packages[x].parentNode.insertBefore(listItem, packages[x]);
-			return;
-		}
-	}
-	ol.appendChild(listItem);
-	
+function checkAll() {
+    const ol = getElementById("packageList");
+    for (const li of ol.children) {
+        const checkbox = li.children[0] as HTMLInputElement;
+        checkbox.checked = true;
+    }
 }
-
-function checkAll(){
-	var ol = document.getElementById("packageList");
-	var packages = ol.children;
-	for(x=packages.length-1;x>=0; x--){
-		var item = packages[x];
-		item.children[0].checked=true;	
-	}
-}
-
-
 
 // removes checked packages from the packages list
-function removePackage(){
-	var ol = document.getElementById("packageList");
-	var packages = ol.children;
-	for(x=packages.length-1;x>=0; x--){
-		var item = packages[x];
-		var isChecked = item.children[0].checked;
-		if(isChecked){
-			var breadcrumb = packages[x];
-			deletedPackages.push(breadcrumb);
-			packages[x].remove();			
-		}
-	}
+function removeCheckedPackages() {
+    const ol = getElementById("packageList");
+    const packages = ol.children;
+    for (let x = packages.length - 1; x >= 0; x--) {
+        const checkbox = packages[x].children[0] as HTMLInputElement;
+        if (checkbox.checked) {
+            const breadcrumb = packages[x] as HTMLLIElement;
+            deletedPackages.push(breadcrumb);
+            packages[x].remove();
+        }
+    }
 }
 
 // undo package deletions
-function undo(){
-	if(deletedPackages.length==0){
-		return;
-	}
-	var item = deletedPackages.pop();
-	item.children[0].checked=false; // uncheck the item
-	addListItem(item);
+function undo() {
+    const item = deletedPackages.pop();
+    if (item == null) {
+        return;
+    }
 
+    const checkbox = item.children[0] as HTMLInputElement;
+    checkbox.checked = false; // uncheck the item
+    addListItem(item);
 }
 
-
-function popUp(){
-	var popup = document.getElementById("zeng");
+function popUp() {
+    const popup = getElementById("zeng");
     popup.classList.toggle("show");
-
 }
