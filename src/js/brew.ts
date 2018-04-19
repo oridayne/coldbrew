@@ -39,8 +39,6 @@ function getInputValueById(id: string): string {
     return (getElementById(id) as HTMLInputElement).value;
 }
 
-// not implemented yet, but here's skeleton code
-// this should be used when Add Packages is implemented.
 function addPackage() {
     // FIXME should fail if required inputs are not present
 
