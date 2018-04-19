@@ -19,20 +19,60 @@ document.addEventListener("DOMContentLoaded", () => {
     getElementById("delete").addEventListener("click", removeCheckedPackages);
     getElementById("undo").addEventListener("click", undo);
     getElementById("popExample").addEventListener("click", popUp);
+    getElementById("packageForm").addEventListener("submit", (e) => {
+        e.preventDefault();
+        addPackage();
+        clearPackageInput();
+    });
+    getElementById("clearPackageInput").addEventListener("click", clearPackageInput);
 
 });
+
+function clearPackageInput() {
+    const inputs = getElementById("packageForm").getElementsByTagName("input");
+    for (const input of inputs) {
+        input.value = "";
+    }
+}
+
+function getInputValueById(id: string): string {
+    return (getElementById(id) as HTMLInputElement).value;
+}
 
 // not implemented yet, but here's skeleton code
 // this should be used when Add Packages is implemented.
 function addPackage() {
-    // TODO: create a list item based on package input, then add it using addListItem function
-    // var li = createListItem(blah blah blah);
-    // addListItem(li);
+    const firstname = getInputValueById("firstname");
+    const lastname = getInputValueById("lastname");
+    const packageNumber = getInputValueById("packageNumber");
+
+    const location = getInputValueById("location");
+    // const carrier = getInputValueById("carrier");
+    // const comments = getInputValueById("comments");
+
+    const nameText = `${lastname}, ${firstname}`;
+    const popupText = `${location}, pkg. #${packageNumber}`;
+
+    const li = createListItem(nameText, popupText);
+    addListItem(li);
 }
 
-// TODO: make this thingy
-function createListItem() {
-    // TODO
+function createListItem(name: string, popupText: string): HTMLLIElement {
+    const li = document.createElement("li");
+    li.classList.add("popup");
+
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    li.appendChild(checkbox);
+
+    li.insertAdjacentText("beforeend", name);
+
+    const popup = document.createElement("span");
+    popup.classList.add("popuptext");
+    popup.textContent = popupText;
+    li.appendChild(popup);
+
+    return li;
 }
 
 // Given a list item, add it to its correct place (alphabetically) in the package list.
@@ -90,6 +130,7 @@ function undo() {
 }
 
 function popUp() {
+    // TODO make this work for any pop-up
     const popup = getElementById("zeng");
     popup.classList.toggle("show");
 }

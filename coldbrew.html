@@ -42,6 +42,7 @@
                     <li><input type="checkbox">Anson, Caroline</li>
                     <li><input type="checkbox">Burke, Richard</li>
                     <li><input type="checkbox">Deng, Lisa</li>
+                    <!-- FIXME: does not display correctly when multiple packages have popups -->
                     <li id="popExample" class="popup"><input type="checkbox">Zeng, Aaron
                         <span class="popuptext" id="zeng">Bin #5</span>
                     </li>
@@ -69,13 +70,13 @@
                             </optgroup>
                         </select> <br>
                         <input class="entry" type="text" id="location" placeholder="Location"> <br>
-                        <input class="entry" type="text" id="location" placeholder="Comments"> <br>
+                        <input class="entry" type="text" id="comments" placeholder="Comments"> <br>
 
                         <br><br>
                         <!--      TODO: These buttons don't do anything -->
 
-                        <input type="submit" value="Submit">
-                        <input type="submit" value="Clear All">
+                        <button id="addPackage">Submit</button>
+                        <button id="clearPackageInput">Clear All</button>
                     </form>
                 </div>
             </div>
