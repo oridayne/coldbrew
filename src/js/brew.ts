@@ -42,6 +42,8 @@ function getInputValueById(id: string): string {
 // not implemented yet, but here's skeleton code
 // this should be used when Add Packages is implemented.
 function addPackage() {
+    // FIXME should fail if required inputs are not present
+
     const firstname = getInputValueById("firstname");
     const lastname = getInputValueById("lastname");
     const packageNumber = getInputValueById("packageNumber");
