@@ -1,5 +1,5 @@
  // stack of package objects deleted. This helps with undo.
-const deletedPackages: HTMLLIElement[] = [];
+const deletedPackages: HTMLLIElement[][] = [];
 
 /**
  * Get an element by ID or throw if it does not exist.
@@ -32,6 +32,7 @@ function addPackage() {
 
 // TODO: make this thingy
 function createListItem() {
+    // TODO
 }
 
 // Given a list item, add it to its correct place (alphabetically) in the package list.
@@ -62,26 +63,30 @@ function checkAll() {
 function removeCheckedPackages() {
     const ol = getElementById("packageList");
     const packages = ol.children;
+    const deleted = [];
     for (let x = packages.length - 1; x >= 0; x--) {
         const checkbox = packages[x].children[0] as HTMLInputElement;
         if (checkbox.checked) {
             const breadcrumb = packages[x] as HTMLLIElement;
-            deletedPackages.push(breadcrumb);
+            deleted.push(breadcrumb);
             packages[x].remove();
         }
     }
+    deletedPackages.push(deleted);
 }
 
 // undo package deletions
 function undo() {
-    const item = deletedPackages.pop();
-    if (item == null) {
+    const lastDelete = deletedPackages.pop();
+    if (lastDelete == null) {
         return;
     }
 
-    const checkbox = item.children[0] as HTMLInputElement;
-    checkbox.checked = false; // uncheck the item
-    addListItem(item);
+    for (const li of lastDelete) {
+        const checkbox = li.children[0] as HTMLInputElement;
+        checkbox.checked = false; // uncheck the item
+        addListItem(li);
+    }
 }
 
 function popUp() {
