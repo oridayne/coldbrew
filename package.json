@@ -8,6 +8,7 @@
     "build:css": "node-sass --recursive src/css --output dist/css",
     "build:js": "tsc",
     "clean": "rm -rf ./dist",
+    "lint": "tslint --project .",
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "run-p watch:css watch:js",
     "watch:css": "node-sass --recursive src/css --output dist/css --watch",
@@ -27,5 +28,8 @@
     "node-sass": "^4.8.3",
     "npm-run-all": "^4.1.2",
     "typescript": "^2.8.1"
+  },
+  "dependencies": {
+    "tslint": "^5.9.1"
   }
 }
