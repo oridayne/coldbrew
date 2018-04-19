@@ -56,8 +56,18 @@
                         <input class="entry" type="text" id="firstname" placeholder="First Name"> <br>
                         <input class="entry" type="text" id="lastname" placeholder="Last Name"> <br>
                         <input class="entry" type="text" id="packageNumber" placeholder="Package #"> <br>
-                        <input class="entry" type="text" id="carrier" placeholder="Carrier"> <br>
-                        <!--      TODO: drop down list? -->
+                        <label for="carrier">Carrier</label>
+                        <select id="carrier" required>
+                            <optgroup>
+                                <option value="amazon">Amazon</option>
+                                <option value="fedex">FedEx</option>
+                                <option value="ups">UPS</option>
+                                <option value="usps">USPS</option>
+                            </optgroup>
+                            <optgroup>
+                                <option value="other">Other</option>
+                            </optgroup>
+                        </select> <br>
                         <input class="entry" type="text" id="location" placeholder="Location"> <br>
                         <input class="entry" type="text" id="location" placeholder="Comments"> <br>
 
