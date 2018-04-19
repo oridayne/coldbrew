@@ -1,0 +1,3 @@
+# MIT Dorm Desk Interface
+
+This is team Cold Brew's final project for 6.813, User Interface Design & Implementation, in Spring 2018. Kimberly Dauber '18, Aaron Zeng '18, Toby Holtzman '19, and Lisa Deng '18 created an interface for desk workers at MIT dorms. For the final report on this project, please see [https://drive.google.com/open?id=1sGFiC-DyXWrT_OCvwWNFYMRuLRsscnEpOKoZTBVkOlk](https://drive.google.com/open?id=1sGFiC-DyXWrT_OCvwWNFYMRuLRsscnEpOKoZTBVkOlk).
