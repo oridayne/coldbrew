@@ -8,7 +8,10 @@
     "build:css": "node-sass --recursive src/css --output dist/css",
     "build:js": "tsc",
     "clean": "rm -rf ./dist",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "run-p watch:css watch:js",
+    "watch:css": "node-sass --recursive src/css --output dist/css --watch",
+    "watch:js": "tsc --watch"
   },
   "repository": {
     "type": "git",
