@@ -1,0 +1,19 @@
+{
+  "name": "coldbrew",
+  "version": "0.1.0",
+  "description": "This is team Cold Brew's final project for 6.813.  See README.md.",
+  "main": "brew.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oridayne/coldbrew.git"
+  },
+  "author": "Team Cold Brew",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/oridayne/coldbrew/issues"
+  },
+  "homepage": "https://github.com/oridayne/coldbrew#readme"
+}
