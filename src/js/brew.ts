@@ -140,6 +140,11 @@ function popUp() {
     popup.classList.toggle("show");
 }
 
+function clearNoteInput() {
+    const newNoteTextArea = getElementById("newNote") as HTMLTextAreaElement;
+    newNoteTextArea.value = "";
+}
+
 function addNote() {
     const noteDiv = document.createElement("div");
 
@@ -159,11 +164,52 @@ function addNote() {
     });
     noteDiv.appendChild(deleteNoteButton);
 
-    // Add new note to DOM
-    getElementById("notesCol").appendChild(noteDiv);
-}
+    // Add pin note button
+    const pinNoteButton = document.createElement("button");
+    pinNoteButton.innerText = "Pin";
+    pinNoteButton.addEventListener("click", pinNote);
 
-function clearNoteInput() {
-    const newNoteTextArea = getElementById("newNote") as HTMLTextAreaElement;
-    newNoteTextArea.value = "";
+    function pinNote() {
+        noteDiv.classList.add("notePinned");
+        pinNoteButton.innerText = "Unpin";
+        pinNoteButton.removeEventListener("click", pinNote);
+        pinNoteButton.addEventListener("click", unpinNote);
+
+        let topNote = getElementById("newNoteContainer").nextElementSibling;
+        if (topNote && topNote.parentElement) {
+            topNote.parentElement.insertBefore(noteDiv, topNote);
+        }
+    }
+
+    function unpinNote() {
+        noteDiv.classList.remove("notePinned");
+        pinNoteButton.innerText = "Pin";
+        pinNoteButton.removeEventListener("click", unpinNote);
+        pinNoteButton.addEventListener("click", pinNote);
+
+        insertAtTopOfUnpinnedNotes();
+    }
+
+    noteDiv.appendChild(pinNoteButton);
+
+    // Add new note to DOM (at the top of the unpinned notes)
+    function insertAtTopOfUnpinnedNotes() {
+        let currentNote = getElementById("newNoteContainer").nextElementSibling;
+        if (currentNote == noteDiv) { // make sure this also works if the current note is the first one found
+            currentNote = currentNote.nextElementSibling;
+        }
+        while (currentNote) {
+            if (currentNote.classList.contains("notePinned")) {
+                currentNote = currentNote.nextElementSibling;
+            } else if (currentNote.classList.contains("note")) {
+                if (currentNote.parentNode) {
+                    currentNote.parentNode.insertBefore(noteDiv, currentNote);
+                }
+                return;
+            }
+        }
+        getElementById("notesCol").appendChild(noteDiv);    
+    }
+
+    insertAtTopOfUnpinnedNotes();
 }
