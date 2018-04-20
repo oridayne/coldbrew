@@ -11,18 +11,18 @@
     </head>
     <body>
 
-        <h1>Desk Worker</h1>
+        <h1 class="title">Desk Worker</h1>
 
         <div id="layout">
-            <div id="menu">
-                <div  class="colHeader" id="home">Home</div>
-                <div  class="colHeader" id="allPackages">All Packages</div>
-                <div  class="colHeader" id="add Package">Add Package</div>
-                <div  class="colHeader" id="notes">Notes</div>
-                <div  class="colHeader" id="lent">Lent Items</div>
-                <div  class="colHeader" id="directory">Directory</div>
-                <div  class="colHeader" id="checkIn">Check In/Check Out</div>
-            </div>
+            <ul id="menu">
+                <li><div  class="colHeader active" id="home">Home</div></li>
+                <li><div  class="colHeader" id="allPackages">All Packages</div></li>
+                <li><div  class="colHeader" id="add Package">Add Package</div></li>
+                <li><div  class="colHeader" id="notes">Notes</div></li>
+                <li><div  class="colHeader" id="lent">Lent Items</div></li>
+                <li><div  class="colHeader" id="directory">Directory</div></li>
+                <li><div  class="colHeader" id="checkIn">Check In/Check Out</div></li>
+            </ul>
             <div class="colOutline" id="pickUp">
                 <!-- Deng: This column is mostly finished, but I think the pop ups can be improved. -->
                 <!-- TODO: We had notifications (like gmail) for when packages were removed. They don't need to be put in.
@@ -30,11 +30,11 @@
                 -->
 
                 <h2>Package Pick Up </h2>
-                <div id="search"><input type="textbox" placeholder="Search"></div>
+                <div id="search"><input type="textbox" class="entry" placeholder="Search"></div>
                 <div id="container">
                     <button class="button" id="checkAll">Check All</button>
                     <button class="button" id="pickedUp">Picked Up</button>
-                    <button class="button" id="delete">Delete</button>
+                    <button class="button delete" id="delete">Delete</button>
                     <button class="button" id="undo">Undo</button>
                 </div>
 
@@ -74,8 +74,8 @@
 
                         <br><br>
 
-                        <button id="addPackage">Submit</button>
-                        <button id="clearPackageInput" type="button">Clear All</button>
+                        <button id="addPackage" class="button">Submit</button>
+                        <button id="clearPackageInput" class="button delete" type="button">Clear All</button>
                     </form>
                 </div>
             </div>

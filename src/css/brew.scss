@@ -5,6 +5,49 @@
   --color-light-gray: hsl(220, 10%, 85%);
 }
 
+body {
+  font-family: Helvetica, sans-serif;
+  background-color: slategray;
+}
+
+
+select {
+  padding: 10px 10px;
+  margin: 5px;
+  margin-top: 10px;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  color: white;
+  background-color: #333;
+}
+
+li div {
+  display: block;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  cursor: pointer;
+  color: white;
+}
+
+li div:hover {
+  background-color: #111;
+  color: white;
+}
+
+.active {
+  background-color: gainsboro;
+  color: black;
+}
+
+.title {
+  margin: 0;
+}
 
 #layout{
   display: grid;
@@ -28,6 +71,7 @@
 
 .colHeader{
   outline: 1px solid var(--color-light-gray);
+  outline: none;
   text-align: center;
   margin: 0 0px 0px 0;
 
@@ -35,6 +79,7 @@
 .colOutline{
   height: 600px;
   outline: 1px solid var(--color-light-gray);
+  outline: none;
   margin: 0;
 
 }
@@ -66,21 +111,34 @@ h2{
   margin-left: 20px;
 }
 
-.entry{
+#packageEntry {
+  background-color: silver;
+}
 
+.entry{
+  padding: 10px 10px;
+  border-radius: 5px;
+  margin-top: 5px;
+  margin-right: 2px;
+  margin-bottom: 5px;
+  width: 80%;
+  border: 1px var(--color-light-gray);
+  box-shadow: none;
 }
 
 .button {
     background-color: var(--color-green);
     border: none;
+    border-radius: 5px;
     color: white;
-    padding: 15px 10px;
+    padding: 13px 6px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 10px;
-    margin: 4px 2px;
+    font-size: 12px;
+    margin: 5px 5px;
     cursor: pointer;
+    width: 70px;
 }
 
 .popup {
@@ -129,9 +187,10 @@ h2{
     animation: fadeIn 1s;
 }
 
-#delete{
-  background-color: var(--color-red);
+.delete{
+  background-color: darkred;
 }
+
 
 /* Notes */
 .note {
