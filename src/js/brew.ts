@@ -142,12 +142,24 @@ function popUp() {
 
 function addNote() {
     const noteDiv = document.createElement("div");
+
+    // Add note text in <p>
     const noteParagraph = document.createElement("p");
-    noteDiv.appendChild(noteParagraph);
     noteDiv.classList.add("note");
     // TODO sanitize note input
     const newNoteTextArea = getElementById("newNote") as HTMLTextAreaElement;
     noteParagraph.innerText = newNoteTextArea.value;
+    noteDiv.appendChild(noteParagraph);
+
+    // Add delete note button
+    const deleteNoteButton = document.createElement("button");
+    deleteNoteButton.innerText = "Delete";
+    deleteNoteButton.addEventListener("click", () => {
+        noteDiv.remove();
+    });
+    noteDiv.appendChild(deleteNoteButton);
+
+    // Add new note to DOM
     getElementById("notesCol").appendChild(noteDiv);
 }
 
