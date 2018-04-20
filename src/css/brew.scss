@@ -132,3 +132,25 @@ h2{
 #delete{
   background-color: var(--color-red);
 }
+
+/* Notes */
+.note {
+  padding: 0 15px 0 15px;
+  margin: 15px;
+  border: 1px solid black;
+}
+
+.newNoteContainer {
+  margin: 0 15px 15px 15px;
+  margin-bottom: 15px;
+}
+
+#newNote {
+  width: 100%;
+  height: 4em;
+}
+
+.note-pinned {
+  border: none;
+  background-color: lightgray;
+}

@@ -25,6 +25,11 @@ document.addEventListener("DOMContentLoaded", () => {
         clearPackageInput();
     });
     getElementById("clearPackageInput").addEventListener("click", clearPackageInput);
+    getElementById("addNote").addEventListener("click", (e) => {
+        e.preventDefault();
+        addNote();
+        clearNoteInput();
+    });
 
 });
 
@@ -133,4 +138,20 @@ function popUp() {
     // TODO make this work for any pop-up
     const popup = getElementById("zeng");
     popup.classList.toggle("show");
+}
+
+function addNote() {
+    const noteDiv = document.createElement("div");
+    const noteParagraph = document.createElement("p");
+    noteDiv.appendChild(noteParagraph);
+    noteDiv.classList.add("note");
+    // TODO sanitize note input
+    const newNoteTextArea = getElementById("newNote") as HTMLTextAreaElement;
+    noteParagraph.innerText = newNoteTextArea.value;
+    getElementById("notesCol").appendChild(noteDiv);
+}
+
+function clearNoteInput() {
+    const newNoteTextArea = getElementById("newNote") as HTMLTextAreaElement;
+    newNoteTextArea.value = "";
 }
