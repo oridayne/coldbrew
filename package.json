@@ -27,10 +27,7 @@
   "devDependencies": {
     "node-sass": "^4.8.3",
     "npm-run-all": "^4.1.2",
+    "tslint": "^5.9.1",
     "typescript": "^2.8.1"
-  },
-  "dependencies": {
-    "tsc": "^1.20150623.0",
-    "tslint": "^5.9.1"
   }
 }
