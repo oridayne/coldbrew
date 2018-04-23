@@ -1,4 +1,4 @@
-import * as Util from "./util";
+import * as Util from "./util.js";
 
  // stack of package objects deleted. This helps with undo.
 const deletedPackages: HTMLLIElement[][] = [];

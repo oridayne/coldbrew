@@ -1,5 +1,4 @@
-/// <reference path="util.ts">
-import * as Util from "./util";
+import * as Util from "./util.js";
 
 document.addEventListener("DOMContentLoaded", () => {
 
