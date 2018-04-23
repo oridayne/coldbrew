@@ -1,16 +1,7 @@
+import * as Util from "./util";
+
  // stack of package objects deleted. This helps with undo.
 const deletedPackages: HTMLLIElement[][] = [];
-
-/**
- * Get an element by ID or throw if it does not exist.
- */
-function getElementById(id: string): HTMLElement {
-    const elt = document.getElementById(id);
-    if (elt == null) {
-        throw new Error("no such element with id");
-    }
-    return elt;
-}
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -171,7 +162,7 @@ function addNote() {
         pinNoteButton.removeEventListener("click", pinNote);
         pinNoteButton.addEventListener("click", unpinNote);
 
-        let topNote = Util.getElementById("newNoteContainer").nextElementSibling;
+        const topNote = Util.getElementById("newNoteContainer").nextElementSibling;
         if (topNote && topNote.parentElement) {
             topNote.parentElement.insertBefore(noteDiv, topNote);
         }
@@ -191,7 +182,7 @@ function addNote() {
     // Add new note to DOM (at the top of the unpinned notes)
     function insertAtTopOfUnpinnedNotes() {
         let currentNote = Util.getElementById("newNoteContainer").nextElementSibling;
-        if (currentNote == noteDiv) { // make sure this also works if the current note is the first one found
+        if (currentNote === noteDiv) { // make sure this also works if the current note is the first one found
             currentNote = currentNote.nextElementSibling;
         }
         while (currentNote) {
@@ -204,7 +195,7 @@ function addNote() {
                 return;
             }
         }
-        Util.getElementById("notesCol").appendChild(noteDiv);    
+        Util.getElementById("notesCol").appendChild(noteDiv);
     }
 
     insertAtTopOfUnpinnedNotes();
