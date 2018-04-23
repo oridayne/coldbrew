@@ -6,6 +6,7 @@
 
         <!-- Load style sheets -->
         <link rel="stylesheet" href="dist/css/brew.css">
+        <script src="dist/js/util.js"></script>
         <script src="dist/js/lend.js"></script>
 
     </head>
@@ -13,7 +14,7 @@
 
         <h1 class="title">Desk Worker</h1>
 
-        <div id="layout">
+        <div >
             <ul id="menu">
                 <li><a href="coldbrew.html"><div  class="colHeader" id="home">Home</div></a></li>
                 <li><div  class="colHeader" id="packageHistory">Package History</div></li>
@@ -23,10 +24,42 @@
                 <li><div  class="colHeader" id="directory">Directory</div></li>
                 <li><div  class="colHeader" id="checkIn">Check In/Check Out</div></li>
             </ul>
+            
+            <div id="lend">
+            
+                <div class="lendCols" id="lentout">
+                    <h2>Lent Out</h2>
+                    <ol class="lentItems" id="itemList">
+                        <li><input type="checkbox">Basketball - David Jin</li>
+                        <li><input type="checkbox">Smash - Toby Holtzman</li>
+                        <li><input type="checkbox">Monopoly - Lisa Deng</li>
+                       
 
-            <div class="colOutline"></div>
+                    </ol>
+                        <br>
+                    <div style="margin-left: 40px;"><button id="returnItems">Return Items(s)</button></div>
+            </div>
+            <div class="lendCols" id="lentin">
+                <h2>Lend Item</h2>
 
+                    <form id="LendForm">
+                        <input class="entry" type="text" id="nameEntry" placeholder="Name"> <br>
+                        <input class="entry" type="text" id="itemToLend" placeholder="Item being Borrowed"> <br>
+                        
+                       
+                        <input class="entry" type="text" id="comments" placeholder="Comments"> <br>
+
+                        <br><br>
+                        <button id="Submit" class="button">Submit</button>
+                        <button id="clearItemInput" class="button delete" type="button">Clear All</button>
+                    </form>
+
+
+
+            </div>
         </div>
+        </div>
+
 
 
     </body>

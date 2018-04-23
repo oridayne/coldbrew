@@ -97,6 +97,12 @@ ol.package{
   list-style-type: none;
 }
 
+ol.lentItems{
+    list-style-type: none;
+
+}
+
+
 h1{
   text-align: center;
 }
@@ -215,6 +221,14 @@ h2{
 
 .newNoteContainer {
   margin: 0 15px 15px 15px;
+}
+
+#lend{
+  display: grid;
+  margin-top: 10px;
+  grid-column-gap: 1px;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows:  1fr;
 }
 
 #newNote {

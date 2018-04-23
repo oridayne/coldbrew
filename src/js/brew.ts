@@ -14,18 +14,18 @@ function getElementById(id: string): HTMLElement {
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    getElementById("checkAll").addEventListener("click", checkAll);
-    getElementById("pickedUp").addEventListener("click", removeCheckedPackages);
-    getElementById("delete").addEventListener("click", removeCheckedPackages);
-    getElementById("undo").addEventListener("click", undo);
-    getElementById("popExample").addEventListener("click", popUp);
-    getElementById("packageForm").addEventListener("submit", (e) => {
+    Util.getElementById("checkAll").addEventListener("click", checkAll);
+    Util.getElementById("pickedUp").addEventListener("click", removeCheckedPackages);
+    Util.getElementById("delete").addEventListener("click", removeCheckedPackages);
+    Util.getElementById("undo").addEventListener("click", undo);
+    Util.getElementById("popExample").addEventListener("click", popUp);
+    Util.getElementById("packageForm").addEventListener("submit", (e) => {
         e.preventDefault();
         addPackage();
         clearPackageInput();
     });
-    getElementById("clearPackageInput").addEventListener("click", clearPackageInput);
-    getElementById("addNote").addEventListener("click", (e) => {
+    Util.getElementById("clearPackageInput").addEventListener("click", clearPackageInput);
+    Util.getElementById("addNote").addEventListener("click", (e) => {
         e.preventDefault();
         addNote();
         clearNoteInput();
@@ -34,24 +34,20 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function clearPackageInput() {
-    const inputs = getElementById("packageForm").getElementsByTagName("input");
+    const inputs = Util.getElementById("packageForm").getElementsByTagName("input");
     for (const input of inputs) {
         input.value = "";
     }
 }
 
-function getInputValueById(id: string): string {
-    return (getElementById(id) as HTMLInputElement).value;
-}
-
 function addPackage() {
     // FIXME should fail if required inputs are not present
 
-    const firstname = getInputValueById("firstname");
-    const lastname = getInputValueById("lastname");
-    const packageNumber = getInputValueById("packageNumber");
+    const firstname = Util.getInputValueById("firstname");
+    const lastname = Util.getInputValueById("lastname");
+    const packageNumber = Util.getInputValueById("packageNumber");
 
-    const location = getInputValueById("location");
+    const location = Util.getInputValueById("location");
     // const carrier = getInputValueById("carrier");
     // const comments = getInputValueById("comments");
 
@@ -83,7 +79,7 @@ function createListItem(name: string, popupText: string): HTMLLIElement {
 // Given a list item, add it to its correct place (alphabetically) in the package list.
 function addListItem(listItem: HTMLLIElement) {
     const addName = listItem.innerText;
-    const ol = getElementById("packageList");
+    const ol = Util.getElementById("packageList");
     for (const li of ol.children) {
         const itemName = li.textContent || "";
         // if it comes before
@@ -97,7 +93,7 @@ function addListItem(listItem: HTMLLIElement) {
 }
 
 function checkAll() {
-    const ol = getElementById("packageList");
+    const ol = Util.getElementById("packageList");
     for (const li of ol.children) {
         const checkbox = li.children[0] as HTMLInputElement;
         checkbox.checked = true;
@@ -106,7 +102,7 @@ function checkAll() {
 
 // removes checked packages from the packages list
 function removeCheckedPackages() {
-    const ol = getElementById("packageList");
+    const ol = Util.getElementById("packageList");
     const packages = ol.children;
     const deleted = [];
     for (let x = packages.length - 1; x >= 0; x--) {
@@ -136,12 +132,12 @@ function undo() {
 
 function popUp() {
     // TODO make this work for any pop-up
-    const popup = getElementById("zeng");
+    const popup = Util.getElementById("zeng");
     popup.classList.toggle("show");
 }
 
 function clearNoteInput() {
-    const newNoteTextArea = getElementById("newNote") as HTMLTextAreaElement;
+    const newNoteTextArea = Util.getElementById("newNote") as HTMLTextAreaElement;
     newNoteTextArea.value = "";
 }
 
@@ -152,7 +148,7 @@ function addNote() {
     const noteParagraph = document.createElement("p");
     noteDiv.classList.add("note");
     // TODO sanitize note input
-    const newNoteTextArea = getElementById("newNote") as HTMLTextAreaElement;
+    const newNoteTextArea = Util.getElementById("newNote") as HTMLTextAreaElement;
     noteParagraph.innerText = newNoteTextArea.value;
     noteDiv.appendChild(noteParagraph);
 
@@ -175,7 +171,7 @@ function addNote() {
         pinNoteButton.removeEventListener("click", pinNote);
         pinNoteButton.addEventListener("click", unpinNote);
 
-        let topNote = getElementById("newNoteContainer").nextElementSibling;
+        let topNote = Util.getElementById("newNoteContainer").nextElementSibling;
         if (topNote && topNote.parentElement) {
             topNote.parentElement.insertBefore(noteDiv, topNote);
         }
@@ -194,7 +190,7 @@ function addNote() {
 
     // Add new note to DOM (at the top of the unpinned notes)
     function insertAtTopOfUnpinnedNotes() {
-        let currentNote = getElementById("newNoteContainer").nextElementSibling;
+        let currentNote = Util.getElementById("newNoteContainer").nextElementSibling;
         if (currentNote == noteDiv) { // make sure this also works if the current note is the first one found
             currentNote = currentNote.nextElementSibling;
         }
@@ -208,7 +204,7 @@ function addNote() {
                 return;
             }
         }
-        getElementById("notesCol").appendChild(noteDiv);    
+        Util.getElementById("notesCol").appendChild(noteDiv);    
     }
 
     insertAtTopOfUnpinnedNotes();
