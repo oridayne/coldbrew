@@ -7,6 +7,7 @@
         <!-- Load style sheets -->
         <link rel="stylesheet" href="dist/css/brew.css">
         <script src="dist/js/util.js"></script>
+        <script src="dist/js/navbar.js"></script>
         <script src="dist/js/lend.js"></script>
 
     </head>
@@ -15,17 +16,9 @@
         <h1 class="title">Desk Worker</h1>
 
         <div >
-            <ul id="menu">
-                <li><a href="coldbrew.html"><div  class="colHeader" id="home">Home</div></a></li>
-                <li><div  class="colHeader" id="packageHistory">Package History</div></li>
-                <li><div  class="colHeader" id="addPackage">Add Package</div></li>
-                <li><div  class="colHeader" id="notes">Notes</div></li>
-                <li><a href="lend.html"><div  class="colHeader active" id="lent">Lent Items</div></a></li>
-                <li><div  class="colHeader" id="directory">Directory</div></li>
-                <li><div  class="colHeader" id="checkIn">Check In/Check Out</div></li>
-            </ul>
+            <ul id="navbar" data-pagename="lend"></ul>
             
-            <div id="lend">
+            <div id="lent">
             
                 <div class="lendCols" id="lentout">
                     <h2>Lent Out</h2>
