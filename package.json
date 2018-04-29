@@ -25,9 +25,9 @@
   },
   "homepage": "https://github.com/oridayne/coldbrew#readme",
   "devDependencies": {
-    "node-sass": "^4.8.3",
+    "node-sass": "^4.9.0",
     "npm-run-all": "^4.1.2",
     "tslint": "^5.9.1",
-    "typescript": "^2.8.1"
+    "typescript": "^2.8.3"
   }
 }
