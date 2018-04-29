@@ -6,9 +6,9 @@
 
         <!-- Load style sheets -->
         <link rel="stylesheet" href="dist/css/brew.css">
-        <script src="dist/js/util.js"></script>
-        <script src="dist/js/navbar.js"></script>
-        <script src="dist/js/lend.js"></script>
+        <script src="dist/js/util.js" type="module"></script>
+        <script src="dist/js/navbar.js" type="module"></script>
+        <script src="dist/js/lend.js" type="module"></script>
 
     </head>
     <body>
@@ -17,16 +17,15 @@
 
         <div >
             <ul id="navbar" data-pagename="lend"></ul>
-            
+
             <div id="lent">
-            
                 <div class="lendCols" id="lentout">
                     <h2>Lent Out</h2>
                     <ol class="lentItems" id="itemList">
                         <li><input type="checkbox">Basketball - David Jin</li>
                         <li><input type="checkbox">Smash - Toby Holtzman</li>
                         <li><input type="checkbox">Monopoly - Lisa Deng</li>
-                       
+
 
                     </ol>
                         <br>
@@ -38,8 +37,8 @@
                     <form id="LendForm">
                         <input class="entry" type="text" id="nameEntry" placeholder="Name"> <br>
                         <input class="entry" type="text" id="itemToLend" placeholder="Item being borrowed"> <br>
-                        
-                       
+
+
                         <input class="entry" type="text" id="comments" placeholder="Comments"> <br>
 
                         <br><br>

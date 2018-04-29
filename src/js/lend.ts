@@ -1,3 +1,5 @@
+import * as Util from "./util.js";
+
 document.addEventListener("DOMContentLoaded", () => {
 
     Util.getElementById("returnItems").addEventListener("click", removeCheckedItems);
@@ -8,10 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     Util.getElementById("clearItemInput").addEventListener("click", clearItemInput);
 
-
 });
-
-
 
 // // Given a list item, add it to its correct place (alphabetically) in the package list.
 function addLentListItem(listItem: HTMLLIElement) {
@@ -26,23 +25,18 @@ function addLentListItem(listItem: HTMLLIElement) {
         }
     }
     ol.appendChild(listItem);
-
 }
-
-// // // // Given a list item, add it to its correct place (alphabetically) in the package list.
 
 function addLentItem() {
     // FIXME should fail if required inputs are not present
 
     const item = Util.getInputValueById("itemToLend");
     const firstname = Util.getInputValueById("nameEntry");
-	const nameText = `${item} - ${firstname}`;
-	console.log(nameText);
+    const nameText = `${item} - ${firstname}`;
+    console.log(nameText);
     const li = createLentListItem(nameText);
     addLentListItem(li);
 }
-
-
 
 function createLentListItem(name: string): HTMLLIElement {
     const li = document.createElement("li");
@@ -53,7 +47,6 @@ function createLentListItem(name: string): HTMLLIElement {
     li.insertAdjacentText("beforeend", name);
     return li;
 }
-
 
 // removes checked packages from the packages list
 function removeCheckedItems() {
@@ -68,7 +61,6 @@ function removeCheckedItems() {
         }
     }
 }
-
 
 function clearItemInput() {
     const inputs = Util.getElementById("LendForm").getElementsByTagName("input");
