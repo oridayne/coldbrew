@@ -34,7 +34,6 @@ function addLentItem() {
     const item = Util.getInputValueById("itemToLend");
     const firstname = Util.getInputValueById("nameEntry");
     const nameText = `${item} - ${firstname}`;
-    console.log(nameText);
     const li = createLentListItem(nameText);
     addLentListItem(li);
 }
@@ -53,10 +52,8 @@ function createLentListItem(name: string): HTMLLIElement {
 function removeCheckedItems() {
     const ol = Util.getElementById("itemList");
     const packages = ol.children;
-    console.log(packages);
     for (let x = packages.length - 1; x >= 0; x--) {
         const checkbox = packages[x].children[0] as HTMLInputElement;
-        console.log(checkbox);
         if (checkbox.checked) {
             packages[x].remove();
         }

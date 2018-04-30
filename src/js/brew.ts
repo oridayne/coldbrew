@@ -2,23 +2,6 @@ import "./navbar";
 import * as Util from "./util";
 
 class Package {
-    private firstname: string;
-    private lastname: string;
-    private packageNumber: string;
-    private location: string;
-    private carrier: string;
-    private comments: string | undefined;
-
-    constructor(firstname: string, lastname: string, packageNumber: string,
-                location: string, carrier: string, comments?: string) {
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.packageNumber = packageNumber;
-        this.location = location;
-        this.carrier = carrier;
-        this.comments = comments;
-    }
-
     public static fromInputs(): Package {
         // FIXME should fail if required inputs are not present
 
@@ -42,6 +25,23 @@ class Package {
             carrier,
             comments,
         );
+    }
+
+    private firstname: string;
+    private lastname: string;
+    private packageNumber: string;
+    private location: string;
+    private carrier: string;
+    private comments: string | undefined;
+
+    constructor(firstname: string, lastname: string, packageNumber: string,
+                location: string, carrier: string, comments?: string) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.packageNumber = packageNumber;
+        this.location = location;
+        this.carrier = carrier;
+        this.comments = comments;
     }
 
     public render(): HTMLLIElement {

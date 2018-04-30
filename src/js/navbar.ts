@@ -4,56 +4,48 @@
 
 import { getElementById } from "./util";
 
-interface Page {
-    pagename: string;
+interface IPage {
     displayName: string;
     link: string;
-    elementId: string;
+    pagename: string;
 }
 
-const pages: Page[] = [
+const pages: IPage[] = [
     {
-        pagename: "home",
         displayName: "Home",
         link: "coldbrew.html",
-        elementId: "home"
+        pagename: "home",
     },
     {
-        pagename: "history",
         displayName: "Package History",
         link: "history.html",
-        elementId: "packageHistory"
+        pagename: "history",
     },
     {
-        pagename: "addPackage",
         displayName: "Add Package",
         link: "add-package.html",
-        elementId: "addPackage.html"
+        pagename: "addPackage",
     },
     {
-        pagename: "notes",
         displayName: "Notes",
         link: "notes.html",
-        elementId: "notes"
+        pagename: "notes",
     },
     {
-        pagename: "lend",
         displayName: "Lent Items",
         link: "lend.html",
-        elementId: "lend"
+        pagename: "lend",
     },
     {
-        pagename: "directory",
         displayName: "Directory",
         link: "directory.html",
-        elementId: "directory"
+        pagename: "directory",
     },
     {
-        pagename: "checkIn",
         displayName: "Check In/Check Out",
         link: "check-in.html",
-        elementId: "checkIn"
-    }
+        pagename: "checkIn",
+    },
 ];
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -76,7 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 nav.classList.add("active");
             }
             nav.innerText = page.displayName;
-            nav.id = page.elementId;
+            nav.id = `nav-${page.pagename}`;
 
             navLink.appendChild(nav);
             navLi.appendChild(navLink);
