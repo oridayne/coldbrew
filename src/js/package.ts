@@ -47,7 +47,17 @@ export default class Package {
         checkbox.id = `pkg-${this.id}-checkbox`;
         label.appendChild(checkbox);
 
-        label.insertAdjacentText("beforeend", `${name}—${this.location}`);
+        const pkgInfo = document.createElement("span");
+        pkgInfo.classList.add("pkginfo");
+        label.appendChild(pkgInfo);
+
+        const infoLeft = document.createElement("span");
+        infoLeft.insertAdjacentText("beforeend", name);
+        pkgInfo.appendChild(infoLeft);
+
+        const infoRight = document.createElement("span");
+        infoRight.insertAdjacentText("beforeend", this.location);
+        pkgInfo.appendChild(infoRight);
 
         let moreinfo = `Carrier: ${this.carrier}\nPackage #: ${this.packageNumber}`;
         if (this.comments !== undefined) {

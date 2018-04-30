@@ -238,8 +238,15 @@ h2{
 
 .moreinfo {
     cursor: help;
+    display: flex;
 }
 
 .moreinfo:hover {
     text-decoration: underline dotted;
+}
+
+.pkginfo {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
 }
