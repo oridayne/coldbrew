@@ -5,7 +5,7 @@ import * as Util from "./util";
 const deletedPackages: HTMLLIElement[][] = [];
 
 document.addEventListener("DOMContentLoaded", () => {
-
+    
     Util.getElementById("checkAll").addEventListener("click", checkAll);
     Util.getElementById("pickedUp").addEventListener("click", removeCheckedPackages);
     Util.getElementById("delete").addEventListener("click", removeCheckedPackages);
@@ -40,8 +40,8 @@ function addPackage() {
     const packageNumber = Util.getInputValueById("packageNumber");
 
     const location = Util.getInputValueById("location");
-    // const carrier = getInputValueById("carrier");
-    // const comments = getInputValueById("comments");
+    // const carrier = Util.getInputValueById("carrier");
+    // const comments = Util.getInputValueById("comments");
 
     const nameText = `${lastname}, ${firstname}`;
     const popupText = `${location}, pkg. #${packageNumber}`;
