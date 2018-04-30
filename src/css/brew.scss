@@ -54,10 +54,21 @@ textarea {
   margin: 0;
 }
 
+@mixin columns($n) {
+    display: grid;
+    margin-top: 10px;
+    grid-column-gap: 1px;
+    grid-template-columns: repeat($n, 1fr);
+    > :nth-child(2n+2) {
+        background-color: gainsboro;
+    }
+    > :nth-child(2n+3) {
+        background-color: silver;
+    }
+}
+
 #layout{
-  display: grid;
-  grid-column-gap: 1px;
-  grid-template-columns: 1fr 1fr 1fr;
+    @include columns(3);
 }
 
 #navbar{
@@ -88,16 +99,12 @@ textarea {
   outline: 1px solid var(--color-light-gray);
   outline: none;
   margin: 0;
-
+  padding: 20px;
 }
 
-ol.package{
+ol.package, ol.lentItems {
   list-style-type: none;
-}
-
-ol.lentItems{
-    list-style-type: none;
-
+  padding-left: 0px;
 }
 
 
@@ -110,7 +117,6 @@ h2{
 
 #search{
   text-align:center;
-
 }
 
 #container {
@@ -120,21 +126,13 @@ h2{
   margin: auto;
 }
 
-#packageForm{
-  margin-left: 20px;
-}
-
-#packageEntry {
-  background-color: silver;
-}
-
 .entry{
   padding: 10px 10px;
   border-radius: 5px;
-  margin-top: 5px;
-  margin-right: 2px;
-  margin-bottom: 5px;
-  width: 80%;
+  margin: 10px 0px;
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
   border: 1px var(--color-light-gray);
   box-shadow: none;
 }
@@ -151,7 +149,7 @@ h2{
     font-size: 12px;
     margin: 5px 5px;
     cursor: pointer;
-    width: 19.5%;
+    width: 25%;
 }
 
 .popup {
@@ -224,19 +222,31 @@ h2{
   margin: 0 15px 15px 15px;
 }
 
-#lent{
-  display: grid;
-  margin-top: 10px;
-  grid-column-gap: 1px;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows:  1fr;
+#lent {
+    @include columns(2);
 }
 
 #newNote {
   width: 100%;
   height: 4em;
+  resize: vertical;
 }
 
 .notePinned {
   background-color: lightgray;
+}
+
+.moreinfo {
+    cursor: help;
+    display: flex;
+}
+
+.moreinfo:hover {
+    text-decoration: underline dotted;
+}
+
+.pkginfo {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
 }

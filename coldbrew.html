@@ -30,28 +30,7 @@
                     <button class="button" id="undo">Undo</button>
                 </div>
 
-                <ol class="package" id="packageList">
-                    <li><input type="checkbox">Anson, Caroline</li>
-                    <li><input type="checkbox">Burke, Richard</li>
-                    <li><input type="checkbox">Carter, Lisa</li>
-                    <li><input type="checkbox">Denmark, Caroline</li>
-                    <li><input type="checkbox">Evangeline, Richard</li>
-                    <li><input type="checkbox">Frogsteine, Lisa</li>
-                    <li><input type="checkbox">Grossman, Caroline</li>
-                    <li><input type="checkbox">Holis, Richard</li>
-                    <li><input type="checkbox">Iglu, Lisa</li>
-                    <li><input type="checkbox">Jando, Caroline</li>
-                    <li><input type="checkbox">Kristoffberg, Richard</li>
-                    <li><input type="checkbox">Lampreay, Lisa</li>
-                    <li><input type="checkbox">Monomon, Lisa</li>
-                    <li><input type="checkbox">Oppres, Caroline</li>
-                    <li><input type="checkbox">Plort, Richard</li>
-                    <li><input type="checkbox">Quinteyville, Lisa</li>
-                    <!-- FIXME: does not display correctly when multiple packages have popups -->
-                    <li id="popExample" class="popup"><input type="checkbox">Zeng, Aaron
-                        <span class="popuptext" id="zeng">Bin #5</span>
-                    </li>
-                </ol>
+                <ol class="package" id="packageList"></ol>
 
             </div>
 
@@ -59,9 +38,9 @@
                 <h2>Add Package </h2>
                 <div>
                     <form id="packageForm">
-                        <input class="entry" type="text" id="firstname" placeholder="First Name"> <br>
-                        <input class="entry" type="text" id="lastname" placeholder="Last Name"> <br>
-                        <input class="entry" type="text" id="packageNumber" placeholder="Package #"> <br>
+                        <input class="entry" type="text" id="firstname" placeholder="First Name">
+                        <input class="entry" type="text" id="lastname" placeholder="Last Name">
+                        <input class="entry" type="text" id="packageNumber" placeholder="Package #">
                         <label for="carrier">Carrier</label>
                         <select id="carrier" required>
                             <optgroup>
@@ -73,11 +52,11 @@
                             <optgroup>
                                 <option value="other">Other</option>
                             </optgroup>
-                        </select> <br>
-                        <input class="entry" type="text" id="location" placeholder="Location"> <br>
-                        <input class="entry" type="text" id="comments" placeholder="Comments"> <br>
+                        </select>
+                        <input class="entry" type="text" id="location" placeholder="Location">
+                        <input class="entry" type="text" id="comments" placeholder="Comments">
 
-                        <br><br>
+                        <br>
 
                         <button id="addPackage" class="button">Submit</button>
                         <button id="clearPackageInput" class="button delete" type="button">Clear All</button>
