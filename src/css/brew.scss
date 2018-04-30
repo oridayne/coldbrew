@@ -235,3 +235,11 @@ h2{
 .notePinned {
   background-color: lightgray;
 }
+
+.moreinfo {
+    cursor: help;
+}
+
+.moreinfo:hover {
+    text-decoration: underline dotted;
+}

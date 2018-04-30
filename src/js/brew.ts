@@ -1,74 +1,36 @@
-import "./navbar";
+import dummyPackages from "./dummy-packages";
+import Package from "./package";
 import * as Util from "./util";
 
-class Package {
-    public static fromInputs(): Package {
-        // FIXME should fail if required inputs are not present
+import "./navbar";
 
-        const firstname = Util.getInputValueById("firstname");
-        const lastname = Util.getInputValueById("lastname");
-        const packageNumber = Util.getInputValueById("packageNumber");
+function makePackageFromInputs(): Package {
+    // FIXME should fail if required inputs are not present
 
-        const location = Util.getInputValueById("location");
-        const carrier = Util.getInputValueById("carrier");
+    const firstname = Util.getInputValueById("firstname");
+    const lastname = Util.getInputValueById("lastname");
+    const packageNumber = Util.getInputValueById("packageNumber");
 
-        let comments: string | undefined = Util.getInputValueById("comments");
-        if (comments.length === 0) {
-            comments = undefined;
-        }
+    const location = Util.getInputValueById("location");
+    const carrier = Util.getInputValueById("carrier");
 
-        return new Package(
-            firstname,
-            lastname,
-            packageNumber,
-            location,
-            carrier,
-            comments,
-        );
+    let comments: string | undefined = Util.getInputValueById("comments");
+    if (comments.length === 0) {
+        comments = undefined;
     }
 
-    private firstname: string;
-    private lastname: string;
-    private packageNumber: string;
-    private location: string;
-    private carrier: string;
-    private comments: string | undefined;
-
-    constructor(firstname: string, lastname: string, packageNumber: string,
-                location: string, carrier: string, comments?: string) {
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.packageNumber = packageNumber;
-        this.location = location;
-        this.carrier = carrier;
-        this.comments = comments;
-    }
-
-    public render(): HTMLLIElement {
-        const name = `${this.lastname}, ${this.firstname}`;
-        const popupText = `${this.location}, pkg. #${this.packageNumber}`;
-
-        const li = document.createElement("li");
-        li.classList.add("popup");
-
-        const checkbox = document.createElement("input");
-        checkbox.type = "checkbox";
-        li.appendChild(checkbox);
-
-        li.insertAdjacentText("beforeend", name);
-
-        const popup = document.createElement("span");
-        popup.classList.add("popuptext");
-        popup.textContent = popupText;
-        li.appendChild(popup);
-
-        return li;
-    }
+    return new Package({
+        carrier,
+        comments,
+        firstname,
+        lastname,
+        location,
+        packageNumber,
+    });
 }
 
 // stack of package objects deleted. This helps with undo.
-// TODO make this a stack of Package
-const deletedPackages: HTMLLIElement[][] = [];
+const deletedPackages: Package[][] = [];
 
 const allPackages: Set<Package> = new Set();
 
@@ -78,12 +40,13 @@ document.addEventListener("DOMContentLoaded", () => {
     Util.getElementById("pickedUp").addEventListener("click", removeCheckedPackages);
     Util.getElementById("delete").addEventListener("click", removeCheckedPackages);
     Util.getElementById("undo").addEventListener("click", undo);
-    Util.getElementById("popExample").addEventListener("click", popUp);
     Util.getElementById("packageForm").addEventListener("submit", (e) => {
         e.preventDefault();
-        const p = Package.fromInputs();
-        allPackages.add(p);
-        addListItem(p.render());
+
+        const pkg = makePackageFromInputs();
+        allPackages.add(pkg);
+        redrawPackages();
+
         clearPackageInput();
     });
     Util.getElementById("clearPackageInput").addEventListener("click", clearPackageInput);
@@ -96,12 +59,31 @@ document.addEventListener("DOMContentLoaded", () => {
     // Util.getElementById("search").addEventListener("input", (e) => {
     // });
 
+    // initialize allPackages from dummy package data set
+    for (const p of dummyPackages) {
+        allPackages.add(p);
+    }
+    redrawPackages();
 });
 
 function clearPackageInput() {
     const inputs = Util.getElementById("packageForm").getElementsByTagName("input");
     for (const input of inputs) {
         input.value = "";
+    }
+}
+
+function redrawPackages() {
+    const ol = Util.getElementById("packageList");
+    ol.innerHTML = "";
+
+    const packages = Array.from(allPackages.values());
+    packages.sort((a, b) => {
+        return a.name().localeCompare(b.name());
+    });
+
+    for (const pkg of packages) {
+        ol.appendChild(pkg.render());
     }
 }
 
@@ -123,25 +105,29 @@ function addListItem(listItem: HTMLLIElement) {
 function checkAll() {
     const ol = Util.getElementById("packageList");
     for (const li of ol.children) {
-        const checkbox = li.children[0] as HTMLInputElement;
+        const checkbox = li.querySelector("input") as HTMLInputElement;
         checkbox.checked = true;
     }
 }
 
 // removes checked packages from the packages list
 function removeCheckedPackages() {
-    const ol = Util.getElementById("packageList");
-    const packages = ol.children;
     const deleted = [];
-    for (let x = packages.length - 1; x >= 0; x--) {
-        const checkbox = packages[x].children[0] as HTMLInputElement;
+    for (const pkg of allPackages) {
+        const checkbox = Util.getElementById(`pkg-${pkg.id}-checkbox`) as HTMLInputElement;
         if (checkbox.checked) {
-            const breadcrumb = packages[x] as HTMLLIElement;
-            deleted.push(breadcrumb);
-            packages[x].remove();
+            deleted.push(pkg);
         }
     }
-    deletedPackages.push(deleted);
+    for (const pkg of deleted) {
+        allPackages.delete(pkg);
+    }
+
+    // only add a new undo entry if anything got deleted
+    if (deleted.length > 0) {
+        deletedPackages.push(deleted);
+    }
+    redrawPackages();
 }
 
 // undo package deletions
@@ -151,17 +137,10 @@ function undo() {
         return;
     }
 
-    for (const li of lastDelete) {
-        const checkbox = li.children[0] as HTMLInputElement;
-        checkbox.checked = false; // uncheck the item
+    for (const pkg of lastDelete) {
+        const li = pkg.render();
         addListItem(li);
     }
-}
-
-function popUp() {
-    // TODO make this work for any pop-up
-    const popup = Util.getElementById("zeng");
-    popup.classList.toggle("show");
 }
 
 function clearNoteInput() {
