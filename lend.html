@@ -13,44 +13,36 @@
 
         <h1 class="title">Desk Worker</h1>
 
-        <div >
+        <div id="lent">
             <ul id="navbar" data-pagename="lend"></ul>
 
-            <div id="lent">
-                <div class="lendCols" id="lentout">
-                    <h2>Lent Out</h2>
-                    <ol class="lentItems" id="itemList">
-                        <li><input type="checkbox">Basketball - David Jin</li>
-                        <li><input type="checkbox">Smash - Toby Holtzman</li>
-                        <li><input type="checkbox">Monopoly - Lisa Deng</li>
+            <div class="lendCols colOutline" id="lentout">
+                <h2>Lent Out</h2>
+                <ol class="lentItems" id="itemList">
+                    <li><input type="checkbox">Basketball - David Jin</li>
+                    <li><input type="checkbox">Smash - Toby Holtzman</li>
+                    <li><input type="checkbox">Monopoly - Lisa Deng</li>
 
 
-                    </ol>
-                        <br>
-                    <div style="margin-left: 40px;"><button class="button" id="returnItems">Return Item(s)</button></div>
+                </ol>
+                <br>
+                <div style="margin-left: 40px;"><button class="button" id="returnItems">Return Item(s)</button></div>
             </div>
-            <div class="lendCols" id="lentin">
+            <div class="lendCols colOutline" id="lentin">
                 <h2>Lend Item</h2>
 
-                    <form id="LendForm">
-                        <input class="entry" type="text" id="nameEntry" placeholder="Name"> <br>
-                        <input class="entry" type="text" id="itemToLend" placeholder="Item being borrowed"> <br>
+                <form id="LendForm">
+                    <input class="entry" type="text" id="nameEntry" placeholder="Name"> <br>
+                    <input class="entry" type="text" id="itemToLend" placeholder="Item being borrowed"> <br>
 
 
-                        <input class="entry" type="text" id="comments" placeholder="Comments"> <br>
+                    <input class="entry" type="text" id="comments" placeholder="Comments"> <br>
 
-                        <br><br>
-                        <button id="Submit" class="button">Submit</button>
-                        <button id="clearItemInput" class="button delete" type="button">Clear All</button>
-                    </form>
-
-
-
+                    <br><br>
+                    <button id="Submit" class="button">Submit</button>
+                    <button id="clearItemInput" class="button delete" type="button">Clear All</button>
+                </form>
             </div>
         </div>
-        </div>
-
-
-
     </body>
 </html>

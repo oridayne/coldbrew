@@ -54,11 +54,21 @@ textarea {
   margin: 0;
 }
 
+@mixin columns($n) {
+    display: grid;
+    margin-top: 10px;
+    grid-column-gap: 1px;
+    grid-template-columns: repeat($n, 1fr);
+    > :nth-child(2n+2) {
+        background-color: gainsboro;
+    }
+    > :nth-child(2n+3) {
+        background-color: silver;
+    }
+}
+
 #layout{
-  display: grid;
-  margin-top: 10px;
-  grid-column-gap: 1px;
-  grid-template-columns: 1fr 1fr 1fr;
+    @include columns(3);
 }
 
 #navbar{
@@ -123,10 +133,6 @@ h2{
 
 #packageForm{
   margin-left: 20px;
-}
-
-#packageEntry {
-  background-color: silver;
 }
 
 .entry{
@@ -225,12 +231,8 @@ h2{
   margin: 0 15px 15px 15px;
 }
 
-#lent{
-  display: grid;
-  margin-top: 10px;
-  grid-column-gap: 1px;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows:  1fr;
+#lent {
+    @include columns(2);
 }
 
 #newNote {
