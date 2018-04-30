@@ -40,6 +40,7 @@ export default class Package {
 
         const label = document.createElement("label");
         label.classList.add("moreinfo");
+        label.classList.add("pkg-list-label");
         li.appendChild(label);
 
         const checkbox = document.createElement("input");
