@@ -1,4 +1,5 @@
-import * as Util from "./util.js";
+import "./navbar";
+import * as Util from "./util";
 
 document.addEventListener("DOMContentLoaded", () => {
 

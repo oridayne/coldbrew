@@ -1,20 +1,8 @@
 // To include a navbar on a page:
-//  1. Include this script
-//  2. Include a ul with id="navbar" data-pagename="[pagename of that page]"
+//  1. Import this script
+//  2. Include a <ul id="navbar" data-pagename="[pagename of that page]">
 
-
-// TODO: import this from Util.ts
-/**
- * Get an element by ID or throw if it does not exist.
- */
-function getElementById(id: string): HTMLElement {
-    const elt = document.getElementById(id);
-    if (elt == null) {
-        throw new Error("no such element with id");
-    }
-    return elt;
-}
-
+import { getElementById } from "./util";
 
 interface Page {
     pagename: string;
@@ -66,7 +54,7 @@ const pages: Page[] = [
         link: "check-in.html",
         elementId: "checkIn"
     }
-]
+];
 
 document.addEventListener("DOMContentLoaded", () => {
     // navbar ul
@@ -76,12 +64,12 @@ document.addEventListener("DOMContentLoaded", () => {
     if (navbar) {
         const pagename = navbar.dataset.pagename;
 
-        pages.forEach(page => {
+        pages.forEach((page) => {
             const navLi = document.createElement("li");
-            
+
             const navLink = document.createElement("a");
             navLink.setAttribute("href", page.link);
-    
+
             const nav = document.createElement("div");
             nav.classList.add("colHeader");
             if (pagename && pagename === page.pagename) {
@@ -89,10 +77,10 @@ document.addEventListener("DOMContentLoaded", () => {
             }
             nav.innerText = page.displayName;
             nav.id = page.elementId;
-    
+
             navLink.appendChild(nav);
             navLi.appendChild(navLink);
             navbar.appendChild(navLi);
-        });    
+        });
     }
 });
