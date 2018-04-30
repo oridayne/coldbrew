@@ -38,24 +38,28 @@
                 <h2>Add Package </h2>
                 <div>
                     <form id="packageForm">
-                        <input class="entry" type="text" id="firstname" placeholder="First Name">
-                        <input class="entry" type="text" id="lastname" placeholder="Last Name">
-                        <input class="entry" type="text" id="packageNumber" placeholder="Package #">
-                        <label for="carrier">Carrier</label>
-                        <select id="carrier" required>
+                        <label for="firstname">first name</label>
+                        <input class="entry" type="text" id="firstname" name="firstname">
+                        <label for="lastname">last name</label>
+                        <input class="entry" type="text" id="lastname" name="lastname">
+                        <label for="packageNumber">package #</label>
+                        <input class="entry" type="text" id="packageNumber" name="packageNumber">
+                        <label for="carrier">carrier</label>
+                        <select id="carrier" name="carrier" required>
                             <optgroup>
-                                <option value="amazon">Amazon</option>
-                                <option value="fedex">FedEx</option>
-                                <option value="ups">UPS</option>
-                                <option value="usps">USPS</option>
+                                <option value="Amazon">Amazon</option>
+                                <option value="FedEx">FedEx</option>
+                                <option value="UPS">UPS</option>
+                                <option value="USPS">USPS</option>
                             </optgroup>
                             <optgroup>
-                                <option value="other">Other</option>
+                                <option value="Other">Other</option>
                             </optgroup>
                         </select>
-                        <input class="entry" type="text" id="location" placeholder="Location">
-                        <input class="entry" type="text" id="comments" placeholder="Comments">
-
+                        <label for="location">location</label>
+                        <input class="entry" type="text" id="location" name="location">
+                        <label for="comments">comments</label>
+                        <input class="entry" type="text" id="comments" name="comments">
                         <br>
 
                         <button id="addPackage" class="button">Submit</button>
