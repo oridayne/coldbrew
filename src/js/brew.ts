@@ -117,11 +117,12 @@ function addListItem(listItem: HTMLLIElement) {
     ol.appendChild(listItem);
 }
 
+// check all /visible/ packages' checkboxes
 function checkAll() {
     const ol = Util.getElementById("packageList");
-    for (const li of ol.children) {
-        const checkbox = li.querySelector("input") as HTMLInputElement;
-        checkbox.checked = true;
+    const checkboxes = ol.querySelectorAll(".pkg:not(.filtered-out) input");
+    for (const checkbox of checkboxes) {
+        (checkbox as HTMLInputElement).checked = true;
     }
 }
 
