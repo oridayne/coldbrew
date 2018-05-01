@@ -36,35 +36,35 @@ export default class Package {
         const name = this.name();
 
         const li = document.createElement("li");
+        li.classList.add("pkg");
         li.id = `pkg-${this.id}`;
-
-        const label = document.createElement("label");
-        label.classList.add("moreinfo");
-        label.classList.add("pkg-list-label");
-        li.appendChild(label);
 
         const checkbox = document.createElement("input");
         checkbox.type = "checkbox";
         checkbox.id = `pkg-${this.id}-checkbox`;
-        label.appendChild(checkbox);
+        li.appendChild(checkbox);
 
-        const pkgInfo = document.createElement("span");
-        pkgInfo.classList.add("pkginfo");
+        const label = document.createElement("label");
+        label.htmlFor = `pkg-${this.id}-checkbox`;
+        li.appendChild(label);
+
+        const pkgInfo = document.createElement("details");
         label.appendChild(pkgInfo);
 
-        const infoLeft = document.createElement("span");
-        infoLeft.insertAdjacentText("beforeend", name);
-        pkgInfo.appendChild(infoLeft);
+        const summary = document.createElement("summary");
+        summary.innerText = name;
+        pkgInfo.appendChild(summary);
 
-        const infoRight = document.createElement("span");
-        infoRight.insertAdjacentText("beforeend", this.location);
-        pkgInfo.appendChild(infoRight);
+        pkgInfo.insertAdjacentText("beforeend", `Location: ${this.location}`);
+        pkgInfo.insertAdjacentHTML("beforeend", "<br>");
+        pkgInfo.insertAdjacentText("beforeend", `Carrier: ${this.carrier}`);
+        pkgInfo.insertAdjacentHTML("beforeend", "<br>");
+        pkgInfo.insertAdjacentText("beforeend", `Package #: ${this.packageNumber}`);
 
-        let moreinfo = `Carrier: ${this.carrier}\nPackage #: ${this.packageNumber}`;
         if (this.comments !== undefined) {
-            moreinfo += `\nComments: ${this.comments}`;
+            pkgInfo.insertAdjacentHTML("beforeend", "<br>");
+            pkgInfo.insertAdjacentText("beforeend", `Comments: ${this.comments}`);
         }
-        label.title = moreinfo;
 
         return li;
     }

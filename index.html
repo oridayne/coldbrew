@@ -23,6 +23,7 @@
                      Since it seems like most peopl never bothered to use them.
                 -->
 
+<<<<<<< HEAD:coldbrew.html
             <h2>Package Pick Up </h2>
             <div id="search">
                 <input type="textbox" class="entry" placeholder="Search">
@@ -33,11 +34,23 @@
                 <button class="button delete" id="delete">Delete</button>
                 <button class="button" id="undo">Undo</button>
             </div>
+=======
+                <h2>Package Pick Up </h2>
+                <label for="search">Search</label>
+                <input type="textbox" id="search" class="entry">
+                <div id="container">
+                    <button class="button" id="checkOrUncheckAll">(Un)Check All</button>
+                    <button class="button submit" id="pickedUp">Picked Up</button>
+                    <button class="button delete" id="delete">Delete</button>
+                    <button class="button" id="undo">Undo</button>
+                </div>
+>>>>>>> 9bfe534291b9e55617128bb9ff0e4adfb1b57abd:index.html
 
             <ol class="package" id="packageList"></ol>
 
         </div>
 
+<<<<<<< HEAD:coldbrew.html
         <div class="colOutline" id="packageEntry">
             <h2>Add Package </h2>
             <div>
@@ -65,6 +78,35 @@
                     <label for="comments">comments</label>
                     <input class="entry" type="text" id="comments" name="comments">
                     <br>
+=======
+            <div class="colOutline" id="packageEntry">
+                <h2>Add Package </h2>
+                <div>
+                    <form id="packageForm">
+                        <label for="firstname">First Name</label>
+                        <input class="entry" type="text" id="firstname" name="firstname">
+                        <label for="lastname">Last Name</label>
+                        <input class="entry" type="text" id="lastname" name="lastname">
+                        <label for="packageNumber">Package #</label>
+                        <input class="entry" type="text" id="packageNumber" name="packageNumber">
+                        <label for="carrier">Carrier</label>
+                        <select id="carrier" name="carrier" required>
+                            <optgroup>
+                                <option value="Amazon">Amazon</option>
+                                <option value="FedEx">FedEx</option>
+                                <option value="UPS">UPS</option>
+                                <option value="USPS">USPS</option>
+                            </optgroup>
+                            <optgroup>
+                                <option value="Other">Other</option>
+                            </optgroup>
+                        </select>
+                        <label for="location">Location</label>
+                        <input class="entry" type="text" id="location" name="location">
+                        <label for="comments">Comments</label>
+                        <input class="entry" type="text" id="comments" name="comments">
+                        <br>
+>>>>>>> 9bfe534291b9e55617128bb9ff0e4adfb1b57abd:index.html
 
                     <button id="addPackage" class="button">Submit</button>
                     <button id="clearPackageInput" class="button delete" type="button">Clear All</button>

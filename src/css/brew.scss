@@ -10,12 +10,11 @@ body {
   background-color: gainsboro;
 }
 
-label {
+form label, label[for="search"] {
   font-variant: common-ligatures small-caps;
 }
 
 select {
-  padding: 10px 10px;
   margin: 0px 0px 10px 0px;
   width: 100%;
   height: 3em;
@@ -117,10 +116,6 @@ h1{
 }
 h2{
   text-align: center;
-}
-
-#search{
-  text-align:center;
 }
 
 #container {
@@ -251,19 +246,13 @@ h2{
 
 .moreinfo {
     cursor: help;
+}
+
+.pkg {
     display: flex;
+    align-items: baseline;
 }
 
-.pkg-list-label {
-  font-variant: normal;
-}
-
-.moreinfo:hover {
-    text-decoration: underline dotted;
-}
-
-.pkginfo {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
+.filtered-out {
+    display: none;
 }

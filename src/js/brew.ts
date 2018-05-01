@@ -56,7 +56,11 @@ const allNotes: Set<Note> = new Set();
 
 document.addEventListener("DOMContentLoaded", () => {
 
+<<<<<<< HEAD
     Util.getElementById("checkAll").addEventListener("click", checkAll);
+=======
+    Util.getElementById("checkOrUncheckAll").addEventListener("click", checkOrUncheckAll);
+>>>>>>> 9bfe534291b9e55617128bb9ff0e4adfb1b57abd
     Util.getElementById("pickedUp").addEventListener("click", removeCheckedPackages);
     Util.getElementById("delete").addEventListener("click", removeCheckedPackages);
     Util.getElementById("undo").addEventListener("click", undoDeletePackages);
@@ -75,9 +79,10 @@ document.addEventListener("DOMContentLoaded", () => {
         addNote();
         clearNoteInput();
     });
-    // TODO implement search
-    // Util.getElementById("search").addEventListener("input", (e) => {
-    // });
+    Util.getElementById("search").addEventListener("input", (e) => {
+        const elt = e.target as HTMLInputElement;
+        filterPackages(elt.value);
+    });
 
     // initialize allPackages from dummy package data set
     for (const p of dummyPackages) {
@@ -107,6 +112,20 @@ function redrawPackages() {
     }
 }
 
+function filterPackages(query: string) {
+    // fc => case-folding, but JavaScript doesn't have Unicode case-folding
+    // support :(
+    const fcQuery = query.toLocaleLowerCase();
+
+    const ol = Util.getElementById("packageList");
+    for (const li of ol.children) {
+        const summary = li.querySelector("summary") as HTMLElement;
+        const fcSummaryText = summary.innerText.toLocaleLowerCase();
+        const containsQuery = fcSummaryText.indexOf(fcQuery) !== -1;
+        li.classList.toggle("filtered-out", !containsQuery);
+    }
+}
+
 // Given a list item, add it to its correct place (alphabetically) in the package list.
 function addPackageListItem(listItem: HTMLLIElement) {
     const addName = listItem.innerText;
@@ -122,11 +141,16 @@ function addPackageListItem(listItem: HTMLLIElement) {
     ol.appendChild(listItem);
 }
 
-function checkAll() {
+// check/uncheck all /visible/ packages' checkboxes
+function checkOrUncheckAll() {
     const ol = Util.getElementById("packageList");
-    for (const li of ol.children) {
-        const checkbox = li.querySelector("input") as HTMLInputElement;
-        checkbox.checked = true;
+    const checkboxes: HTMLInputElement[] =
+        Array.from(ol.querySelectorAll(".pkg:not(.filtered-out) input"));
+
+    const shouldBeChecked = checkboxes.some((x) => !x.checked);
+
+    for (const checkbox of checkboxes) {
+        (checkbox as HTMLInputElement).checked = shouldBeChecked;
     }
 }
 
