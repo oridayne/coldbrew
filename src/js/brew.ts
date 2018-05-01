@@ -1,8 +1,9 @@
+import moment from "moment";
+
 import dummyPackages from "./dummy-packages";
-import Package from "./package";
 import Note from "./note";
+import Package from "./package";
 import * as Util from "./util";
-import moment from 'moment';
 
 import "./navbar";
 
@@ -42,7 +43,7 @@ function makeNoteFromInputs(): Note {
     return new Note({
         author: Util.getInputValueById("newNoteAuthor"),
         text: Util.getInputValueById("newNote"),
-        time: moment()
+        time: moment(),
     });
 }
 
@@ -200,7 +201,7 @@ function addNote() {
 function redrawNotes() {
     const notesCol = Util.getElementById("notesCol");
     // Remove all notes from the DOM
-    Array.from(Util.getElementsByClassName("note")).forEach(noteElt => {
+    Array.from(notesCol.getElementsByClassName("note")).forEach((noteElt) => {
         noteElt.remove();
     });
 
@@ -209,15 +210,15 @@ function redrawNotes() {
     const unpinnedNotes: Note[] = [];
 
     Array.from(allNotes.values())
-        .filter(note => !note.isDeleted())
-        .forEach(note => note.isPinned() ? pinnedNotes.push(note) : unpinnedNotes.push(note));
+        .filter((note) => !note.isDeleted())
+        .forEach((note) => note.isPinned() ? pinnedNotes.push(note) : unpinnedNotes.push(note));
 
     // Put notes in reverse chronological order
     pinnedNotes.sort(Note.compareTimes);
     unpinnedNotes.sort(Note.compareTimes);
 
     // Render notes in reverse chronological order
-    pinnedNotes.forEach(note => {
+    pinnedNotes.forEach((note) => {
         const noteDiv = note.renderForHomepage(redrawNotes, redrawNotes, redrawNotes);
 
         if (noteDiv) {
@@ -225,7 +226,7 @@ function redrawNotes() {
         }
     });
 
-    unpinnedNotes.forEach(note => {
+    unpinnedNotes.forEach((note) => {
         const noteDiv = note.renderForHomepage(redrawNotes, redrawNotes, redrawNotes);
 
         if (noteDiv) {

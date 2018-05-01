@@ -1,4 +1,4 @@
-import moment from 'moment';
+import moment from "moment";
 
 export default class Note {
     /**
@@ -33,7 +33,7 @@ export default class Note {
     }
 
     public displayTime(): string {
-        return this.time.format('ddd MMM D h:mA');
+        return this.time.format("ddd MMM D h:mA");
     }
 
     public isPinned(): boolean {
@@ -46,12 +46,12 @@ export default class Note {
 
     /**
      * Render this Note as a <div> element whose ID is note-<id>, where <id> is
-     * equal to this.id. Return the element or void if the 
+     * equal to this.id. Return the element or void if the
      */
     public renderForHomepage(
         deleteNoteCallback: () => void,
         pinNoteCallback: () => void,
-        unpinNoteCallback: () => void
+        unpinNoteCallback: () => void,
     ): HTMLDivElement | void {
 
         if (!this.isDeleted()) {
