@@ -231,7 +231,10 @@ h2{
 }
 
 #newNote {
-  width: 100%;
+  --new-note-text-padding: 2px;
+
+  padding: var(--new-note-text-padding);
+  width: calc(100% - calc(2 * var(--new-note-text-padding)));
   height: 4em;
   resize: vertical;
 }
