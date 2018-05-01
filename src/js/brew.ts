@@ -8,8 +8,7 @@ import * as Util from "./util";
 import "./navbar";
 
 function makePackageFromInputs(): Package {
-    // FIXME should fail if required inputs are not present
-
+    // FIXME should fail if user enters in only spaces
     const firstname = Util.getInputValueById("firstname");
     const lastname = Util.getInputValueById("lastname");
     const packageNumber = Util.getInputValueById("packageNumber");
@@ -38,7 +37,7 @@ const deletedPackages: Package[] = [];
 const allPackages: Set<Package> = new Set();
 
 function makeNoteFromInputs(): Note {
-    // FIXME should fail if required inputs are not present
+    // FIXME should fail if user enters only spaces
 
     return new Note({
         author: Util.getInputValueById("newNoteAuthor"),
