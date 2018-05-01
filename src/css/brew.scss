@@ -55,12 +55,12 @@ textarea {
 }
 
 .title {
-  margin: 0;
+  margin-top: 0px;
+  margin-bottom: 10px;
 }
 
 @mixin columns($n) {
     display: grid;
-    margin-top: 10px;
     grid-column-gap: 1px;
     grid-template-columns: repeat($n, 1fr);
     > :nth-child(2n+2) {
@@ -99,7 +99,7 @@ textarea {
 
 }
 .colOutline{
-  height: 600px;
+  height: 530px;
   outline: 1px solid var(--color-light-gray);
   outline: none;
   margin: 0;
