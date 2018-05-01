@@ -36,7 +36,7 @@ const allPackages: Set<Package> = new Set();
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    Util.getElementById("checkAll").addEventListener("click", checkAll);
+    Util.getElementById("checkOrUncheckAll").addEventListener("click", checkOrUncheckAll);
     Util.getElementById("pickedUp").addEventListener("click", removeCheckedPackages);
     Util.getElementById("delete").addEventListener("click", removeCheckedPackages);
     Util.getElementById("undo").addEventListener("click", undo);
@@ -117,12 +117,16 @@ function addListItem(listItem: HTMLLIElement) {
     ol.appendChild(listItem);
 }
 
-// check all /visible/ packages' checkboxes
-function checkAll() {
+// check/uncheck all /visible/ packages' checkboxes
+function checkOrUncheckAll() {
     const ol = Util.getElementById("packageList");
-    const checkboxes = ol.querySelectorAll(".pkg:not(.filtered-out) input");
+    const checkboxes: HTMLInputElement[] =
+        Array.from(ol.querySelectorAll(".pkg:not(.filtered-out) input"));
+
+    const shouldBeChecked = checkboxes.some((x) => !x.checked);
+
     for (const checkbox of checkboxes) {
-        (checkbox as HTMLInputElement).checked = true;
+        (checkbox as HTMLInputElement).checked = shouldBeChecked;
     }
 }
 
