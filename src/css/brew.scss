@@ -118,10 +118,6 @@ h2{
   text-align: center;
 }
 
-#search{
-  text-align:center;
-}
-
 #container {
   display: flex;
   align-items: center;
@@ -242,4 +238,8 @@ h2{
 .pkg {
     display: flex;
     align-items: baseline;
+}
+
+.filtered-out {
+    display: none;
 }

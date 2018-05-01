@@ -55,9 +55,10 @@ document.addEventListener("DOMContentLoaded", () => {
         addNote();
         clearNoteInput();
     });
-    // TODO implement search
-    // Util.getElementById("search").addEventListener("input", (e) => {
-    // });
+    Util.getElementById("search").addEventListener("input", (e) => {
+        const elt = e.target as HTMLInputElement;
+        filterPackages(elt.value);
+    });
 
     // initialize allPackages from dummy package data set
     for (const p of dummyPackages) {
@@ -84,6 +85,20 @@ function redrawPackages() {
 
     for (const pkg of packages) {
         ol.appendChild(pkg.render());
+    }
+}
+
+function filterPackages(query: string) {
+    // fc => case-folding, but JavaScript doesn't have Unicode case-folding
+    // support :(
+    const fcQuery = query.toLocaleLowerCase();
+
+    const ol = Util.getElementById("packageList");
+    for (const li of ol.children) {
+        const summary = li.querySelector("summary") as HTMLElement;
+        const fcSummaryText = summary.innerText.toLocaleLowerCase();
+        const containsQuery = fcSummaryText.indexOf(fcQuery) !== -1;
+        li.classList.toggle("filtered-out", !containsQuery);
     }
 }
 
