@@ -111,7 +111,7 @@ function redrawPackages() {
 function deletePackage(pkg: Package) {
     deletedPackages.push(pkg);
     allPackages.delete(pkg);
-    redrawPackages();
+    Util.getElementById(`pkg-${pkg.id}`).remove();
 }
 
 function filterPackages(query: string) {
