@@ -10,7 +10,7 @@ body {
   background-color: gainsboro;
 }
 
-label {
+form label, label[for="search"] {
   font-variant: common-ligatures small-caps;
 }
 
@@ -239,22 +239,7 @@ h2{
   background-color: lightgray;
 }
 
-.moreinfo {
-    cursor: help;
+.pkg {
     display: flex;
-}
-
-.pkg-list-label {
-  font-variant: normal;
-}
-
-.moreinfo:hover {
-    text-decoration: underline dotted;
-    text-decoration-skip-ink: none;
-}
-
-.pkginfo {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
+    align-items: baseline;
 }

@@ -35,7 +35,7 @@ const deletedPackages: Package[][] = [];
 const allPackages: Set<Package> = new Set();
 
 document.addEventListener("DOMContentLoaded", () => {
-    
+
     Util.getElementById("checkAll").addEventListener("click", checkAll);
     Util.getElementById("pickedUp").addEventListener("click", removeCheckedPackages);
     Util.getElementById("delete").addEventListener("click", removeCheckedPackages);
