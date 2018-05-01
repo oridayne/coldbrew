@@ -39,16 +39,10 @@ const allPackages: Set<Package> = new Set();
 function makeNoteFromInputs(): Note {
     // FIXME should fail if required inputs are not present
 
-    // const author = Util.getInputValueById("newNoteAuthor");
-    const author = "kadauber";
-    const newNoteTextArea = Util.getElementById("newNote") as HTMLTextAreaElement;
-    const text = newNoteTextArea.value;
-    const time = moment();
-
     return new Note({
-        author,
-        text,
-        time
+        author: Util.getInputValueById("newNoteAuthor"),
+        text: Util.getInputValueById("newNote"),
+        time: moment()
     });
 }
 
@@ -56,11 +50,8 @@ const allNotes: Set<Note> = new Set();
 
 document.addEventListener("DOMContentLoaded", () => {
 
-<<<<<<< HEAD
-    Util.getElementById("checkAll").addEventListener("click", checkAll);
-=======
+    // PACKAGES
     Util.getElementById("checkOrUncheckAll").addEventListener("click", checkOrUncheckAll);
->>>>>>> 9bfe534291b9e55617128bb9ff0e4adfb1b57abd
     Util.getElementById("pickedUp").addEventListener("click", removeCheckedPackages);
     Util.getElementById("delete").addEventListener("click", removeCheckedPackages);
     Util.getElementById("undo").addEventListener("click", undoDeletePackages);
@@ -72,13 +63,9 @@ document.addEventListener("DOMContentLoaded", () => {
         redrawPackages();
 
         clearPackageInput();
+        Util.getElementById("firstname").focus();
     });
     Util.getElementById("clearPackageInput").addEventListener("click", clearPackageInput);
-    Util.getElementById("addNote").addEventListener("click", (e) => {
-        e.preventDefault();
-        addNote();
-        clearNoteInput();
-    });
     Util.getElementById("search").addEventListener("input", (e) => {
         const elt = e.target as HTMLInputElement;
         filterPackages(elt.value);
@@ -89,6 +76,15 @@ document.addEventListener("DOMContentLoaded", () => {
         allPackages.add(p);
     }
     redrawPackages();
+
+    // NOTES
+    Util.getElementById("noteForm").addEventListener("submit", (e) => {
+        e.preventDefault();
+        addNote();
+        clearNoteInput();
+        Util.getElementById("newNote").focus();
+    });
+
 });
 
 function clearPackageInput() {
