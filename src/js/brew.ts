@@ -33,7 +33,7 @@ function makePackageFromInputs(): Package {
 }
 
 // stack of package objects deleted. This helps with undo.
-const deletedPackages: Package[][] = [];
+const deletedPackages: Package[] = [];
 
 const allPackages: Set<Package> = new Set();
 
@@ -52,9 +52,6 @@ const allNotes: Set<Note> = new Set();
 document.addEventListener("DOMContentLoaded", () => {
 
     // PACKAGES
-    Util.getElementById("checkOrUncheckAll").addEventListener("click", checkOrUncheckAll);
-    Util.getElementById("pickedUp").addEventListener("click", removeCheckedPackages);
-    Util.getElementById("delete").addEventListener("click", removeCheckedPackages);
     Util.getElementById("undo").addEventListener("click", undoDeletePackages);
     Util.getElementById("packageForm").addEventListener("submit", (e) => {
         e.preventDefault();
@@ -105,8 +102,16 @@ function redrawPackages() {
     });
 
     for (const pkg of packages) {
-        ol.appendChild(pkg.render());
+        ol.appendChild(pkg.render(deletePackage));
     }
+
+    filterPackages(Util.getInputValueById("search"));
+}
+
+function deletePackage(pkg: Package) {
+    deletedPackages.push(pkg);
+    allPackages.delete(pkg);
+    redrawPackages();
 }
 
 function filterPackages(query: string) {
@@ -138,51 +143,15 @@ function addPackageListItem(listItem: HTMLLIElement) {
     ol.appendChild(listItem);
 }
 
-// check/uncheck all /visible/ packages' checkboxes
-function checkOrUncheckAll() {
-    const ol = Util.getElementById("packageList");
-    const checkboxes: HTMLInputElement[] =
-        Array.from(ol.querySelectorAll(".pkg:not(.filtered-out) input"));
-
-    const shouldBeChecked = checkboxes.some((x) => !x.checked);
-
-    for (const checkbox of checkboxes) {
-        (checkbox as HTMLInputElement).checked = shouldBeChecked;
-    }
-}
-
-// removes checked packages from the packages list
-function removeCheckedPackages() {
-    const deleted = [];
-    for (const pkg of allPackages) {
-        const checkbox = Util.getElementById(`pkg-${pkg.id}-checkbox`) as HTMLInputElement;
-        if (checkbox.checked) {
-            deleted.push(pkg);
-        }
-    }
-    for (const pkg of deleted) {
-        allPackages.delete(pkg);
-    }
-
-    // only add a new undo entry if anything got deleted
-    if (deleted.length > 0) {
-        deletedPackages.push(deleted);
-    }
-    redrawPackages();
-}
-
 // undo package deletions
-// TODO: make this undo when multiple packages at a time are deleted
 function undoDeletePackages() {
     const lastDelete = deletedPackages.pop();
     if (lastDelete == null) {
         return;
     }
 
-    for (const pkg of lastDelete) {
-        const li = pkg.render();
-        addPackageListItem(li);
-    }
+    allPackages.add(lastDelete);
+    addPackageListItem(lastDelete.render(deletePackage));
 }
 
 function clearNoteInput() {

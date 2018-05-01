@@ -248,11 +248,23 @@ h2{
     cursor: help;
 }
 
-.pkg {
-    display: flex;
-    align-items: baseline;
+.pkg.filtered-out {
+    display: none;
 }
 
-.filtered-out {
-    display: none;
+.pkglabel:hover {
+    text-decoration: underline dotted;
+    text-decoration-skip-ink: none;
+}
+
+.pkg {
+    display: flex;
+    justify-content: space-between;
+    button {
+        padding: 0px;
+    }
+}
+
+.pkg:nth-child(even) {
+    background-color: silver;
 }

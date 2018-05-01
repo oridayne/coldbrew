@@ -32,31 +32,22 @@ export default class Package {
      * Render this Package as a <li> element whose ID is pkg-<id>, where <id> is
      * equal to this.id.
      */
-    public render(): HTMLLIElement {
+    public render(onDelete: (pkg: Package) => void): HTMLLIElement {
         const name = this.name();
 
         const li = document.createElement("li");
         li.classList.add("pkg");
         li.id = `pkg-${this.id}`;
 
-        const checkbox = document.createElement("input");
-        checkbox.type = "checkbox";
-        checkbox.id = `pkg-${this.id}-checkbox`;
-        li.appendChild(checkbox);
-
-        const label = document.createElement("label");
-        label.htmlFor = `pkg-${this.id}-checkbox`;
-        li.appendChild(label);
-
         const pkgInfo = document.createElement("details");
-        label.appendChild(pkgInfo);
+        li.appendChild(pkgInfo);
 
         const summary = document.createElement("summary");
+        summary.classList.add("pkglabel");
         summary.innerText = name;
         pkgInfo.appendChild(summary);
 
-        pkgInfo.insertAdjacentText("beforeend", `Location: ${this.location}`);
-        pkgInfo.insertAdjacentHTML("beforeend", "<br>");
+        // detailed package information
         pkgInfo.insertAdjacentText("beforeend", `Carrier: ${this.carrier}`);
         pkgInfo.insertAdjacentHTML("beforeend", "<br>");
         pkgInfo.insertAdjacentText("beforeend", `Package #: ${this.packageNumber}`);
@@ -65,6 +56,18 @@ export default class Package {
             pkgInfo.insertAdjacentHTML("beforeend", "<br>");
             pkgInfo.insertAdjacentText("beforeend", `Comments: ${this.comments}`);
         }
+
+        const rhs = document.createElement("span");
+        rhs.classList.add("loc-and-btn");
+        rhs.innerText = this.location;
+        li.appendChild(rhs);
+
+        // package pick-up button
+        const pickupButton = document.createElement("button");
+        pickupButton.type = "button";
+        pickupButton.onclick = onDelete.bind(null, this);
+        pickupButton.innerText = "Picked Up";
+        rhs.appendChild(pickupButton);
 
         return li;
     }
