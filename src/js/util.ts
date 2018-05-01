@@ -9,3 +9,7 @@ export function getElementById(id: string): HTMLElement {
 export function getInputValueById(id: string): string {
     return (getElementById(id) as HTMLInputElement).value;
 }
+
+export function getElementsByClassName(className: string): HTMLCollectionOf<Element> {
+    return document.getElementsByClassName(className);
+}

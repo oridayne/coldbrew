@@ -1,89 +1,91 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>Desk Worker</title>
 
-        <!-- Load style sheets -->
-        <link rel="stylesheet" href="dist/css/brew.css">
-        <script src="dist/js/brew.js"></script>
+<head>
+    <meta charset="utf-8">
+    <title>Desk Worker</title>
 
-    </head>
-    <body>
+    <!-- Load style sheets -->
+    <link rel="stylesheet" href="dist/css/brew.css">
+    <script src="dist/js/brew.js"></script>
 
-        <h1 class="title">Desk Worker</h1>
+</head>
 
-        <div id="layout">
-            <ul id="navbar" data-pagename="home"></ul>
-            <div class="colOutline" id="pickUp">
-                <!-- Deng: This column is mostly finished, but I think the pop ups can be improved. -->
-                <!-- TODO: We had notifications (like gmail) for when packages were removed. They don't need to be put in.
+<body>
+
+    <h1 class="title">Desk Worker</h1>
+
+    <div id="layout">
+        <ul id="navbar" data-pagename="home"></ul>
+        <div class="colOutline" id="pickUp">
+            <!-- Deng: This column is mostly finished, but I think the pop ups can be improved. -->
+            <!-- TODO: We had notifications (like gmail) for when packages were removed. They don't need to be put in.
                      Since it seems like most peopl never bothered to use them.
                 -->
 
-                <h2>Package Pick Up </h2>
-                <div id="search"><input type="textbox" class="entry" placeholder="Search"></div>
-                <div id="container">
-                    <button class="button" id="checkAll">Check All</button>
-                    <button class="button submit" id="pickedUp">Picked Up</button>
-                    <button class="button delete" id="delete">Delete</button>
-                    <button class="button" id="undo">Undo</button>
-                </div>
-
-                <ol class="package" id="packageList"></ol>
-
+            <h2>Package Pick Up </h2>
+            <div id="search">
+                <input type="textbox" class="entry" placeholder="Search">
+            </div>
+            <div id="container">
+                <button class="button" id="checkAll">Check All</button>
+                <button class="button submit" id="pickedUp">Picked Up</button>
+                <button class="button delete" id="delete">Delete</button>
+                <button class="button" id="undo">Undo</button>
             </div>
 
-            <div class="colOutline" id="packageEntry">
-                <h2>Add Package </h2>
-                <div>
-                    <form id="packageForm">
-                        <label for="firstname">first name</label>
-                        <input class="entry" type="text" id="firstname" name="firstname">
-                        <label for="lastname">last name</label>
-                        <input class="entry" type="text" id="lastname" name="lastname">
-                        <label for="packageNumber">package #</label>
-                        <input class="entry" type="text" id="packageNumber" name="packageNumber">
-                        <label for="carrier">carrier</label>
-                        <select id="carrier" name="carrier" required>
-                            <optgroup>
-                                <option value="Amazon">Amazon</option>
-                                <option value="FedEx">FedEx</option>
-                                <option value="UPS">UPS</option>
-                                <option value="USPS">USPS</option>
-                            </optgroup>
-                            <optgroup>
-                                <option value="Other">Other</option>
-                            </optgroup>
-                        </select>
-                        <label for="location">location</label>
-                        <input class="entry" type="text" id="location" name="location">
-                        <label for="comments">comments</label>
-                        <input class="entry" type="text" id="comments" name="comments">
-                        <br>
+            <ol class="package" id="packageList"></ol>
 
-                        <button id="addPackage" class="button">Submit</button>
-                        <button id="clearPackageInput" class="button delete" type="button">Clear All</button>
-                    </form>
-                </div>
-            </div>
+        </div>
 
-            <div class="colOutline" id="notesCol">
-                <h2>Notes</h2>
-                <div id="newNoteContainer" class="newNoteContainer">
-                    <!-- FIXME: text area width isn't quite right-->
-                    <textarea id="newNote"></textarea>
-                    <button id="addNote" class="button" type="button">Submit</button>
-                </div>
+        <div class="colOutline" id="packageEntry">
+            <h2>Add Package </h2>
+            <div>
+                <form id="packageForm">
+                    <label for="firstname">first name</label>
+                    <input class="entry" type="text" id="firstname" name="firstname">
+                    <label for="lastname">last name</label>
+                    <input class="entry" type="text" id="lastname" name="lastname">
+                    <label for="packageNumber">package #</label>
+                    <input class="entry" type="text" id="packageNumber" name="packageNumber">
+                    <label for="carrier">carrier</label>
+                    <select id="carrier" name="carrier" required>
+                        <optgroup>
+                            <option value="Amazon">Amazon</option>
+                            <option value="FedEx">FedEx</option>
+                            <option value="UPS">UPS</option>
+                            <option value="USPS">USPS</option>
+                        </optgroup>
+                        <optgroup>
+                            <option value="Other">Other</option>
+                        </optgroup>
+                    </select>
+                    <label for="location">location</label>
+                    <input class="entry" type="text" id="location" name="location">
+                    <label for="comments">comments</label>
+                    <input class="entry" type="text" id="comments" name="comments">
+                    <br>
 
-                <!-- <div class="note">
-                    <p>This is a note.</p>
-                    <button class="deleteNote" type="button">Delete</button>
-                    <button class="pinNote" type="button">Pin</button>
-                </div> -->
+                    <button id="addPackage" class="button">Submit</button>
+                    <button id="clearPackageInput" class="button delete" type="button">Clear All</button>
+                </form>
             </div>
         </div>
 
+        <div class="colOutline" id="notesCol">
+            <h2>Notes</h2>
+            <div id="newNoteContainer" name="newNoteContainer" class="newNoteContainer">
+                <!-- FIXME: text area width isn't quite right-->
+                <label for="newNoteContainer">note</label>
+                <textarea id="newNote"></textarea>
+                <label for="newNoteAuthor">author</label>
+                <input id="newNoteAuthor" name="newNoteAuthor" class="entry">
+                <button id="addNote" class="button" type="button">Submit</button>
+            </div>
+        </div>
+    </div>
 
-    </body>
+
+</body>
+
 </html>

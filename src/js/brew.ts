@@ -1,6 +1,8 @@
 import dummyPackages from "./dummy-packages";
 import Package from "./package";
+import Note from "./note";
 import * as Util from "./util";
+import moment from 'moment';
 
 import "./navbar";
 
@@ -34,12 +36,30 @@ const deletedPackages: Package[][] = [];
 
 const allPackages: Set<Package> = new Set();
 
+function makeNoteFromInputs(): Note {
+    // FIXME should fail if required inputs are not present
+
+    // const author = Util.getInputValueById("newNoteAuthor");
+    const author = "kadauber";
+    const newNoteTextArea = Util.getElementById("newNote") as HTMLTextAreaElement;
+    const text = newNoteTextArea.value;
+    const time = moment();
+
+    return new Note({
+        author,
+        text,
+        time
+    });
+}
+
+const allNotes: Set<Note> = new Set();
+
 document.addEventListener("DOMContentLoaded", () => {
-    
+
     Util.getElementById("checkAll").addEventListener("click", checkAll);
     Util.getElementById("pickedUp").addEventListener("click", removeCheckedPackages);
     Util.getElementById("delete").addEventListener("click", removeCheckedPackages);
-    Util.getElementById("undo").addEventListener("click", undo);
+    Util.getElementById("undo").addEventListener("click", undoDeletePackages);
     Util.getElementById("packageForm").addEventListener("submit", (e) => {
         e.preventDefault();
 
@@ -88,7 +108,7 @@ function redrawPackages() {
 }
 
 // Given a list item, add it to its correct place (alphabetically) in the package list.
-function addListItem(listItem: HTMLLIElement) {
+function addPackageListItem(listItem: HTMLLIElement) {
     const addName = listItem.innerText;
     const ol = Util.getElementById("packageList");
     for (const li of ol.children) {
@@ -131,7 +151,8 @@ function removeCheckedPackages() {
 }
 
 // undo package deletions
-function undo() {
+// TODO: make this undo when multiple packages at a time are deleted
+function undoDeletePackages() {
     const lastDelete = deletedPackages.pop();
     if (lastDelete == null) {
         return;
@@ -139,80 +160,56 @@ function undo() {
 
     for (const pkg of lastDelete) {
         const li = pkg.render();
-        addListItem(li);
+        addPackageListItem(li);
     }
 }
 
 function clearNoteInput() {
     const newNoteTextArea = Util.getElementById("newNote") as HTMLTextAreaElement;
     newNoteTextArea.value = "";
+    const noteAuthorInput = Util.getElementById("newNoteAuthor") as HTMLInputElement;
+    noteAuthorInput.value = "";
 }
 
 function addNote() {
-    const noteDiv = document.createElement("div");
+    const newNote = makeNoteFromInputs();
+    allNotes.add(newNote);
+    redrawNotes();
+}
 
-    // Add note text in <p>
-    const noteParagraph = document.createElement("p");
-    noteDiv.classList.add("note");
-    // TODO sanitize note input
-    const newNoteTextArea = Util.getElementById("newNote") as HTMLTextAreaElement;
-    noteParagraph.innerText = newNoteTextArea.value;
-    noteDiv.appendChild(noteParagraph);
-
-    // Add delete note button
-    const deleteNoteButton = document.createElement("button");
-    deleteNoteButton.innerText = "Delete";
-    deleteNoteButton.addEventListener("click", () => {
-        noteDiv.remove();
+function redrawNotes() {
+    const notesCol = Util.getElementById("notesCol");
+    // Remove all notes from the DOM
+    Array.from(Util.getElementsByClassName("note")).forEach(noteElt => {
+        noteElt.remove();
     });
-    noteDiv.appendChild(deleteNoteButton);
 
-    // Add pin note button
-    const pinNoteButton = document.createElement("button");
-    pinNoteButton.innerText = "Pin";
-    pinNoteButton.addEventListener("click", pinNote);
+    // Filter deleted notes andn separate pinned and unpinned notes
+    const pinnedNotes: Note[] = [];
+    const unpinnedNotes: Note[] = [];
 
-    function pinNote() {
-        noteDiv.classList.add("notePinned");
-        pinNoteButton.innerText = "Unpin";
-        pinNoteButton.removeEventListener("click", pinNote);
-        pinNoteButton.addEventListener("click", unpinNote);
+    Array.from(allNotes.values())
+        .filter(note => !note.isDeleted())
+        .forEach(note => note.isPinned() ? pinnedNotes.push(note) : unpinnedNotes.push(note));
 
-        const topNote = Util.getElementById("newNoteContainer").nextElementSibling;
-        if (topNote && topNote.parentElement) {
-            topNote.parentElement.insertBefore(noteDiv, topNote);
+    // Put notes in reverse chronological order
+    pinnedNotes.sort(Note.compareTimes);
+    unpinnedNotes.sort(Note.compareTimes);
+
+    // Render notes in reverse chronological order
+    pinnedNotes.forEach(note => {
+        const noteDiv = note.renderForHomepage(redrawNotes, redrawNotes, redrawNotes);
+
+        if (noteDiv) {
+            notesCol.appendChild(noteDiv);
         }
-    }
+    });
 
-    function unpinNote() {
-        noteDiv.classList.remove("notePinned");
-        pinNoteButton.innerText = "Pin";
-        pinNoteButton.removeEventListener("click", unpinNote);
-        pinNoteButton.addEventListener("click", pinNote);
+    unpinnedNotes.forEach(note => {
+        const noteDiv = note.renderForHomepage(redrawNotes, redrawNotes, redrawNotes);
 
-        insertAtTopOfUnpinnedNotes();
-    }
-
-    noteDiv.appendChild(pinNoteButton);
-
-    // Add new note to DOM (at the top of the unpinned notes)
-    function insertAtTopOfUnpinnedNotes() {
-        let currentNote = Util.getElementById("newNoteContainer").nextElementSibling;
-        if (currentNote === noteDiv) { // make sure this also works if the current note is the first one found
-            currentNote = currentNote.nextElementSibling;
+        if (noteDiv) {
+            notesCol.appendChild(noteDiv);
         }
-        while (currentNote) {
-            if (currentNote.classList.contains("notePinned")) {
-                currentNote = currentNote.nextElementSibling;
-            } else if (currentNote.classList.contains("note")) {
-                if (currentNote.parentNode) {
-                    currentNote.parentNode.insertBefore(noteDiv, currentNote);
-                }
-                return;
-            }
-        }
-        Util.getElementById("notesCol").appendChild(noteDiv);
-    }
-
-    insertAtTopOfUnpinnedNotes();
+    });
 }
