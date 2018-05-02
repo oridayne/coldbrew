@@ -141,12 +141,12 @@ h2{
     border: none;
     border-radius: 5px;
     color: white;
-    padding: 13px 6px;
+    padding: 6px 6px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 12px;
-    margin: 5px 5px;
+    margin: 0px 10px 0px 0px;
     cursor: pointer;
     width: 25%;
 }
@@ -206,42 +206,74 @@ h2{
 }
 
 /* Notes */
-.note {
-  padding: 15px;
-  margin: 15px;
-  border: 1px solid black;
+#notesCol {
+  --note-border-thickness: 0px;
+  --note-padding-default: 10px;
 
-  p {
-    padding: 0;
-    margin: 0 0 15px 0;
+  .note {
+    padding: var(--note-padding-default);
+    margin: 15px;
+    background-color: white;
+    box-shadow: 3px 3px 4px black;
+    border: var(--note-border-thickness) solid black;
+  
+    p {
+      padding: 0;
+      margin: 0 10px 15px 0;
+      font-size: 14px;
+    }
+  
+    .button {
+      width: auto;
+      margin: 0px;
+      height: 100%;
+    }
+  
+    .button.pin-button {
+      margin-left: auto;
+    }
+  
+    .noteCredit {
+      float: right;
+      text-align: right;
+      font-size: 50%;
+      align-self: flex-end;
+      margin-left: auto;
+    }  
   }
+
+  .note.notePinned {
+    --note-border-thickness: 3px;
+
+    padding: calc(var(--note-padding-default) - var(--note-border-thickness));
+    background-color: midnightblue;
+    color: white;
+    box-shadow: none;
+  }
+  
+  .note-flex-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+  }
+  
+  .newNoteContainer {
+    margin: 0 15px 15px 15px;
+  }
+
+  #newNote {
+    --new-note-text-padding: 2px;
+  
+    padding: var(--new-note-text-padding);
+    width: calc(100% - calc(2 * var(--new-note-text-padding)));
+    height: 4em;
+    resize: vertical;
+  }  
 }
 
-.newNoteContainer {
-  margin: 0 15px 15px 15px;
-}
 
 #lent {
     @include columns(2);
-}
-
-#newNote {
-  --new-note-text-padding: 2px;
-
-  padding: var(--new-note-text-padding);
-  width: calc(100% - calc(2 * var(--new-note-text-padding)));
-  height: 4em;
-  resize: vertical;
-}
-
-.notePinned {
-  background-color: lightgray;
-}
-
-.noteCredit {
-  float: right;
-  text-align: right;
-  font-size: 50%;
 }
 
 .moreinfo {

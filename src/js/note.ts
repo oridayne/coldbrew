@@ -22,14 +22,14 @@ export default class Note {
     private pinned: boolean;
     private deleted: boolean;
 
-    constructor(obj: { author: string, text: string, time: moment.Moment }) {
+    constructor(obj: { author: string, text: string, time: moment.Moment, pinned?: boolean, deleted?: boolean }) {
         this.author = obj.author;
         this.text = obj.text;
         this.time = obj.time;
 
         this.id = Note.generateID();
-        this.pinned = false;
-        this.deleted = false;
+        this.pinned = obj.pinned || false;
+        this.deleted = obj.deleted || false;
     }
 
     public displayTime(): string {
@@ -62,23 +62,18 @@ export default class Note {
             div.id = `note-${this.id}`;
             div.classList.add("note");
 
+            const textDiv = document.createElement("div");
+            textDiv.classList.add("note-flex-row");
+
             // Add note text in <p>
             const paragraph = document.createElement("p");
             // TODO sanitize note input
             paragraph.innerText = this.text;
-            div.appendChild(paragraph);
-
-            // Add delete note button
-            const deleteNoteButton = document.createElement("button");
-            deleteNoteButton.innerText = "Delete";
-            deleteNoteButton.addEventListener("click", () => {
-                this.deleted = true;
-                deleteNoteCallback();
-            });
-            div.appendChild(deleteNoteButton);
+            textDiv.appendChild(paragraph);
 
             // Add pin note button
             const pinNoteButton = document.createElement("button");
+            pinNoteButton.classList.add("button", "pin-button");
             pinNoteButton.addEventListener("click", () => {
                 if (this.isPinned()) { // unpin the note
                     this.pinned = false;
@@ -101,13 +96,31 @@ export default class Note {
                 div.classList.remove("notePinned");
             }
 
-            div.appendChild(pinNoteButton);
+            textDiv.appendChild(pinNoteButton);
+            div.appendChild(textDiv);
+
+
+            const controlDiv = document.createElement("div");
+            controlDiv.classList.add("note-flex-row");
+
+            // Add delete note button
+            const deleteNoteButton = document.createElement("button");
+            deleteNoteButton.innerText = "Delete";
+            deleteNoteButton.classList.add("button");
+            deleteNoteButton.addEventListener("click", () => {
+                this.deleted = true;
+                deleteNoteCallback();
+            });
+            controlDiv.appendChild(deleteNoteButton);
+
 
             // Add author and timestamp
             const creditSpan = document.createElement("span");
             creditSpan.classList.add("noteCredit");
             creditSpan.innerHTML = `<strong>${this.author}</strong><br>${displayTime}`;
-            div.appendChild(creditSpan);
+            controlDiv.appendChild(creditSpan);
+
+            div.appendChild(controlDiv);
 
             return div;
         }

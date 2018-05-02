@@ -46,7 +46,32 @@ function makeNoteFromInputs(): Note {
     });
 }
 
-const allNotes: Set<Note> = new Set();
+const allNotes: Set<Note> = new Set([
+    new Note({
+        "author": "kadauber",
+        "text": "Maya left her shoe here as collateral for her spare key.",
+        "time": moment("2018-04-27 10:00:34 am", "YYYY-MM-DD h:m:s A"),
+        "pinned": false
+    }),
+    new Note({
+        "author": "kadauber",
+        "text": "Joe is looking for his laptop",
+        "time": moment("2018-04-24 03:32:01 pm", "YYYY-MM-DD h:m:s A"),
+        "pinned": false
+    }),
+    new Note({
+        "author": "Lisa",
+        "text": "zbarryte had an amazon fresh delivery at 8pm",
+        "time": moment("2018-04-24 08:12:33 pm", "YYYY-MM-DD h:m:s A"),
+        "pinned": true
+    }),
+    new Note({
+        "author": "Alyssa",
+        "text": "ONLY GIVE CPW BOOKLETS TO ACTUAL PREFROSH",
+        "time": moment("2018-04-01 12:05:38 am", "YYYY-MM-DD h:m:s A"),
+        "pinned": true
+    })
+]);
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -82,6 +107,7 @@ document.addEventListener("DOMContentLoaded", () => {
         Util.getElementById("newNote").focus();
     });
 
+    redrawNotes();
 });
 
 function clearPackageInput() {
