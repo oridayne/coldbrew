@@ -99,6 +99,10 @@ ul {
   background-color: darkslategray;
 }
 
+p.whiteText{
+  font-size: 10px;
+  color:white;
+}
 
 li div {
   display: block;
@@ -213,6 +217,8 @@ h2{
   background-color: white;
 }
 
+
+
 .entry{
   background-color: var(--color-search-bar);
   padding: 10px 10px;
@@ -313,7 +319,9 @@ h2{
 .button.pickedUp {
   /*background-color: darkred;*/
   background-color: var(--color-pickedUp);
-  width:50%;
+  float: right;
+  padding-right: 2px;
+  /*width:50%;*/
   /*height: 20px;*/
 
 }
@@ -330,6 +338,8 @@ h2{
 .submit{
   background-color: var(--color-green);
 }
+
+
 
 /* Notes */
 #notesCol {

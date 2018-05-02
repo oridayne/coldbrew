@@ -62,7 +62,29 @@ export default class Package {
             hiddenDiv.innerHTML+=this.comments;
         }
 
-        console.log(onDelete);    
+        const smallBin = document.createElement("p");
+        smallBin.classList.add("whiteText");
+        smallBin.innerText = this.location;
+
+
+        // const rhs = document.createElement("span");
+        // rhs.classList.add("loc-and-btn");
+        // rhs.innerText = this.location;
+        // li.appendChild(rhs);
+
+       //  // package pick-up button
+        const pickupButton = document.createElement("button");
+        pickupButton.type = "button";
+        pickupButton.classList.add("button", "pickedUp");
+
+        pickupButton.onclick = onDelete.bind(null, this);
+        pickupButton.innerText = "Picked Up";
+        shownDiv.appendChild(pickupButton);
+        shownDiv.appendChild(smallBin);
+       //  return li;
+
+
+        // console.log(onDelete);    
         shownDiv.appendChild(hiddenDiv);
         return li;
     }
