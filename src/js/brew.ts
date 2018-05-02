@@ -48,29 +48,29 @@ function makeNoteFromInputs(): Note {
 
 const allNotes: Set<Note> = new Set([
     new Note({
-        "author": "kadauber",
-        "text": "Maya left her shoe here as collateral for her spare key.",
-        "time": moment("2018-04-27 10:00:34 am", "YYYY-MM-DD h:m:s A"),
-        "pinned": false
+        author: "kadauber",
+        pinned: false,
+        text: "Maya left her shoe here as collateral for her spare key.",
+        time: moment("2018-04-27 10:00:34 am", "YYYY-MM-DD h:m:s A"),
     }),
     new Note({
-        "author": "kadauber",
-        "text": "Joe is looking for his laptop",
-        "time": moment("2018-04-24 03:32:01 pm", "YYYY-MM-DD h:m:s A"),
-        "pinned": false
+        author: "kadauber",
+        pinned: false,
+        text: "Joe is looking for his laptop",
+        time: moment("2018-04-24 03:32:01 pm", "YYYY-MM-DD h:m:s A"),
     }),
     new Note({
-        "author": "Lisa",
-        "text": "zbarryte had an amazon fresh delivery at 8pm",
-        "time": moment("2018-04-24 08:12:33 pm", "YYYY-MM-DD h:m:s A"),
-        "pinned": true
+        author: "Lisa",
+        pinned: true,
+        text: "zbarryte had an amazon fresh delivery at 8pm",
+        time: moment("2018-04-24 08:12:33 pm", "YYYY-MM-DD h:m:s A"),
     }),
     new Note({
-        "author": "Alyssa",
-        "text": "ONLY GIVE CPW BOOKLETS TO ACTUAL PREFROSH",
-        "time": moment("2018-04-01 12:05:38 am", "YYYY-MM-DD h:m:s A"),
-        "pinned": true
-    })
+        author: "Alyssa",
+        pinned: true,
+        text: "ONLY GIVE CPW BOOKLETS TO ACTUAL PREFROSH",
+        time: moment("2018-04-01 12:05:38 am", "YYYY-MM-DD h:m:s A"),
+    }),
 ]);
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -106,7 +106,7 @@ document.addEventListener("DOMContentLoaded", () => {
         clearNoteInput();
         Util.getElementById("newNote").focus();
     });
-    Util.getElementById("noteUndo").addEventListener("click", (e) => {
+    Util.getElementById("noteUndo").addEventListener("click", () => {
         const currentUndo = noteUndoers.pop();
         if (currentUndo) {
             currentUndo();
@@ -199,7 +199,7 @@ function addNote() {
     redrawNotes();
 }
 
-let noteUndoers: (() => void)[] = [];
+const noteUndoers: Array<() => void> = [];
 
 function redrawNotes() {
     const notesCol = Util.getElementById("notesCol");
@@ -223,25 +223,35 @@ function redrawNotes() {
     const deleteNote = (undoer: () => void) => {
         noteUndoers.push(undoer);
         redrawNotes();
-    }
+    };
 
     const editNote = (note: Note) => {
         const displayNoteElt = Util.getElementById(note.getElementId());
         const editNoteElt = note.renderForHomepageEdit(
             (undoer) => {
                 noteUndoers.push(undoer);
-                const newDisplayNoteElt = note.renderForHomepageDisplay(deleteNote, redrawNotes, () => { editNote(note) }, redrawNotes);
+                const newDisplayNoteElt = note.renderForHomepageDisplay(
+                    deleteNote,
+                    redrawNotes,
+                    () => { editNote(note); },
+                    redrawNotes,
+                );
                 notesCol.replaceChild(newDisplayNoteElt, Util.getElementById(note.getElementId()));
             },
             () => {
-                const newDisplayNoteElt = note.renderForHomepageDisplay(deleteNote, redrawNotes, () => { editNote(note) }, redrawNotes);
+                const newDisplayNoteElt = note.renderForHomepageDisplay(
+                    deleteNote,
+                    redrawNotes,
+                    () => { editNote(note); },
+                    redrawNotes,
+                );
                 notesCol.replaceChild(newDisplayNoteElt, Util.getElementById(note.getElementId()));
-            }
+            },
         );
         notesCol.replaceChild(editNoteElt, displayNoteElt);
         const noteTextarea = editNoteElt.querySelector("textarea");
         if (noteTextarea) { noteTextarea.focus(); }
-    }
+    };
 
     // Render notes in reverse chronological order
     pinnedNotes.forEach((note) => {

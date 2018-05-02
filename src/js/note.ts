@@ -59,7 +59,6 @@ export default class Note {
         unpinNoteCallback: () => void,
     ): HTMLDivElement {
 
-
         const displayTime = this.displayTime();
 
         const div = document.createElement("div");
@@ -103,7 +102,6 @@ export default class Note {
         textDiv.appendChild(pinNoteButton);
         div.appendChild(textDiv);
 
-
         const controlDiv = document.createElement("div");
         controlDiv.classList.add("note-flex-row");
 
@@ -127,7 +125,6 @@ export default class Note {
         });
         controlDiv.appendChild(deleteNoteButton);
 
-
         // Add author and timestamp
         const creditSpan = document.createElement("span");
         creditSpan.classList.add("noteCredit");
@@ -144,9 +141,9 @@ export default class Note {
      * @param submitEditCallback A function that takes an undoer (which, when called, will undo the edit)
      * @param cancelEditCallback A function that exits the edit without altering the note
      */
-    renderForHomepageEdit(
+    public renderForHomepageEdit(
         submitEditCallback: (undoer: () => void) => void,
-        cancelEditCallback: () => void
+        cancelEditCallback: () => void,
     ): HTMLDivElement {
         const div = document.createElement("div");
         div.id = this.getElementId();
@@ -198,7 +195,7 @@ export default class Note {
                 this.text = currentText;
                 this.time = currentTime;
             });
-        }
+        };
         submitEditButton.addEventListener("click", submitEdit);
         form.addEventListener("submit", submitEdit);
 
