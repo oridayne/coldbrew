@@ -106,6 +106,13 @@ document.addEventListener("DOMContentLoaded", () => {
         clearNoteInput();
         Util.getElementById("newNote").focus();
     });
+    Util.getElementById("noteUndo").addEventListener("click", (e) => {
+        const currentUndo = noteUndoers.pop();
+        if (currentUndo) {
+            currentUndo();
+        }
+        redrawNotes();
+    });
 
     redrawNotes();
 });
@@ -192,7 +199,7 @@ function addNote() {
     redrawNotes();
 }
 
-let undoers: any[] = [];
+let noteUndoers: (() => void)[] = [];
 
 function redrawNotes() {
     const notesCol = Util.getElementById("notesCol");
@@ -213,16 +220,21 @@ function redrawNotes() {
     pinnedNotes.sort(Note.compareTimes);
     unpinnedNotes.sort(Note.compareTimes);
 
+    const deleteNote = (undoer: () => void) => {
+        noteUndoers.push(undoer);
+        redrawNotes();
+    }
+
     const editNote = (note: Note) => {
         const displayNoteElt = Util.getElementById(note.getElementId());
         const editNoteElt = note.renderForHomepageEdit(
             (undoer) => {
-                undoers.push(undoer);
-                const newDisplayNoteElt = note.renderForHomepageDisplay(redrawNotes, redrawNotes, () => { editNote(note) }, redrawNotes);
+                noteUndoers.push(undoer);
+                const newDisplayNoteElt = note.renderForHomepageDisplay(deleteNote, redrawNotes, () => { editNote(note) }, redrawNotes);
                 notesCol.replaceChild(newDisplayNoteElt, Util.getElementById(note.getElementId()));
             },
             () => {
-                const newDisplayNoteElt = note.renderForHomepageDisplay(redrawNotes, redrawNotes, () => { editNote(note) }, redrawNotes);
+                const newDisplayNoteElt = note.renderForHomepageDisplay(deleteNote, redrawNotes, () => { editNote(note) }, redrawNotes);
                 notesCol.replaceChild(newDisplayNoteElt, Util.getElementById(note.getElementId()));
             }
         );
@@ -233,7 +245,7 @@ function redrawNotes() {
 
     // Render notes in reverse chronological order
     pinnedNotes.forEach((note) => {
-        const noteDiv = note.renderForHomepageDisplay(redrawNotes, redrawNotes, () => { editNote(note); }, redrawNotes);
+        const noteDiv = note.renderForHomepageDisplay(deleteNote, redrawNotes, () => { editNote(note); }, redrawNotes);
 
         if (noteDiv) {
             notesCol.appendChild(noteDiv);
@@ -241,7 +253,7 @@ function redrawNotes() {
     });
 
     unpinnedNotes.forEach((note) => {
-        const noteDiv = note.renderForHomepageDisplay(redrawNotes, redrawNotes, () => { editNote(note); }, redrawNotes);
+        const noteDiv = note.renderForHomepageDisplay(deleteNote, redrawNotes, () => { editNote(note); }, redrawNotes);
 
         if (noteDiv) {
             notesCol.appendChild(noteDiv);

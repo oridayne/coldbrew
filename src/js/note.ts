@@ -53,7 +53,7 @@ export default class Note {
      * equal to this.id. Return the element.
      */
     public renderForHomepageDisplay(
-        deleteNoteCallback: () => void,
+        deleteNoteCallback: (undoer: () => void) => void,
         pinNoteCallback: () => void,
         editNoteCallback: () => void,
         unpinNoteCallback: () => void,
@@ -120,7 +120,10 @@ export default class Note {
         deleteNoteButton.classList.add("button", "delete");
         deleteNoteButton.addEventListener("click", () => {
             this.deleted = true;
-            deleteNoteCallback();
+
+            deleteNoteCallback(() => {
+                this.deleted = false;
+            });
         });
         controlDiv.appendChild(deleteNoteButton);
 
