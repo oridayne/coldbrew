@@ -5,6 +5,10 @@
     <meta charset="utf-8">
     <title>Desk Worker</title>
 
+    <!-- Shortcut icon adapted from FontAwesome project's `boxes' icon:
+         https://fontawesome.com/icons/boxes?style=solid -->
+    <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+
     <!-- Load style sheets -->
     <link rel="stylesheet" href="dist/css/brew.css">
     <script src="dist/js/brew.js"></script>
@@ -73,10 +77,11 @@
             <div id="newNoteContainer" name="newNoteContainer" class="newNoteContainer">
                 <form id="noteForm">
                     <label for="newNoteContainer">note</label>
-                    <textarea id="newNote" required></textarea>
+                    <textarea id="newNote" class="noteTextEdit" required></textarea>
                     <label for="newNoteAuthor">author</label>
                     <input id="newNoteAuthor" name="newNoteAuthor" class="entry" required>
                     <button id="addNote" class="button" type="submit">Submit</button>
+                    <button id="noteUndo" class="button" type="button">Undo</button>
                 </form>
             </div>
         </div>
