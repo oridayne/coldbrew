@@ -1,3 +1,5 @@
+// import 'bootstrap/js/dist/collapse';
+import 'bootstrap';
 export default class Package {
     private static nextAvailableID = 0;
     private static generateID(): number {
@@ -39,35 +41,29 @@ export default class Package {
         li.classList.add("pkg");
         li.id = `pkg-${this.id}`;
 
-        const pkgInfo = document.createElement("details");
-        li.appendChild(pkgInfo);
+        const shownDiv = document.createElement("div");
+        const hiddenDiv = document.createElement("div");
+      
 
-        const summary = document.createElement("summary");
-        summary.classList.add("pkglabel");
-        summary.innerText = name;
-        pkgInfo.appendChild(summary);
+        const divID = "hidden"+li.id;
+        hiddenDiv.id = divID;
+        li.appendChild(shownDiv);
 
-        // detailed package information
-        pkgInfo.insertAdjacentText("beforeend", `Carrier: ${this.carrier}`);
-        pkgInfo.insertAdjacentHTML("beforeend", "<br>");
-        pkgInfo.insertAdjacentText("beforeend", `Package #: ${this.packageNumber}`);
-
-        if (this.comments !== undefined) {
-            pkgInfo.insertAdjacentHTML("beforeend", "<br>");
-            pkgInfo.insertAdjacentText("beforeend", `Comments: ${this.comments}`);
+        shownDiv.innerText = name;        
+        shownDiv.classList.add("hiddenPackage");
+        shownDiv.setAttribute("data-toggle", "collapse");
+        shownDiv.setAttribute("data-target", "#"+hiddenDiv.id);
+        hiddenDiv.classList.add("revealedPackage");
+        hiddenDiv.classList.add("collapse");
+        hiddenDiv.innerHTML = this.location + "<br/>"
+                             + this.carrier + "<br/>" 
+                             + this.packageNumber + "<br/>";
+        if(this.comments){
+            hiddenDiv.innerHTML+=this.comments;
         }
-        const rhs = document.createElement("span");
-        rhs.classList.add("loc-and-btn");
-        rhs.innerText = this.location;
-        li.appendChild(rhs);
 
-        // package pick-up button
-        const pickupButton = document.createElement("button");
-        pickupButton.type = "button";
-        pickupButton.classList.add("button", "pickedUp");
-        pickupButton.onclick = onDelete.bind(null, this);
-        pickupButton.innerText = "Picked Up";
-        rhs.appendChild(pickupButton);
+        console.log(onDelete);    
+        shownDiv.appendChild(hiddenDiv);
         return li;
     }
 }

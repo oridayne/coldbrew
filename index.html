@@ -8,10 +8,13 @@
     <!-- Shortcut icon adapted from FontAwesome project's `boxes' icon:
          https://fontawesome.com/icons/boxes?style=solid -->
     <link rel="icon" type="image/x-icon" href="img/favicon.ico">
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <!-- Load style sheets -->
     <link rel="stylesheet" href="dist/css/brew.css">
     <script src="dist/js/brew.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 </head>
 
@@ -21,10 +24,6 @@
     <div id="layout">
         <ul id="navbar" data-pagename="home"></ul>
         <div class="colOutline" id="pickUp">
-            <!-- Deng: This column is mostly finished, but I think the pop ups can be improved. -->
-            <!-- TODO: We had notifications (like gmail) for when packages were removed. They don't need to be put in.
-                     Since it seems like most peopl never bothered to use them.
-                -->
 
             <h2>Package Pick Up </h2>
             <label for="search">search</label>
@@ -32,9 +31,19 @@
             <div id="container">
                 <button class="button undo" id="undo">Undo</button>
             </div>
+             <div data-toggle="collapse", data-target="#demo"><i class="arrow right"></i>
+
+                <div id="demo" class="collapse">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                </div>
+
+
+             </div>
+         
 
             <ol class="package" id="packageList"></ol>
-
         </div>
 
         <div class="colOutline" id="packageEntry">

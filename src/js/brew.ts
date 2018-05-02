@@ -153,8 +153,11 @@ function filterPackages(query: string) {
     const fcQuery = query.toLocaleLowerCase();
 
     const ol = Util.getElementById("packageList");
+
     for (const li of ol.children) {
-        const summary = li.querySelector("summary") as HTMLElement;
+        console.log("current child!");
+        console.log(li);
+        const summary = li.querySelector(".hiddenPackage") as HTMLElement;
         const fcSummaryText = summary.innerText.toLocaleLowerCase();
         const containsQuery = fcSummaryText.indexOf(fcQuery) !== -1;
         li.classList.toggle("filtered-out", !containsQuery);
