@@ -1,0 +1,87 @@
+:root {
+
+  --color-green: #4CAF50;
+  --color-red: hsl(0, 80%, 48%);
+  --color-light-gray: hsl(220, 10%, 85%);
+  --color-dark-gray: #A9A9A9;
+  --member-row-height: 40px;
+}
+#navContainer{
+	grid-row:1;
+	/*grid-column: 1;*/
+
+}
+
+#directoryContainer{
+	display: grid;
+	grid-template-rows: .1fr 1fr;
+	/*grid-template-columns: 1fr;*/
+}
+
+#directoryBody{
+	/*width: 100vw;*/
+	grid-row: 2;
+	display: flex;
+	flex-direction: row;
+}
+
+#memberList{
+	width: 30vw;
+	height: 80vh;
+}
+
+#memberInfo{
+	width: 70vw;
+	height: 80vh;
+}
+
+#memberSearch{
+	width: 100%;
+	height: var(--member-row-height);
+
+}
+
+#searchMembers{
+	margin: auto;
+	width: 80%;
+	height: 90%;
+}
+
+#memberAdd{
+	width: 100%;
+	height: 50px;
+	text-align: center;
+	margin: 0;
+	padding-top: 10px;
+}
+
+
+#memberAdd:hover { 
+    background-color: var(--color-dark-gray);
+}
+
+.memberRow{
+	width: 100%;
+	/*outline: 1px solid white;*/
+	margin: 0 1px 1px 0;
+	height: var(--member-row-height);
+	display: block;
+}
+
+.memberHide{
+	width: 100%;
+	margin: 0 1px 1px 0;
+	height: var(--member-row-height);
+	display: none;
+}
+
+.memberRow:hover { 
+    background-color: var(--color-dark-gray);
+}
+
+p.memberEntry{
+	margin: 0;
+	padding-top: 5px;
+	margin-left: 5px;
+}
+

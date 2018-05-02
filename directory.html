@@ -6,16 +6,30 @@
 
         <!-- Load style sheets -->
         <link rel="stylesheet" href="dist/css/brew.css">
+        <link rel="stylesheet" href="dist/css/directory.css">
+
         <script src="dist/js/directory.js"></script>
 
     </head>
     <body>
 
         <h1 class="title">Desk Worker</h1>
+        <div id="directoryContainer">
+            <div id="navContainer">
+                <ul id="navbar" data-pagename="directory"></ul>
+            </div>
+            <div id="directoryBody">
+                <div id="memberList"  style="overflow-y: scroll;">
+                    <div id="memberAdd">  <p id="addMemberText">+ Add Member</p> </div>
+                    <div id="memberSearch"> <input type="textbox" placeholder="Search" id="searchMembers" class="entry"> </div>
+                </div>
 
-        <div >
-            <ul id="navbar" data-pagename="directory"></ul>
+                <div id="memberInfo">
+                    member
+                </div>
+
+
+            </div>
         </div>
-
     </body>
 </html>
