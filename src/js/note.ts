@@ -110,7 +110,7 @@ export default class Note {
         // Add edit note button
         const editNoteButton = document.createElement("button");
         editNoteButton.innerText = "Edit";
-        editNoteButton.classList.add("button");
+        editNoteButton.classList.add("button", "edit");
         editNoteButton.addEventListener("click", editNoteCallback);
         controlDiv.appendChild(editNoteButton);
 

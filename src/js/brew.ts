@@ -108,6 +108,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     Util.getElementById("noteUndo").addEventListener("click", (e) => {
         const currentUndo = noteUndoers.pop();
+        console.log(e);
         if (currentUndo) {
             currentUndo();
         }

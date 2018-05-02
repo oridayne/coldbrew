@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Desk Worker</title>
+  
 
     <!-- Shortcut icon adapted from FontAwesome project's `boxes' icon:
          https://fontawesome.com/icons/boxes?style=solid -->
@@ -17,7 +17,6 @@
 
 <body>
 
-    <h1 class="title">Desk Worker</h1>
 
     <div id="layout">
         <ul id="navbar" data-pagename="home"></ul>
@@ -31,7 +30,7 @@
             <label for="search">search</label>
             <input type="textbox" id="search" class="entry">
             <div id="container">
-                <button class="button" id="undo">Undo</button>
+                <button class="button undo" id="undo">Undo</button>
             </div>
 
             <ol class="package" id="packageList"></ol>
@@ -81,7 +80,7 @@
                     <label for="newNoteAuthor">author</label>
                     <input id="newNoteAuthor" name="newNoteAuthor" class="entry" required>
                     <button id="addNote" class="button" type="submit">Submit</button>
-                    <button id="noteUndo" class="button" type="button">Undo</button>
+                    <button id="noteUndo" class="button undo" type="button">Undo</button>
                 </form>
             </div>
         </div>

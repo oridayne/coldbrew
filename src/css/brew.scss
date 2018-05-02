@@ -3,11 +3,51 @@
   --color-green: #4CAF50;
   --color-red: hsl(0, 80%, 48%);
   --color-light-gray: hsl(220, 10%, 85%);
+
+  --color-fresh: #4ABDAC;
+  --color-vermillion: #FC4A1A;
+  --color-sunshine: #F7B733;
+  --color-clean: #DFDCE3;
+
+  /*scheme #1*/
+  --color-delete: #FC4A1A;
+  --color-background:white;
+  --color-main: #4ABDAC;
+  --color-edit: #F7B733;
+  --color-pickedUp: #4ABDAC;
+  --color-default-button: #4ABDAC;
+  --color-text: black;
+  --color-search-bar: #DFDCE3;
+
+  /*scheme #2*/
+/*  --color-delete: #FF3B3F;
+  --color-background: #EFEFEF;
+  --color-main: #CAEBF2;
+  --color-edit: #FF3B3F;
+  --color-pickedUp: #CAEBF2;
+  --color-default-button: #CAEBF2;
+  --color-text: #A9A9A9;*/
+
+  /*scheme 3*/
+/*    --color-delete: #015249;
+  --color-background: white;
+  --color-main: #77C9D4;
+  --color-edit: #57BC90;
+  --color-pickedUp: #77C9D4;
+  --color-default-button: #77C9D4;
+  --color-text: black;
+  --color-search-bar: #DFDCE3;
+*/
+}
+
+h2{
+  color: var(--color-text);
 }
 
 body {
   font-family: Helvetica, sans-serif;
-  background-color: gainsboro;
+  /*background-color: gainsboro;*/
+  background-color: var(--color-background);
 }
 
 form label, label[for="search"] {
@@ -29,8 +69,10 @@ ul {
   background-color: darkslategray;
 }
 
+
 li div {
   display: block;
+  background-color: var(--color-main);
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
@@ -63,10 +105,11 @@ textarea {
     grid-column-gap: 1px;
     grid-template-columns: repeat($n, 1fr);
     > :nth-child(2n+2) {
-        background-color: gainsboro;
+        background-color: var(--color-background);
+
     }
     > :nth-child(2n+3) {
-        background-color: silver;
+        background-color: var(--color-background);
     }
 }
 
@@ -80,7 +123,7 @@ textarea {
   display: grid;
   grid-column-gap: 1px;
   grid-template-columns: repeat(7, 1fr);
-
+  background-color: var(--color-main);
   a {
     text-decoration: none;
   }
@@ -91,19 +134,19 @@ textarea {
 }
 
 .colHeader{
-  outline: 1px solid var(--color-light-gray);
-  outline: none;
   text-align: center;
   margin: 0 0px 0px 0;
+  background-color: var(--color-main);
 
 }
 .colOutline{
-  height: 530px;
   outline: 1px solid var(--color-light-gray);
-  outline: none;
+  height: 85vh;
+  overflow-y:auto;
   margin: 0;
   padding: 20px;
 }
+
 
 ol.package, ol.lentItems {
   list-style-type: none;
@@ -126,7 +169,12 @@ h2{
   margin: auto;
 }
 
+#packageEntry.entry{
+  background-color: white;
+}
+
 .entry{
+  background-color: var(--color-search-bar);
   padding: 10px 10px;
   border-radius: 5px;
   margin: 0px 0px 10px 0px;
@@ -137,8 +185,11 @@ h2{
   box-shadow: none;
 }
 
+
+
 .button {
-    background-color: dimgray;
+    /*background-color: dimgray;*/
+    background-color: var(--color-default-button);
     border: none;
     border-radius: 5px;
     color: white;
@@ -150,7 +201,16 @@ h2{
     margin: 0px 10px 0px 0px;
     cursor: pointer;
     width: 25%;
+    transition: all .2s ease-in-out;
 }
+
+.button:hover {
+  transform: scale(1.05);
+}
+
+
+
+
 
 .popup {
     position: relative;
@@ -199,7 +259,26 @@ h2{
 }
 
 .button.delete {
-  background-color: darkred;
+  /*background-color: darkred;*/
+  background-color: var(--color-delete);
+  color: white;
+}
+
+.button.edit {
+  /*background-color: darkred;*/
+  background-color: var(--color-edit);
+  color: white;
+}
+
+.button.pickedUp {
+  /*background-color: darkred;*/
+  background-color: var(--color-pickedUp);
+  width:50%;
+  /*height: 20px;*/
+
+}
+.button.undo{
+  background-color: var(--color-delete);
   color: white;
 }
 
@@ -220,7 +299,7 @@ h2{
   .note {
     padding: var(--note-padding-default);
     margin: 15px;
-    background-color: white;
+    background-color:var(--color-search-bar);
     box-shadow: 3px 3px 4px black;
     border: var(--note-border-thickness) solid black;
   
@@ -239,7 +318,8 @@ h2{
     .button.pin-button {
       margin-left: auto;
       margin-right: 0px;
-      background-color: midnightblue;
+      /*background-color: midnightblue;*/
+      background-color: var(--color-main);
       color: white;
     }
   
@@ -256,7 +336,8 @@ h2{
     --note-border-thickness: 3px;
 
     padding: calc(var(--note-padding-default) - var(--note-border-thickness));
-    background-color: midnightblue;
+    /*background-color: midnightblue;*/
+    background-color: var(--color-main);
     color: white;
     box-shadow: none;
 
@@ -283,7 +364,7 @@ h2{
 
   .noteTextEdit {
     --new-note-text-padding: 2px;
-  
+    background-color: var(--color-search-bar);
     padding: var(--new-note-text-padding);
     width: calc(100% - calc(2 * var(--new-note-text-padding)));
     height: 4em;
@@ -311,6 +392,9 @@ h2{
 
 .pkg {
     display: flex;
+    width: 100%;
+    padding-top: 5px;
+    padding-bottom: 5px;
     justify-content: space-between;
     button {
         padding: 0px;

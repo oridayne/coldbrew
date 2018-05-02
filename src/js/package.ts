@@ -56,7 +56,6 @@ export default class Package {
             pkgInfo.insertAdjacentHTML("beforeend", "<br>");
             pkgInfo.insertAdjacentText("beforeend", `Comments: ${this.comments}`);
         }
-
         const rhs = document.createElement("span");
         rhs.classList.add("loc-and-btn");
         rhs.innerText = this.location;
@@ -65,10 +64,10 @@ export default class Package {
         // package pick-up button
         const pickupButton = document.createElement("button");
         pickupButton.type = "button";
+        pickupButton.classList.add("button", "pickedUp");
         pickupButton.onclick = onDelete.bind(null, this);
         pickupButton.innerText = "Picked Up";
         rhs.appendChild(pickupButton);
-
         return li;
     }
 }
