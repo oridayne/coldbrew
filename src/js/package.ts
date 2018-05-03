@@ -53,11 +53,12 @@ export default class Package {
         shownDiv.classList.add("hiddenPackage");
         shownDiv.setAttribute("data-toggle", "collapse");
         shownDiv.setAttribute("data-target", "#"+hiddenDiv.id);
-        hiddenDiv.classList.add("revealedPackage");
         hiddenDiv.classList.add("collapse");
-        hiddenDiv.innerHTML = this.location + "<br/>"
+        var text  = this.location + "<br/>"
                              + this.carrier + "<br/>" 
                              + this.packageNumber + "<br/>";
+        hiddenDiv.innerHTML = text;
+        // console.log(text);
         if(this.comments){
             hiddenDiv.innerHTML+=this.comments;
         }
@@ -67,12 +68,6 @@ export default class Package {
         smallBin.innerText = this.location;
 
 
-        // const rhs = document.createElement("span");
-        // rhs.classList.add("loc-and-btn");
-        // rhs.innerText = this.location;
-        // li.appendChild(rhs);
-
-       //  // package pick-up button
         const pickupButton = document.createElement("button");
         pickupButton.type = "button";
         pickupButton.classList.add("button", "pickedUp");
@@ -81,10 +76,7 @@ export default class Package {
         pickupButton.innerText = "Picked Up";
         shownDiv.appendChild(pickupButton);
         shownDiv.appendChild(smallBin);
-       //  return li;
-
-
-        // console.log(onDelete);    
+     
         shownDiv.appendChild(hiddenDiv);
         return li;
     }

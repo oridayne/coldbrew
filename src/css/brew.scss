@@ -10,12 +10,12 @@
   --color-clean: #DFDCE3;
 
   /*scheme #1*/
-  --color-delete: #FC4A1A;
+  --color-delete: darkred;
   --color-background:white;
-  --color-main: #4ABDAC;
-  --color-edit: #F7B733;
-  --color-pickedUp: #4ABDAC;
-  --color-default-button: #4ABDAC;
+  --color-main: #3b5998;
+  --color-edit: darkgray;
+  --color-pickedUp: #3b5998;
+  --color-default-button: #3b5998;
   --color-text: black;
   --color-search-bar: #DFDCE3;
 
@@ -77,7 +77,7 @@ select {
 
 .revealedPackage,
 .hiddenPackage{
-
+  padding: 5px 5px;
   background-color: var(--color-clean);
   width: 100%;
   text-align: left;
@@ -104,9 +104,8 @@ p.whiteText{
   color:var(--color-main);
 }
 
-li div {
+li div.colHeader {
   display: block;
-  background-color: var(--color-clean);
   text-align: left;
   padding: 14px 16px;
   text-decoration: none;
@@ -331,7 +330,7 @@ h2{
 }
 
 .button.cancel {
-  background-color: lightgray;
+  background-color: darkgray;
   color: black;
 }
 
