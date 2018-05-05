@@ -33,7 +33,7 @@ export default class lentItem {
         const label = this.label();
 
         const li = document.createElement("li");
-        li.classList.add("entry");
+        li.classList.add("item");
         li.id = `lent-${this.id}`;
 
         const shownDiv = document.createElement("div");
@@ -49,14 +49,13 @@ export default class lentItem {
         shownDiv.setAttribute("data-toggle", "collapse");
         shownDiv.setAttribute("data-target", "#"+hiddenDiv.id);
         hiddenDiv.classList.add("collapse");
-        var text  = this.comments+ "<br/>";
-        hiddenDiv.innerHTML = text;
+        
         if(this.comments){
             hiddenDiv.innerHTML+=this.comments;
         }
 
         const smallBin = document.createElement("p");
-        smallBin.classList.add("whiteText");
+        smallBin.classList.add("smallText");
         smallBin.innerText = this.item;
 
 
@@ -65,7 +64,7 @@ export default class lentItem {
         pickupButton.classList.add("button", "pickedUp");
 
         pickupButton.onclick = onDelete.bind(null, this);
-        pickupButton.innerText = "Picked Up";
+        pickupButton.innerText = "Returned";
         shownDiv.appendChild(pickupButton);
         shownDiv.appendChild(smallBin);
      

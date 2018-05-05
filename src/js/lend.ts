@@ -5,11 +5,10 @@ import lentItem from "./lentItem";
 document.addEventListener("DOMContentLoaded", () => {
 
     Util.getElementById("returnItems").addEventListener("click", removeCheckedItems);
-    // Util.getElementById("LendForm").addEventListener("submit", (e) => {
-    //     e.preventDefault();
-    //     addLentItem();
-    //     clearItemInput();
-    // });
+    Util.getElementById("searchItems").addEventListener("input", (e) => {
+        const elt = e.target as HTMLInputElement;
+        filterItems(elt.value);
+    });
 
    Util.getElementById("LendForm").addEventListener("submit", (e) => {
         e.preventDefault();
@@ -55,6 +54,7 @@ function redrawItems() {
     ol.innerHTML = "";
 
     const items = Array.from(allItems.values());
+    console.log(items);
     items.sort((a, b) => {
         return a.label().localeCompare(b.label());
     });
@@ -81,49 +81,38 @@ function filterItems(query: string) {
     const ol = Util.getElementById("itemList");
 
     for (const li of ol.children) {
-        console.log(li);
+       
         const summary = li.querySelector(".hiddenItem") as HTMLElement;
+        const itemName = li.querySelector(".smallText") as HTMLElement;
         const fcSummaryText = summary.innerText.toLocaleLowerCase();
-        const containsQuery = fcSummaryText.indexOf(fcQuery) !== -1;
+        const itemText = itemName.innerText.toLocaleLowerCase();
+        const containsQuery = fcSummaryText.indexOf(fcQuery) !== -1 || itemText.indexOf(fcQuery)!==-1;
+
         li.classList.toggle("filtered-out", !containsQuery);
     }
 }
 
-// // // Given a list item, add it to its correct place (alphabetically) in the package list.
-// function addLentListItem(listItem: HTMLLIElement) {
-//     const addName = listItem.innerText;
-//     const ol = Util.getElementById("itemList");
-//     for (const li of ol.children) {
-//         const itemName = li.textContent || "";
-//         // if it comes before
-//         if (addName.localeCompare(itemName) < 0) {
-//             ol.insertBefore(listItem, li);
-//             return;
-//         }
+// function generateDummyItems(){
+//     const lastnames = ["Deng", "Anson", "Shreve", "Holtzman", "Dauber", "Zeng", "Smith"];
+//     const firstnames = ["Lisa", "Caroline", "Kim", "Aaron", "Toby", "Megan", "Jim", "David"];
+//     const items = ["Smash", "Monopoly", "Bike Pump", "Basketball", "Men In Black", "Charger", "Ping Pong Paddle", "Lion King"];
+
+//     for(let x = 0; x<items.length; x++){
+//         const item = new lentItem({
+//             // firstnames[Math.floor(Math.random()*firstnames.length)],
+//             // lastnames[Math.floor(Math.random()*lastnames.length)],
+//             firstname"Deng",
+//             "Lisa",
+//             items[x],
+
+//         });
+//         allItems.add(item);
+//         redrawItems();
 //     }
-//     ol.appendChild(listItem);
+
 // }
 
-// function addLentItem() {
 
-//     const item = Util.getInputValueById("itemToLend");
-//     const firstname = Util.getInputValueById("nameEntry");
-//     const nameText = `${item} - ${firstname}`;
-//     const li = createLentListItem(nameText);
-//     addLentListItem(li);
-// }
-
-// function createLentListItem(name: string): HTMLLIElement {
-//     const li = document.createElement("li");
-//     const checkbox = document.createElement("input");
-//     checkbox.type = "checkbox";
-//     li.appendChild(checkbox);
-
-//     li.insertAdjacentText("beforeend", name);
-//     return li;
-// }
-
-// removes checked packages from the packages list
 function removeCheckedItems() {
     const ol = Util.getElementById("itemList");
     const packages = ol.children;

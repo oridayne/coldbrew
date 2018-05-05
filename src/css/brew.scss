@@ -75,6 +75,7 @@ select {
   height: 3em;
 }
 
+.hiddenItem,
 .revealedPackage,
 .hiddenPackage{
   padding: 5px 5px;
@@ -82,7 +83,10 @@ select {
   width: 100%;
   text-align: left;
   color: black;
+  border-radius: 5px;
 }
+
+.hiddenItem:hover,
 .hiddenPackage:hover {
   transform: scale(1.05);
 
@@ -99,7 +103,7 @@ ul {
   background-color: darkslategray;
 }
 
-p.whiteText{
+p.smallText{
   font-size: 10px;
   color:var(--color-main);
 }
@@ -351,7 +355,7 @@ h2{
     background-color:var(--color-search-bar);
     box-shadow: 3px 3px 4px black;
     border: var(--note-border-thickness) solid black;
-  
+    border-radius: 5px;
     p {
       padding: 0;
       margin: 0 10px 15px 0;
@@ -430,6 +434,7 @@ h2{
     cursor: help;
 }
 
+.item.filtered-out,
 .pkg.filtered-out {
     display: none;
 }
@@ -439,6 +444,7 @@ h2{
     text-decoration-skip-ink: none;
 }
 
+.item,
 .pkg {
     display: flex;
     width: 100%;

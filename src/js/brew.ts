@@ -106,9 +106,8 @@ document.addEventListener("DOMContentLoaded", () => {
         clearNoteInput();
         Util.getElementById("newNote").focus();
     });
-    Util.getElementById("noteUndo").addEventListener("click", (e) => {
+    Util.getElementById("noteUndo").addEventListener("click", () => {
         const currentUndo = noteUndoers.pop();
-        console.log(e);
         if (currentUndo) {
             currentUndo();
         }
@@ -155,8 +154,6 @@ function filterPackages(query: string) {
     const ol = Util.getElementById("packageList");
 
     for (const li of ol.children) {
-        console.log("current child!");
-        console.log(li);
         const summary = li.querySelector(".hiddenPackage") as HTMLElement;
         const fcSummaryText = summary.innerText.toLocaleLowerCase();
         const containsQuery = fcSummaryText.indexOf(fcQuery) !== -1;

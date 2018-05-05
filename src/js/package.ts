@@ -38,7 +38,7 @@ export default class Package {
         const name = this.name();
 
         const li = document.createElement("li");
-        li.classList.add("item");
+        li.classList.add("pkg");
         li.id = `pkg-${this.id}`;
 
         const shownDiv = document.createElement("div");
@@ -64,7 +64,7 @@ export default class Package {
         }
 
         const smallBin = document.createElement("p");
-        smallBin.classList.add("whiteText");
+        smallBin.classList.add("smallText");
         smallBin.innerText = this.location;
 
 
