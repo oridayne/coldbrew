@@ -1,6 +1,12 @@
 import "./navbar";
 import * as Util from "./util";
 import lentItem from "./lentItem";
+import dummyItems from "./dummy-items";
+
+// stack of package objects deleted. This helps with undo.
+const deletedItems: lentItem[] = [];
+
+const allItems: Set<lentItem> = new Set();
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -20,14 +26,16 @@ document.addEventListener("DOMContentLoaded", () => {
         Util.getElementById("firstnameLend").focus();
     });
     Util.getElementById("clearItemInput").addEventListener("click", clearItemInput);
-
+    // initialize allPackages from dummy package data set
+    console.log(dummyItems);
+    for (const p of dummyItems) {
+        allItems.add(p);
+    }
+    redrawItems();
 });
 
 
-// stack of package objects deleted. This helps with undo.
-const deletedItems: lentItem[] = [];
 
-const allItems: Set<lentItem> = new Set();
 
 function makeLendItemFromInputs(): lentItem {
     // FIXME should fail if user enters in only spaces
