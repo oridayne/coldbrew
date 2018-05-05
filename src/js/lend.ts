@@ -4,7 +4,6 @@ import lentItem from "./lentItem";
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    Util.getElementById("returnItems").addEventListener("click", removeCheckedItems);
     Util.getElementById("searchItems").addEventListener("input", (e) => {
         const elt = e.target as HTMLInputElement;
         filterItems(elt.value);
@@ -113,16 +112,6 @@ function filterItems(query: string) {
 // }
 
 
-function removeCheckedItems() {
-    const ol = Util.getElementById("itemList");
-    const packages = ol.children;
-    for (let x = packages.length - 1; x >= 0; x--) {
-        const checkbox = packages[x].children[0] as HTMLInputElement;
-        if (checkbox.checked) {
-            packages[x].remove();
-        }
-    }
-}
 
 function clearItemInput() {
     const inputs = Util.getElementById("LendForm").getElementsByTagName("input");

@@ -24,23 +24,28 @@
 
             <div class="colOutline" id="lentout">
                 <h2>Lent Out</h2>
+                <label for="searchItems">search</label>
                 <input type="textbox" id="searchItems" class="entry">
                 <ol class="lentItems" id="itemList">
                 
                 </ol>
                 <br>
-                <button class="button" id="returnItems">Return Item(s)</button>
+                <!-- <button class="button" id="returnItems">Return Item(s)</button> -->
             </div>
             <div class="colOutline" id="lentin">
                 <h2>Lend Item</h2>
 
                 <form id="LendForm">
-                    <input class="entry" type="text" id="firstnameLend" placeholder="First Name" required>
-                    <input class="entry" type="text" id="lastnameLend" placeholder="Last Name" required>
+                    <label for="firstnameLend">first name</label>
+                    <input class="entry" type="text" id="firstnameLend" required>
 
-                    <input class="entry" type="text" id="itemToLend" placeholder="Item being borrowed" required>
+                    <label for="lastname">last name</label>
+                    <input class="entry" type="text" id="lastnameLend" required>
 
-                    <input class="entry" type="text" id="itemComments" placeholder="Comments">
+                    <label for="itemToLend">item to lend</label>
+                    <input class="entry" type="text" id="itemToLend"  required>
+                    <label for="itemComments">Comments</label>
+                    <input class="entry" type="text" id="itemComments">
 
                     <br>
 
