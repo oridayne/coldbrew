@@ -1,45 +1,40 @@
-// import 'bootstrap/js/dist/collapse';
 import 'bootstrap';
-export default class Package {
+export default class lentItem {
     private static nextAvailableID = 0;
     private static generateID(): number {
-        return Package.nextAvailableID++;
+        return lentItem.nextAvailableID++;
     }
 
     public readonly id: number;
     private readonly firstname: string;
     private readonly lastname: string;
-    private readonly packageNumber: string;
-    private readonly location: string;
-    private readonly carrier: string;
+    private readonly item: string;
     private readonly comments: string | undefined;
 
-    constructor(obj: { firstname: string, lastname: string, packageNumber: string,
-                       location: string, carrier: string, comments?: string }) {
+    constructor(obj: { firstname: string, lastname: string, item: string,
+                       comments?: string }) {
         this.firstname = obj.firstname;
         this.lastname = obj.lastname;
-        this.packageNumber = obj.packageNumber;
-        this.location = obj.location;
-        this.carrier = obj.carrier;
+        this.item = obj.item;
         this.comments = obj.comments;
 
-        this.id = Package.generateID();
+        this.id = lentItem.generateID();
     }
 
-    public name(): string {
+    public label(): string {
         return `${this.lastname}, ${this.firstname}`;
     }
 
     /**
-     * Render this Package as a <li> element whose ID is pkg-<id>, where <id> is
+     * Render this Item as a <li> element whose ID is lent-<id>, where <id> is
      * equal to this.id.
      */
-    public render(onDelete: (pkg: Package) => void): HTMLLIElement {
-        const name = this.name();
+    public render(onDelete: (lent: lentItem) => void): HTMLLIElement {
+        const label = this.label();
 
         const li = document.createElement("li");
-        li.classList.add("item");
-        li.id = `pkg-${this.id}`;
+        li.classList.add("entry");
+        li.id = `lent-${this.id}`;
 
         const shownDiv = document.createElement("div");
         const hiddenDiv = document.createElement("div");
@@ -49,23 +44,20 @@ export default class Package {
         hiddenDiv.id = divID;
         li.appendChild(shownDiv);
 
-        shownDiv.innerText = name;        
-        shownDiv.classList.add("hiddenPackage");
+        shownDiv.innerText = label;        
+        shownDiv.classList.add("hiddenItem");
         shownDiv.setAttribute("data-toggle", "collapse");
         shownDiv.setAttribute("data-target", "#"+hiddenDiv.id);
         hiddenDiv.classList.add("collapse");
-        var text  = this.location + "<br/>"
-                             + this.carrier + "<br/>" 
-                             + this.packageNumber + "<br/>";
+        var text  = this.comments+ "<br/>";
         hiddenDiv.innerHTML = text;
-        // console.log(text);
         if(this.comments){
             hiddenDiv.innerHTML+=this.comments;
         }
 
         const smallBin = document.createElement("p");
         smallBin.classList.add("whiteText");
-        smallBin.innerText = this.location;
+        smallBin.innerText = this.item;
 
 
         const pickupButton = document.createElement("button");

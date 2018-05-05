@@ -10,6 +10,8 @@
 
         <!-- Load style sheets -->
         <link rel="stylesheet" href="dist/css/brew.css">
+        <link rel="stylesheet" href="dist/css/lent.css">
+
         <script src="dist/js/lend.js"></script>
 
     </head>
@@ -19,6 +21,7 @@
 
             <div class="colOutline" id="lentout">
                 <h2>Lent Out</h2>
+                <input type="textbox" id="searchItems" class="entry">
                 <ol class="lentItems" id="itemList">
                     <li><input type="checkbox">Basketball - David Jin</li>
                     <li><input type="checkbox">Smash - Toby Holtzman</li>
@@ -33,10 +36,12 @@
                 <h2>Lend Item</h2>
 
                 <form id="LendForm">
-                    <input class="entry" type="text" id="nameEntry" placeholder="Name">
-                    <input class="entry" type="text" id="itemToLend" placeholder="Item being borrowed">
+                    <input class="entry" type="text" id="firstnameLend" placeholder="First Name" required>
+                    <input class="entry" type="text" id="lastnameLend" placeholder="Last Name" required>
 
-                    <input class="entry" type="text" id="comments" placeholder="Comments">
+                    <input class="entry" type="text" id="itemToLend" placeholder="Item being borrowed" required>
+
+                    <input class="entry" type="text" id="itemComments" placeholder="Comments">
 
                     <br>
 
