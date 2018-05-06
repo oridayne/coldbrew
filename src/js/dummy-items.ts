@@ -1,0 +1,69 @@
+import lentItem from "./lentItem";
+
+const items: lentItem[] = [];
+export default items;
+
+const firstnames = [
+    "Aaron",
+    "Caroline",
+    "Lisa",
+    "Richard",
+];
+
+const lastnames = [
+    "Anson",
+    "Burke",
+    "Carter",
+    "Denmark",
+    "Evangeline",
+    "Frogsteine",
+    "Grossman",
+    "Holis",
+    "Iglu",
+    "Jando",
+    "Kristoffberg",
+    "Lampreay",
+    "Monomon",
+    "Oppres",
+    "Plort",
+    "Quinteyville",
+    "Zeng",
+];
+
+const itemsToLend = [
+    "Men In Black", 
+    "Avatar",
+    "Basketball", 
+    "Bike Pump", 
+    "Extension Cord", 
+    "Smash", 
+    "Inception", 
+    "Ping Pong Ball", 
+    "Monopoly", 
+    "Avengers", 
+    "Mario Cart", 
+    "Bins", 
+    "Lion King", 
+    "Mulan", 
+    "Tangled", 
+    "Cinderella", 
+    "Frozen",
+];
+
+function randInt(max: number): number {
+    return Math.floor(Math.random() * Math.floor(max));
+}
+
+function pick<T>(array: T[]): T {
+    return array[randInt(array.length)];
+}
+
+
+
+for (const lastname of lastnames) {
+    const firstname = lastname === "Zeng" ? "Aaron" : pick(firstnames);
+    const item = itemsToLend[randInt(itemsToLend.length)];
+
+    const dummyItem = new lentItem({ firstname, lastname, item});
+    items.push(dummyItem);
+}

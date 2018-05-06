@@ -10,36 +10,41 @@
 
         <!-- Load style sheets -->
         <link rel="stylesheet" href="dist/css/brew.css">
+        <link rel="stylesheet" href="dist/css/lent.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
         <script src="dist/js/lend.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     </head>
     <body>
-
-        <h1 class="title">Desk Worker</h1>
-
         <div id="lent">
             <ul id="navbar" data-pagename="lend"></ul>
 
             <div class="colOutline" id="lentout">
                 <h2>Lent Out</h2>
+                <label for="searchItems">search</label>
+                <input type="textbox" id="searchItems" class="entry">
                 <ol class="lentItems" id="itemList">
-                    <li><input type="checkbox">Basketball - David Jin</li>
-                    <li><input type="checkbox">Smash - Toby Holtzman</li>
-                    <li><input type="checkbox">Monopoly - Lisa Deng</li>
-
-
+                
                 </ol>
                 <br>
-                <button class="button" id="returnItems">Return Item(s)</button>
             </div>
             <div class="colOutline" id="lentin">
                 <h2>Lend Item</h2>
 
                 <form id="LendForm">
-                    <input class="entry" type="text" id="nameEntry" placeholder="Name">
-                    <input class="entry" type="text" id="itemToLend" placeholder="Item being borrowed">
+                    <label for="firstnameLend">first name</label>
+                    <input class="entry" type="text" id="firstnameLend" required>
 
-                    <input class="entry" type="text" id="comments" placeholder="Comments">
+                    <label for="lastname">last name</label>
+                    <input class="entry" type="text" id="lastnameLend" required>
+
+                    <label for="itemToLend">item to lend</label>
+                    <input class="entry" type="text" id="itemToLend"  required>
+                    <label for="itemComments">Comments</label>
+                    <input class="entry" type="text" id="itemComments">
 
                     <br>
 

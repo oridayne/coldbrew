@@ -3,39 +3,37 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Desk Worker</title>
+  
 
     <!-- Shortcut icon adapted from FontAwesome project's `boxes' icon:
          https://fontawesome.com/icons/boxes?style=solid -->
     <link rel="icon" type="image/x-icon" href="img/favicon.ico">
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <!-- Load style sheets -->
     <link rel="stylesheet" href="dist/css/brew.css">
     <script src="dist/js/brew.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 </head>
 
 <body>
 
-    <h1 class="title">Desk Worker</h1>
 
     <div id="layout">
         <ul id="navbar" data-pagename="home"></ul>
         <div class="colOutline" id="pickUp">
-            <!-- Deng: This column is mostly finished, but I think the pop ups can be improved. -->
-            <!-- TODO: We had notifications (like gmail) for when packages were removed. They don't need to be put in.
-                     Since it seems like most peopl never bothered to use them.
-                -->
 
             <h2>Package Pick Up </h2>
             <label for="search">search</label>
             <input type="textbox" id="search" class="entry">
             <div id="container">
-                <button class="button" id="undo">Undo</button>
+                <button class="button undo" id="undo">Undo</button>
             </div>
+          
 
             <ol class="package" id="packageList"></ol>
-
         </div>
 
         <div class="colOutline" id="packageEntry">
@@ -81,7 +79,7 @@
                     <label for="newNoteAuthor">author</label>
                     <input id="newNoteAuthor" name="newNoteAuthor" class="entry" required>
                     <button id="addNote" class="button" type="submit">Submit</button>
-                    <button id="noteUndo" class="button" type="button">Undo</button>
+                    <button id="noteUndo" class="button undo" type="button">Undo</button>
                 </form>
             </div>
         </div>
