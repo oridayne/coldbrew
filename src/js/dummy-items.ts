@@ -41,13 +41,16 @@ const itemsToLend = [
     "Ping Pong Ball", 
     "Monopoly", 
     "Avengers", 
-    "Mario Cart", 
-    "Bins", 
-    "Lion King", 
-    "Mulan", 
-    "Tangled", 
-    "Cinderella", 
-    "Frozen",
+];
+
+const randomComments = [
+    "Thanks!",
+    "I will return in 2 weeks",
+    "Was checked out in bad condition",
+    "I will return in 1 week",
+    "",
+    "",
+    "For my suite",
 ];
 
 function randInt(max: number): number {
@@ -63,7 +66,7 @@ function pick<T>(array: T[]): T {
 for (const lastname of lastnames) {
     const firstname = lastname === "Zeng" ? "Aaron" : pick(firstnames);
     const item = itemsToLend[randInt(itemsToLend.length)];
-
-    const dummyItem = new lentItem({ firstname, lastname, item});
+    const comments = randomComments[randInt(randomComments.length)];
+    const dummyItem = new lentItem({ firstname, lastname, item, comments});
     items.push(dummyItem);
 }

@@ -43,15 +43,23 @@ export default class lentItem {
         hiddenDiv.id = divID;
         li.appendChild(shownDiv);
 
+        if(this.comments){
+            hiddenDiv.innerHTML+=this.comments;
+            shownDiv.classList.add("hiddenItemExpandable");
+
+        }
+        else{
+            shownDiv.classList.add("hiddenItem");
+
+        }
+
         shownDiv.innerText = label;        
-        shownDiv.classList.add("hiddenItem");
+        // shownDiv.classList.add("hiddenItem");
         shownDiv.setAttribute("data-toggle", "collapse");
         shownDiv.setAttribute("data-target", "#"+hiddenDiv.id);
         hiddenDiv.classList.add("collapse");
         
-        if(this.comments){
-            hiddenDiv.innerHTML+=this.comments;
-        }
+  
 
         const smallBin = document.createElement("p");
         smallBin.classList.add("smallText");
