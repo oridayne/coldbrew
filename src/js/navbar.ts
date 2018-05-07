@@ -16,36 +16,13 @@ const pages: IPage[] = [
         link: "index.html",
         pagename: "home",
     },
-    {
-        displayName: "Package History",
-        link: "history.html",
-        pagename: "history",
-    },
-    {
-        displayName: "Add Package",
-        link: "add-package.html",
-        pagename: "addPackage",
-    },
-    {
-        displayName: "Notes",
-        link: "notes.html",
-        pagename: "notes",
-    },
+  
     {
         displayName: "Lent Items",
         link: "lend.html",
         pagename: "lend",
     },
-    {
-        displayName: "Directory",
-        link: "directory.html",
-        pagename: "directory",
-    },
-    {
-        displayName: "Check In/Check Out",
-        link: "check-in.html",
-        pagename: "checkIn",
-    },
+  
 ];
 
 document.addEventListener("DOMContentLoaded", () => {
