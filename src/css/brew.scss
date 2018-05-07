@@ -81,8 +81,8 @@ li div.colHeader {
   text-decoration: none;
   cursor: pointer;
   color: white;
-  height: 10vh;
-  min-height: 56px;
+  height: 6vh;
+  min-height: 45px;
 
 }
 
@@ -153,7 +153,7 @@ textarea {
 .colOutline{
   min-width: 300px;
   outline: 1px solid var(--color-light-gray);
-  height: 90vh;
+  height: 94vh;
   overflow-y:auto;
   margin: 0;
   padding: 20px;

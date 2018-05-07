@@ -1,6 +1,6 @@
 #!/bin/sh
 
-rsync --del -avz ./ athena:www/coldbrew \
+rsync --del -avz ./ lisadeng@ftp.dialup.mit.edu:/mit/lisadeng/coldbrew-test \
       --include=/dist                   \
       --include='/dist/**'              \
       --include='*.html'                \
