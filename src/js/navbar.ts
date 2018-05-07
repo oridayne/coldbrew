@@ -13,7 +13,7 @@ interface IPage {
 
 const pages: IPage[] = [
     {
-        displayName: "Home",
+        displayName: "Packages",
         link: "index.html",
         pagename: "home",
     },
