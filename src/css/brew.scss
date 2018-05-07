@@ -19,38 +19,6 @@
   --color-text: black;
   --color-search-bar: #DFDCE3;
 
-  /*scheme #2*/
-/*  --color-delete: #FF3B3F;
-  --color-background: #EFEFEF;
-  --color-main: #CAEBF2;
-  --color-edit: #FF3B3F;
-  --color-pickedUp: #CAEBF2;
-  --color-default-button: #CAEBF2;
-  --color-text: #A9A9A9;*/
-
-  /*scheme 3*/
-/*    --color-delete: #015249;
-  --color-background: white;
-  --color-main: #77C9D4;
-  --color-edit: #57BC90;
-  --color-pickedUp: #77C9D4;
-  --color-default-button: #77C9D4;
-  --color-text: black;
-  --color-search-bar: #DFDCE3;
-*/
-}
-
-
-i {
-    border: solid black;
-    border-width: 0 3px 3px 0;
-    display: inline-block;
-    padding: 3px;
-}
-
-.right {
-    transform: rotate(-45deg);
-    -webkit-transform: rotate(-45deg);
 }
 
 h2{
@@ -59,7 +27,6 @@ h2{
 
 body {
   font-family: Helvetica, sans-serif;
-  /*background-color: gainsboro;*/
   background-color: var(--color-background);
 }
 
@@ -76,7 +43,6 @@ select {
 }
 
 .hiddenItem,
-.revealedPackage,
 .hiddenPackage{
   padding: 5px 5px;
   background-color: var(--color-clean);
@@ -115,6 +81,7 @@ li div.colHeader {
   text-decoration: none;
   cursor: pointer;
   color: white;
+  height: 10vh;
 }
 
 
@@ -151,13 +118,7 @@ textarea {
     display: grid;
     grid-column-gap: 1px;
     grid-template-columns: repeat($n, 1fr);
-    > :nth-child(2n+2) {
-        background-color: var(--color-background);
-
-    }
-    > :nth-child(2n+3) {
-        background-color: var(--color-background);
-    }
+    background-color: var(--color-background);
 }
 
 #layout{
@@ -186,9 +147,10 @@ textarea {
   background-color: var(--color-main);
 
 }
+
 .colOutline{
   outline: 1px solid var(--color-light-gray);
-  height: 85vh;
+  height: 90vh;
   overflow-y:auto;
   margin: 0;
   padding: 20px;
@@ -204,6 +166,7 @@ ol.package, ol.lentItems {
 h1{
   text-align: center;
 }
+
 h2{
   text-align: center;
   margin: 0px 0px 10px 0px;
@@ -237,7 +200,6 @@ h2{
 
 
 .button {
-    /*background-color: dimgray;*/
     background-color: var(--color-default-button);
     border: none;
     border-radius: 5px;
@@ -259,73 +221,21 @@ h2{
 
 
 
-
-
-.popup {
-    position: relative;
-    display: inline-block;
-    cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-
-/* The actual popup */
-.popup .popuptext {
-    visibility: hidden;
-    width: 160px;
-    background-color: #555;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 8px 0;
-    position: absolute;
-    z-index: 1;
-    bottom: 125%;
-    left: 50%;
-    margin-left: -80px;
-}
-
-
-/* Popup arrow */
-.popup .popuptext::after {
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: #555 transparent transparent transparent;
-}
-
-/* Toggle this class - hide and show the popup */
-.popup .show {
-    visibility: visible;
-    -webkit-animation: fadeIn 1s;
-    animation: fadeIn 1s;
-}
-
 .button.delete {
-  /*background-color: darkred;*/
   background-color: var(--color-delete);
   color: white;
 }
 
 .button.edit {
-  /*background-color: darkred;*/
   background-color: var(--color-edit);
   color: white;
 }
 
 .button.pickedUp {
-  /*background-color: darkred;*/
   background-color: var(--color-pickedUp);
   float: right;
   padding-right: 2px;
-  /*width:50%;*/
-  /*height: 20px;*/
+
 
 }
 .button.undo{
@@ -456,6 +366,3 @@ h2{
     }
 }
 
-/*.pkg:nth-child(even) {
-    background-color: var(--color-clean);
-}*/
