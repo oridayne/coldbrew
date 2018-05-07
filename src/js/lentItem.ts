@@ -36,15 +36,17 @@ export default class LentItem {
         li.id = `lent-${this.id}`;
 
         const shownDiv = document.createElement("div");
-        const hiddenDiv = document.createElement("div");
+        const hiddenDetailsDiv = document.createElement("div");
       
 
-        const divID = "hidden"+li.id;
-        hiddenDiv.id = divID;
+        hiddenDetailsDiv.id = "hidden"+li.id;
         li.appendChild(shownDiv);
 
         if(this.comments){
-            hiddenDiv.innerHTML+=this.comments;
+            const commentsDetail = document.createElement("p");
+            commentsDetail.innerHTML = `<strong>Comments:</strong> ${this.comments}`;
+            commentsDetail.classList.add("first-detail");
+            hiddenDetailsDiv.appendChild(commentsDetail);
             shownDiv.classList.add("hiddenItemExpandable");
 
         }
@@ -56,8 +58,8 @@ export default class LentItem {
         shownDiv.innerText = label;        
         // shownDiv.classList.add("hiddenItem");
         shownDiv.setAttribute("data-toggle", "collapse");
-        shownDiv.setAttribute("data-target", "#"+hiddenDiv.id);
-        hiddenDiv.classList.add("collapse");
+        shownDiv.setAttribute("data-target", "#"+hiddenDetailsDiv.id);
+        hiddenDetailsDiv.classList.add("collapse");
         
   
 
@@ -88,7 +90,7 @@ export default class LentItem {
         shownDiv.appendChild(pickupButton);
         shownDiv.appendChild(smallBin);
      
-        shownDiv.appendChild(hiddenDiv);
+        shownDiv.appendChild(hiddenDetailsDiv);
         return li;
     }
 }

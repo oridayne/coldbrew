@@ -12,8 +12,10 @@ export default class Package {
     private readonly carrier: string;
     private readonly comments: string | undefined;
 
-    constructor(obj: { firstname: string, lastname: string, packageNumber: string,
-                       location: string, carrier: string, comments?: string }) {
+    constructor(obj: {
+        firstname: string, lastname: string, packageNumber: string,
+        location: string, carrier: string, comments?: string
+    }) {
         this.firstname = obj.firstname;
         this.lastname = obj.lastname;
         this.packageNumber = obj.packageNumber;
@@ -40,25 +42,31 @@ export default class Package {
         li.id = `pkg-${this.id}`;
 
         const shownDiv = document.createElement("div");
-        const hiddenDiv = document.createElement("div");
-      
+        const hiddenDetailsDiv = document.createElement("div");
 
-        const divID = "hidden"+li.id;
-        hiddenDiv.id = divID;
+        hiddenDetailsDiv.id = `hidden${li.id}`;
         li.appendChild(shownDiv);
 
-        shownDiv.innerText = name;        
+        shownDiv.innerText = name;
         shownDiv.classList.add("hiddenPackage");
         shownDiv.setAttribute("data-toggle", "collapse");
-        shownDiv.setAttribute("data-target", "#"+hiddenDiv.id);
-        hiddenDiv.classList.add("collapse");
-        var text  = this.location + "<br/>"
-                             + this.carrier + "<br/>" 
-                             + this.packageNumber + "<br/>";
-        hiddenDiv.innerHTML = text;
-        // console.log(text);
-        if(this.comments){
-            hiddenDiv.innerHTML+=this.comments;
+        shownDiv.setAttribute("data-target", "#" + hiddenDetailsDiv.id);
+        hiddenDetailsDiv.classList.add("hidden-details", "collapse");
+
+        const locDetail = document.createElement("p");
+        locDetail.innerHTML = `<strong>Location:</strong> ${this.location}`;
+        locDetail.classList.add("first-detail");
+        const carrierDetail = document.createElement("p");
+        carrierDetail.innerHTML = `<strong>Carrier:</strong> ${this.carrier}`;
+        const pkgIdDetail = document.createElement("p");
+        pkgIdDetail.innerHTML = `<strong>Package #</strong>: ${this.packageNumber}`;
+        hiddenDetailsDiv.appendChild(locDetail);
+        hiddenDetailsDiv.appendChild(carrierDetail);
+        hiddenDetailsDiv.appendChild(pkgIdDetail);
+        if (this.comments) {
+            const commentsDetail = document.createElement("p");
+            commentsDetail.innerHTML = `<strong>Comments:</strong> ${this.comments}`;
+            hiddenDetailsDiv.appendChild(commentsDetail);
         }
 
         const smallBin = document.createElement("p");
@@ -87,8 +95,8 @@ export default class Package {
         pickupButton.appendChild(pickupSpan);
         shownDiv.appendChild(pickupButton);
         shownDiv.appendChild(smallBin);
-     
-        shownDiv.appendChild(hiddenDiv);
+
+        shownDiv.appendChild(hiddenDetailsDiv);
         return li;
     }
 }

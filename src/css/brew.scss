@@ -53,6 +53,14 @@ select {
   color: black;
   border-radius: 5px;
   transition: background-color 0.3s ease;
+
+  p {
+    margin: 0;
+  }
+
+  p.first-detail {
+    margin-top: 10px;
+  }
 }
 
 .hiddenItemExpandable:hover,
