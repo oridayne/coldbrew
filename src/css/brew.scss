@@ -19,6 +19,8 @@
   --color-default-button: #3b5998;
   --color-text: black;
   --color-search-bar: #DFDCE3;
+
+  --transition-duration: 0.3s;
 }
 
 h2{
@@ -51,7 +53,7 @@ select {
   text-align: left;
   color: black;
   border-radius: 5px;
-  transition: background-color 0.3s ease;
+  transition: background-color var(--transition-duration) ease;
 
   p {
     margin: 0;
@@ -63,6 +65,7 @@ select {
 
   .smallText {
     svg {
+      transition: transform var(--transition-duration) ease;
       transform: rotate(0);
     }
   }
@@ -72,7 +75,7 @@ select {
 .hiddenPackage.collapsed {
   .smallText{
     svg {
-      transform: rotate(0.75turn);
+      transform: rotate(-0.25turn);
     }  
   }
 }
@@ -244,12 +247,6 @@ h2{
     line-height: 1.5em;
 }
 
-/*.button:hover {
-  transform: scale(1.05);
-}
-
-*/
-
 .button.delete {
   background-color: var(--color-delete);
   color: white;
@@ -309,11 +306,10 @@ h2{
     .button.pin-button {
       margin-left: auto;
       margin-right: 0px;
-      /*background-color: midnightblue;*/
       background-color: var(--color-main);
       color: white;
       svg {
-        transition: transform 0.3s ease;
+        transition: transform var(--transition-duration) ease;
         transform: rotate(0.08turn) translateX(-1px);
       }
     }
@@ -337,7 +333,6 @@ h2{
     --note-border-thickness: 3px;
 
     padding: calc(var(--note-padding-default) - var(--note-border-thickness));
-    /*background-color: midnightblue;*/
     background-color: var(--color-main);
     color: white;
     box-shadow: none;
@@ -346,7 +341,7 @@ h2{
       background-color: white;
       color: black;
       svg {
-        transition: transform 0.3s ease;
+        transition: transform var(--transition-duration) ease;
         transform: rotate(0) translateX(0);
       }
     }
@@ -415,9 +410,6 @@ h2{
 }
 .hidden{
   display:none;
-}
-.lendCol{
-
 }
 
 .packageCol{
