@@ -1,8 +1,12 @@
 #!/bin/sh
 
-rsync --del -avz ./ lisadeng@ftp.dialup.mit.edu:/mit/lisadeng/coldbrew-test \
+# change this based on your username, etc.
+HOST=athena
+
+rsync --del -avz ./ $HOST:www/coldbrew  \
       --include=/dist                   \
       --include='/dist/**'              \
       --include='*.html'                \
-      --include='/img/favicon.ico'      \
+      --include=/img                    \
+      --include='/img/*.ico'            \
       --exclude='*'
