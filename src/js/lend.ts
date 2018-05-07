@@ -20,9 +20,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const item = makeLendItemFromInputs();
         allItems.add(item);
-        redrawItems();
-
         clearItemInput();
+
+        redrawItems();
         Util.getElementById("firstnameLend").focus();
     });
     Util.getElementById("clearItemInput").addEventListener("click", clearItemInput);
@@ -67,7 +67,7 @@ function redrawItems() {
     for (const it of items) {
         ol.appendChild(it.render(deleteItem));
     }
-
+   
     filterItems(Util.getInputValueById("itemsearch"));
 }
 
@@ -84,7 +84,6 @@ function filterItems(query: string) {
     const fcQuery = query.toLocaleLowerCase();
 
     const ol = Util.getElementById("itemList");
-
     for (const li of ol.children) {
        
         const summary = li.querySelector(".hiddenItem") as HTMLElement;
