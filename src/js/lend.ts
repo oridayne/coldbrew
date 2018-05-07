@@ -61,7 +61,6 @@ function redrawItems() {
     ol.innerHTML = "";
 
     const items = Array.from(allItems.values());
-    console.log(items);
     items.sort((a, b) => {
         return a.label().localeCompare(b.label());
     });
@@ -70,7 +69,7 @@ function redrawItems() {
         ol.appendChild(it.render(deleteItem));
     }
 
-    filterItems(Util.getInputValueById("searchItems"));
+    filterItems(Util.getInputValueById("search"));
 }
 
 
