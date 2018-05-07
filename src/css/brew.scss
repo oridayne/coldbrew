@@ -42,7 +42,9 @@ select {
   height: 3em;
 }
 
+
 .hiddenItem,
+.hiddenItemExpandable,
 .hiddenPackage{
   padding: 5px 5px;
   background-color: var(--color-clean);
@@ -53,7 +55,7 @@ select {
   transition: background-color 0.3s ease;
 }
 
-.hiddenItem:hover,
+.hiddenItemExpandable:hover,
 .hiddenPackage:hover {
   background-color: var(--color-expandable);
   cursor: pointer;
