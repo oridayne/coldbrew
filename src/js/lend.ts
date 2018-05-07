@@ -1,4 +1,3 @@
-import "./navbar";
 import * as Util from "./util";
 import lentItem from "./lentItem";
 import dummyItems from "./dummy-items";
