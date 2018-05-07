@@ -10,10 +10,11 @@ const allItems: Set<lentItem> = new Set();
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    Util.getElementById("searchItems").addEventListener("input", (e) => {
+    Util.getElementById("search").addEventListener("input", (e) => {
         const elt = e.target as HTMLInputElement;
         filterItems(elt.value);
     });
+    Util.getElementById("undoItem").addEventListener("click", undoDeleteItems);
 
    Util.getElementById("LendForm").addEventListener("submit", (e) => {
         e.preventDefault();
@@ -27,7 +28,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     Util.getElementById("clearItemInput").addEventListener("click", clearItemInput);
     // initialize allPackages from dummy package data set
-    console.log(dummyItems);
     for (const p of dummyItems) {
         allItems.add(p);
     }
@@ -61,7 +61,6 @@ function redrawItems() {
     ol.innerHTML = "";
 
     const items = Array.from(allItems.values());
-    console.log(items);
     items.sort((a, b) => {
         return a.label().localeCompare(b.label());
     });
@@ -70,7 +69,7 @@ function redrawItems() {
         ol.appendChild(it.render(deleteItem));
     }
 
-    filterItems(Util.getInputValueById("searchItems"));
+    filterItems(Util.getInputValueById("search"));
 }
 
 
@@ -99,25 +98,34 @@ function filterItems(query: string) {
     }
 }
 
-// function generateDummyItems(){
-//     const lastnames = ["Deng", "Anson", "Shreve", "Holtzman", "Dauber", "Zeng", "Smith"];
-//     const firstnames = ["Lisa", "Caroline", "Kim", "Aaron", "Toby", "Megan", "Jim", "David"];
-//     const items = ["Smash", "Monopoly", "Bike Pump", "Basketball", "Men In Black", "Charger", "Ping Pong Paddle", "Lion King"];
+// Given a list item, add it to its correct place (alphabetically) in the package list.
+function addListItem(listItem: HTMLLIElement) {
+    const addName = listItem.innerText;
+    const ol = Util.getElementById("itemList");
+    for (const li of ol.children) {
+        const itemName = li.textContent || "";
+        // if it comes before
+        if (addName.localeCompare(itemName) < 0) {
+            ol.insertBefore(listItem, li);
+            return;
+        }
+    }
+    ol.appendChild(listItem);
+}
 
-//     for(let x = 0; x<items.length; x++){
-//         const item = new lentItem({
-//             // firstnames[Math.floor(Math.random()*firstnames.length)],
-//             // lastnames[Math.floor(Math.random()*lastnames.length)],
-//             firstname"Deng",
-//             "Lisa",
-//             items[x],
+// undo package deletions
+function undoDeleteItems() {
+    const lastDelete = deletedItems.pop();
+    if (lastDelete == null) {
+        return;
+    }
 
-//         });
-//         allItems.add(item);
-//         redrawItems();
-//     }
+    allItems.add(lastDelete);
+    addListItem(lastDelete.render(deleteItem));
+}
 
-// }
+
+
 
 
 
