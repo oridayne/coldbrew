@@ -9,7 +9,7 @@ const allItems: Set<lentItem> = new Set();
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    Util.getElementById("search").addEventListener("input", (e) => {
+    Util.getElementById("itemsearch").addEventListener("input", (e) => {
         const elt = e.target as HTMLInputElement;
         filterItems(elt.value);
     });
@@ -68,7 +68,7 @@ function redrawItems() {
         ol.appendChild(it.render(deleteItem));
     }
 
-    filterItems(Util.getInputValueById("search"));
+    filterItems(Util.getInputValueById("itemsearch"));
 }
 
 
