@@ -1,4 +1,3 @@
-import 'bootstrap';
 export default class lentItem {
     private static nextAvailableID = 0;
     private static generateID(): number {
