@@ -10,7 +10,7 @@ const allItems: Set<lentItem> = new Set();
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    Util.getElementById("searchItems").addEventListener("input", (e) => {
+    Util.getElementById("search").addEventListener("input", (e) => {
         const elt = e.target as HTMLInputElement;
         filterItems(elt.value);
     });
