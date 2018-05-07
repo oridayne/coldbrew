@@ -1,6 +1,6 @@
-import lentItem from "./lentItem";
+import LentItem from "./lentItem";
 
-const items: lentItem[] = [];
+const items: LentItem[] = [];
 export default items;
 
 const firstnames = [
@@ -67,6 +67,6 @@ for (const lastname of lastnames) {
     const firstname = lastname === "Zeng" ? "Aaron" : pick(firstnames);
     const item = itemsToLend[randInt(itemsToLend.length)];
     const comments = randomComments[randInt(randomComments.length)];
-    const dummyItem = new lentItem({ firstname, lastname, item, comments});
+    const dummyItem = new LentItem({ firstname, lastname, item, comments});
     items.push(dummyItem);
 }

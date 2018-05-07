@@ -1,11 +1,11 @@
 import * as Util from "./util";
-import lentItem from "./lentItem";
+import LentItem from "./lentItem";
 import dummyItems from "./dummy-items";
 
 // stack of package objects deleted. This helps with undo.
-const deletedItems: lentItem[] = [];
+const deletedItems: LentItem[] = [];
 
-const allItems: Set<lentItem> = new Set();
+const allItems: Set<LentItem> = new Set();
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-function makeLendItemFromInputs(): lentItem {
+function makeLendItemFromInputs(): LentItem {
     // FIXME should fail if user enters in only spaces
     const firstname = Util.getInputValueById("firstnameLend");
     const lastname = Util.getInputValueById("lastnameLend");
@@ -47,7 +47,7 @@ function makeLendItemFromInputs(): lentItem {
         comments = undefined;
     }
 
-    return new lentItem({
+    return new LentItem({
         firstname,
         lastname,
         item,
@@ -72,7 +72,7 @@ function redrawItems() {
 }
 
 
-function deleteItem(it: lentItem) {
+function deleteItem(it: LentItem) {
     deletedItems.push(it);
     allItems.delete(it);
     Util.getElementById(`lent-${it.id}`).remove();

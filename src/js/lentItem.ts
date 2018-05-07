@@ -1,7 +1,7 @@
-export default class lentItem {
+export default class LentItem {
     private static nextAvailableID = 0;
     private static generateID(): number {
-        return lentItem.nextAvailableID++;
+        return LentItem.nextAvailableID++;
     }
 
     public readonly id: number;
@@ -17,7 +17,7 @@ export default class lentItem {
         this.item = obj.item;
         this.comments = obj.comments;
 
-        this.id = lentItem.generateID();
+        this.id = LentItem.generateID();
     }
 
     public label(): string {
@@ -28,7 +28,7 @@ export default class lentItem {
      * Render this Item as a <li> element whose ID is lent-<id>, where <id> is
      * equal to this.id.
      */
-    public render(onDelete: (lent: lentItem) => void): HTMLLIElement {
+    public render(onDelete: (lent: LentItem) => void): HTMLLIElement {
         const label = this.label();
 
         const li = document.createElement("li");
