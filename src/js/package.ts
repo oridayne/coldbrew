@@ -1,5 +1,3 @@
-// import 'bootstrap/js/dist/collapse';
-import 'bootstrap';
 export default class Package {
     private static nextAvailableID = 0;
     private static generateID(): number {
