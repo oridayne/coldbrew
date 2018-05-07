@@ -13,12 +13,12 @@
   --color-delete: darkred;
   --color-background:white;
   --color-main: #3b5998;
+  --color-expandable: #cbc6d2;
   --color-edit: darkgray;
   --color-pickedUp: #3b5998;
   --color-default-button: #3b5998;
   --color-text: black;
   --color-search-bar: #DFDCE3;
-
 }
 
 h2{
@@ -50,12 +50,13 @@ select {
   text-align: left;
   color: black;
   border-radius: 5px;
+  transition: background-color 0.3s ease;
 }
 
 .hiddenItem:hover,
 .hiddenPackage:hover {
-  /*transform: scale(1.05);*/
-
+  background-color: var(--color-expandable);
+  cursor: pointer;
 }
 
 
