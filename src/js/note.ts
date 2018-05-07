@@ -76,26 +76,25 @@ export default class Note {
 
         // Add pin note button
         const pinNoteButton = document.createElement("button");
+        const pinIcon = document.createElement("i");
+        pinIcon.classList.add("fa", "fa-thumbtack");
+        pinNoteButton.appendChild(pinIcon);
         pinNoteButton.classList.add("button", "pin-button");
         pinNoteButton.addEventListener("click", () => {
             if (this.isPinned()) { // unpin the note
                 this.pinned = false;
-                pinNoteButton.innerText = "Pin";
                 div.classList.remove("notePinned");
                 unpinNoteCallback();
             } else { // pin the note
                 this.pinned = true;
-                pinNoteButton.innerText = "Unpin";
                 div.classList.add("notePinned");
                 pinNoteCallback();
             }
         });
 
         if (this.isPinned()) {
-            pinNoteButton.innerText = "Unpin";
             div.classList.add("notePinned");
         } else {
-            pinNoteButton.innerText = "Pin";
             div.classList.remove("notePinned");
         }
 
@@ -107,14 +106,24 @@ export default class Note {
 
         // Add edit note button
         const editNoteButton = document.createElement("button");
-        editNoteButton.innerText = "Edit";
+        const editNoteIcon = document.createElement("i");
+        editNoteIcon.classList.add("fas", "fa-edit");
+        editNoteButton.appendChild(editNoteIcon);
+        const editNoteSpan = document.createElement("span");
+        editNoteSpan.innerText = " Edit";
+        editNoteButton.appendChild(editNoteSpan);
         editNoteButton.classList.add("button", "edit");
         editNoteButton.addEventListener("click", editNoteCallback);
         controlDiv.appendChild(editNoteButton);
 
         // Add delete note button
         const deleteNoteButton = document.createElement("button");
-        deleteNoteButton.innerText = "Delete";
+        const deleteNoteIcon = document.createElement("i");
+        deleteNoteIcon.classList.add("fas", "fa-trash");
+        deleteNoteButton.appendChild(deleteNoteIcon);
+        const deleteNoteSpan = document.createElement("span");
+        deleteNoteSpan.innerText = " Delete";
+        deleteNoteButton.appendChild(deleteNoteSpan);
         deleteNoteButton.classList.add("button", "delete");
         deleteNoteButton.addEventListener("click", () => {
             this.deleted = true;
@@ -177,7 +186,12 @@ export default class Note {
         form.appendChild(noteAuthorInput);
 
         const submitEditButton = document.createElement("button");
-        submitEditButton.innerText = "Submit";
+        const submitEditIcon = document.createElement("i");
+        submitEditIcon.classList.add("fas", "fa-sticky-note");
+        submitEditButton.appendChild(submitEditIcon);
+        const submitEditSpan = document.createElement("span");
+        submitEditSpan.innerText = " Submit";
+        submitEditButton.appendChild(submitEditSpan);
         submitEditButton.classList.add("button");
         submitEditButton.setAttribute("type", "button");
 
@@ -200,7 +214,12 @@ export default class Note {
         form.addEventListener("submit", submitEdit);
 
         const cancelEditButton = document.createElement("button");
-        cancelEditButton.innerText = "Cancel";
+        const cancelEditIcon = document.createElement("i");
+        cancelEditIcon.classList.add("fas", "fa-times");
+        cancelEditButton.appendChild(cancelEditIcon);
+        const cancelEditSpan = document.createElement("span");
+        cancelEditSpan.innerText = " Cancel";
+        cancelEditButton.appendChild(cancelEditSpan);
         cancelEditButton.classList.add("button", "cancel");
         cancelEditButton.setAttribute("type", "button");
         cancelEditButton.addEventListener("click", cancelEditCallback);

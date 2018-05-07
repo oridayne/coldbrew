@@ -63,7 +63,20 @@ export default class lentItem {
         pickupButton.classList.add("button", "pickedUp");
 
         pickupButton.onclick = onDelete.bind(null, this);
-        pickupButton.innerText = "Returned";
+        const pickupIcons = document.createElement("span");
+        pickupIcons.classList.add("fa-layers", "fa-fw");
+        const boxIcon = document.createElement("i");
+        boxIcon.classList.add("fas", "fa-gamepad");
+        boxIcon.setAttribute("data-fa-transform", "shrink-5 up-2 left-1");
+        pickupIcons.appendChild(boxIcon);
+        const arrowIcon = document.createElement("i");
+        arrowIcon.classList.add("fas", "fa-arrow-down");
+        arrowIcon.setAttribute("data-fa-transform", "shrink-8 down-7 left-2");
+        pickupIcons.appendChild(arrowIcon);
+        pickupButton.appendChild(pickupIcons);
+        const pickupSpan = document.createElement("span");
+        pickupSpan.innerText = " Returned";
+        pickupButton.appendChild(pickupSpan);
         shownDiv.appendChild(pickupButton);
         shownDiv.appendChild(smallBin);
      

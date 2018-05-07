@@ -71,7 +71,20 @@ export default class Package {
         pickupButton.classList.add("button", "pickedUp");
 
         pickupButton.onclick = onDelete.bind(null, this);
-        pickupButton.innerText = "Picked Up";
+        const pickupIcons = document.createElement("span");
+        pickupIcons.classList.add("fa-layers", "fa-fw");
+        const boxIcon = document.createElement("i");
+        boxIcon.classList.add("fas", "fa-box-open");
+        boxIcon.setAttribute("data-fa-transform", "shrink-5 down-3 left-2");
+        pickupIcons.appendChild(boxIcon);
+        const arrowIcon = document.createElement("i");
+        arrowIcon.classList.add("fas", "fa-arrow-up");
+        arrowIcon.setAttribute("data-fa-transform", "shrink-8 up-7 left-2");
+        pickupIcons.appendChild(arrowIcon);
+        pickupButton.appendChild(pickupIcons);
+        const pickupSpan = document.createElement("span");
+        pickupSpan.innerText = " Picked Up";
+        pickupButton.appendChild(pickupSpan);
         shownDiv.appendChild(pickupButton);
         shownDiv.appendChild(smallBin);
      

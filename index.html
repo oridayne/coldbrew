@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-  
+
     <title>Desk Worker</title>
     <!-- Shortcut icon adapted from FontAwesome project's `boxes' icon:
          https://fontawesome.com/icons/boxes?style=solid -->
@@ -14,8 +14,12 @@
     <script src="dist/js/brew.js"></script>
     <script src="dist/js/lend.js"></script>
 
+    <!-- Libraries: JQuery, Bootstrap, and FontAwesome -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.12/js/all.js" integrity="sha384-Voup2lBiiyZYkRto2XWqbzxHXwzcm4A5RfdfG6466bu5LqjwwrjXCMBQBLMWh7qR"
+        crossorigin="anonymous"></script>
+
 
 </head>
 
@@ -26,12 +30,13 @@
         <ul id="navbar" data-pagename="home"></ul>
         <div class="colOutline">
 
-            <div  class="packageCol" id="pickUp">
+            <div class="packageCol" id="pickUp">
                 <h2>Package Pick Up </h2>
                 <label for="search">search</label>
                 <input type="textbox" id="search" class="entry">
                 <div id="container">
-                    <button class="button undo" id="undo">Undo</button>
+                    <button class="button undo" id="undo">
+                        <i class="fas fa-undo"></i> Undo</button>
                 </div>
                 <ol class="package" id="packageList"></ol>
             </div>
@@ -39,32 +44,41 @@
                 <h2>Lent Out</h2>
                 <label for="itemsearch">search</label>
                 <input type="textbox" id="itemsearch" class="entry">
-                <div id="container"><button class="button undo" id="undoItem">Undo</button></div>
+                <div id="container">
+                    <button class="button undo" id="undoItem">
+                        <i class="fas fa-undo"></i> Undo</button>
+                </div>
                 <ol class="lentItems" id="itemList"></ol>
                 <br>
             </div>
 
         </div>
 
-        <div class="colOutline" >
-               <div class="lendCol" id="lentin">
-                        <h2>Lend Item</h2>
+        <div class="colOutline">
+            <div class="lendCol" id="lentin">
+                <h2>Lend Item</h2>
 
-                        <form id="LendForm">
-                            <label for="firstnameLend">first name</label>
-                            <input class="entry" type="text" id="firstnameLend" required>
-                            <label for="lastname">last name</label>
-                            <input class="entry" type="text" id="lastnameLend" required>
-                            <label for="itemToLend">item to lend</label>
-                            <input class="entry" type="text" id="itemToLend"  required>
-                            <label for="itemComments">comments</label>
-                            <input class="entry" type="text" id="itemComments">
-                            <br>
-                            <button id="Submit" class="button">Submit</button>
-                            <button id="clearItemInput" class="button delete" type="button">Clear All</button>
-                        </form>
-                </div>
-  
+                <form id="LendForm">
+                    <label for="firstnameLend">first name</label>
+                    <input class="entry" type="text" id="firstnameLend" required>
+                    <label for="lastname">last name</label>
+                    <input class="entry" type="text" id="lastnameLend" required>
+                    <label for="itemToLend">item to lend</label>
+                    <input class="entry" type="text" id="itemToLend" required>
+                    <label for="itemComments">comments</label>
+                    <input class="entry" type="text" id="itemComments">
+                    <br>
+                    <button id="Submit" class="button">
+                        <span class="fa-layers fa-fw">
+                            <i class="fas fa-arrow-up" data-fa-transform="shrink-8 up-7 left-2"></i>
+                            <i class="fas fa-gamepad" data-fa-transform="shrink-4 down-3 left-2"></i>
+                        </span>
+                        Submit</button>
+                    <button id="clearItemInput" class="button delete" type="button">
+                        <i class="fas fa-eraser"></i> Clear All</button>
+                </form>
+            </div>
+
 
             <div class="packageCol" id="packageEntry">
                 <h2>Add Package </h2>
@@ -94,8 +108,10 @@
                         <input class="entry" type="text" id="comments" name="comments">
                         <br>
 
-                        <button id="addPackage" class="button">Submit</button>
-                        <button id="clearPackageInput" class="button delete" type="button">Clear All</button>
+                        <button id="addPackage" class="button">
+                            <i class="fas fa-parachute-box"></i> Submit</button>
+                        <button id="clearPackageInput" class="button delete" type="button">
+                            <i class="fas fa-eraser"></i> Clear All</button>
                     </form>
                 </div>
             </div>
@@ -109,8 +125,10 @@
                     <textarea id="newNote" class="noteTextEdit" required></textarea>
                     <label for="newNoteAuthor">author</label>
                     <input id="newNoteAuthor" name="newNoteAuthor" class="entry" required>
-                    <button id="addNote" class="button" type="submit">Submit</button>
-                    <button id="noteUndo" class="button undo" type="button">Undo</button>
+                    <button id="addNote" class="button" type="submit">
+                        <i class="fas fa-sticky-note"></i> Submit</button>
+                    <button id="noteUndo" class="button undo" type="button">
+                        <i class="fas fa-undo"></i> Undo</button>
                 </form>
             </div>
         </div>

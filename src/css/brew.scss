@@ -208,15 +208,15 @@ h2{
     border: none;
     border-radius: 5px;
     color: white;
-    padding: 6px 6px;
+    padding: 6px 10px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 12px;
     margin: 0px 10px 0px 0px;
     cursor: pointer;
-    width: 25%;
     transition: all .2s ease-in-out;
+    line-height: 1.5em;
 }
 
 /*.button:hover {
@@ -238,7 +238,6 @@ h2{
 .button.pickedUp {
   background-color: var(--color-pickedUp);
   float: right;
-  padding-right: 2px;
 
 
 }
@@ -288,6 +287,16 @@ h2{
       /*background-color: midnightblue;*/
       background-color: var(--color-main);
       color: white;
+      svg {
+        transition: transform 0.3s ease;
+        transform: rotate(0.08turn) translateX(-1px);
+      }
+    }
+
+    .button.pin-button:hover {
+      svg {
+        transform: rotate(0) translateX(0);
+      }
     }
   
     .noteCredit {
@@ -311,6 +320,16 @@ h2{
     .button.pin-button {
       background-color: white;
       color: black;
+      svg {
+        transition: transform 0.3s ease;
+        transform: rotate(0) translateX(0);
+      }
+    }
+
+    .button.pin-button:hover {
+      svg {
+        transform: rotate(0.08turn) translateX(-1px);
+      }
     }
   }
 
@@ -366,7 +385,7 @@ h2{
     padding-bottom: 5px;
     justify-content: space-between;
     button {
-        padding: 0px;
+        margin: 0px;
     }
 }
 .hidden{
