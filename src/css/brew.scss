@@ -61,7 +61,23 @@ select {
   p.first-detail {
     margin-top: 10px;
   }
+
+  .smallText {
+    svg {
+      transform: rotate(0);
+    }
+  }
 }
+
+.hiddenItem.collapsed,
+.hiddenPackage.collapsed {
+  .smallText{
+    svg {
+      transform: rotate(0.75turn);
+    }  
+  }
+}
+
 
 .hiddenItemExpandable:hover,
 .hiddenPackage:hover {

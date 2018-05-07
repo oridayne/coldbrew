@@ -10,8 +10,10 @@ export default class LentItem {
     private readonly item: string;
     private readonly comments: string | undefined;
 
-    constructor(obj: { firstname: string, lastname: string, item: string,
-                       comments?: string }) {
+    constructor(obj: {
+        firstname: string, lastname: string, item: string,
+        comments?: string
+    }) {
         this.firstname = obj.firstname;
         this.lastname = obj.lastname;
         this.item = obj.item;
@@ -37,36 +39,39 @@ export default class LentItem {
 
         const shownDiv = document.createElement("div");
         const hiddenDetailsDiv = document.createElement("div");
-      
+        shownDiv.classList.add("hiddenItem");
 
-        hiddenDetailsDiv.id = "hidden"+li.id;
+
+        hiddenDetailsDiv.id = "hidden" + li.id;
         li.appendChild(shownDiv);
 
-        if(this.comments){
+        const smallItemName = document.createElement("p");
+        smallItemName.classList.add("smallText");
+
+        if (this.comments) {
+            const expandIcon = document.createElement("i");
+            expandIcon.classList.add("fas", "fa-caret-down");
+            smallItemName.appendChild(expandIcon);
+            const smallItemNameSpan = document.createElement("span");
+            smallItemNameSpan.innerText = ` ${this.item}`;
+            smallItemName.appendChild(smallItemNameSpan);
+            
+            shownDiv.classList.add("collapsed");
+
             const commentsDetail = document.createElement("p");
             commentsDetail.innerHTML = `<strong>Comments:</strong> ${this.comments}`;
             commentsDetail.classList.add("first-detail");
             hiddenDetailsDiv.appendChild(commentsDetail);
             shownDiv.classList.add("hiddenItemExpandable");
-
-        }
-        else{
-            shownDiv.classList.add("hiddenItem");
-
+        } else {
+            smallItemName.innerText = this.item;
         }
 
-        shownDiv.innerText = label;        
+        shownDiv.innerText = label;
         // shownDiv.classList.add("hiddenItem");
         shownDiv.setAttribute("data-toggle", "collapse");
-        shownDiv.setAttribute("data-target", "#"+hiddenDetailsDiv.id);
+        shownDiv.setAttribute("data-target", "#" + hiddenDetailsDiv.id);
         hiddenDetailsDiv.classList.add("collapse");
-        
-  
-
-        const smallBin = document.createElement("p");
-        smallBin.classList.add("smallText");
-        smallBin.innerText = this.item;
-
 
         const pickupButton = document.createElement("button");
         pickupButton.type = "button";
@@ -88,8 +93,8 @@ export default class LentItem {
         pickupSpan.innerText = " Returned";
         pickupButton.appendChild(pickupSpan);
         shownDiv.appendChild(pickupButton);
-        shownDiv.appendChild(smallBin);
-     
+        shownDiv.appendChild(smallItemName);
+
         shownDiv.appendChild(hiddenDetailsDiv);
         return li;
     }

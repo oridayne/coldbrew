@@ -48,7 +48,7 @@ export default class Package {
         li.appendChild(shownDiv);
 
         shownDiv.innerText = name;
-        shownDiv.classList.add("hiddenPackage");
+        shownDiv.classList.add("hiddenPackage", "collapsed");
         shownDiv.setAttribute("data-toggle", "collapse");
         shownDiv.setAttribute("data-target", "#" + hiddenDetailsDiv.id);
         hiddenDetailsDiv.classList.add("hidden-details", "collapse");
@@ -59,7 +59,7 @@ export default class Package {
         const carrierDetail = document.createElement("p");
         carrierDetail.innerHTML = `<strong>Carrier:</strong> ${this.carrier}`;
         const pkgIdDetail = document.createElement("p");
-        pkgIdDetail.innerHTML = `<strong>Package #</strong>: ${this.packageNumber}`;
+        pkgIdDetail.innerHTML = `<strong>Package #:</strong> ${this.packageNumber}`;
         hiddenDetailsDiv.appendChild(locDetail);
         hiddenDetailsDiv.appendChild(carrierDetail);
         hiddenDetailsDiv.appendChild(pkgIdDetail);
@@ -71,7 +71,12 @@ export default class Package {
 
         const smallBin = document.createElement("p");
         smallBin.classList.add("smallText");
-        smallBin.innerText = this.location;
+        const expandIcon = document.createElement("i");
+        expandIcon.classList.add("fas", "fa-caret-down");
+        smallBin.appendChild(expandIcon);
+        const smallBinSpan = document.createElement("span");
+        smallBinSpan.innerText = ` ${this.location}`;
+        smallBin.appendChild(smallBinSpan);
 
 
         const pickupButton = document.createElement("button");
