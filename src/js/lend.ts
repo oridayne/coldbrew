@@ -86,6 +86,7 @@ function filterItems(query: string) {
     const ol = Util.getElementById("itemList");
     for (const li of ol.children) {
        
+        console.log(li);
         const summary = li.querySelector(".hiddenItem") as HTMLElement;
         const itemName = li.querySelector(".smallText") as HTMLElement;
         const fcSummaryText = summary.innerText.toLocaleLowerCase();
@@ -94,6 +95,7 @@ function filterItems(query: string) {
 
         li.classList.toggle("filtered-out", !containsQuery);
     }
+    console.log("after filtering");
 }
 
 // Given a list item, add it to its correct place (alphabetically) in the package list.

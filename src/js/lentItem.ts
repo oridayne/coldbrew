@@ -38,7 +38,7 @@ export default class LentItem {
         const shownDiv = document.createElement("div");
         const hiddenDetailsDiv = document.createElement("div");
       
-
+         shownDiv.classList.add("hiddenItem");
         hiddenDetailsDiv.id = "hidden"+li.id;
         li.appendChild(shownDiv);
 
@@ -48,10 +48,6 @@ export default class LentItem {
             commentsDetail.classList.add("first-detail");
             hiddenDetailsDiv.appendChild(commentsDetail);
             shownDiv.classList.add("hiddenItemExpandable");
-
-        }
-        else{
-            shownDiv.classList.add("hiddenItem");
 
         }
 
