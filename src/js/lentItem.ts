@@ -67,7 +67,11 @@ export default class LentItem {
             smallItemName.innerText = this.item;
         }
 
+<<<<<<< HEAD
         shownDiv.innerText = label;
+=======
+        shownDiv.innerText = label;        
+>>>>>>> ae74268db7be66f52ba37409229163d71623d85a
         // shownDiv.classList.add("hiddenItem");
         shownDiv.setAttribute("data-toggle", "collapse");
         shownDiv.setAttribute("data-target", "#" + hiddenDetailsDiv.id);
