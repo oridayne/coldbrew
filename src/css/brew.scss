@@ -13,10 +13,11 @@
   --color-delete: darkred;
   --color-background:white;
   --color-main: #3b5998;
+  --color-edit: #a3b5db;
   --color-expandable: #cbc6d2;
-  --color-edit: darkgray;
   --color-pickedUp: #3b5998;
   --color-default-button: #3b5998;
+  --color-edit-button: darkgray;
   --color-text: black;
   --color-search-bar: #DFDCE3;
 
@@ -253,7 +254,7 @@ h2{
 }
 
 .button.edit {
-  background-color: var(--color-edit);
+  background-color: var(--color-edit-button);
   color: white;
 }
 
@@ -354,8 +355,8 @@ h2{
   }
 
   .note.noteEditing {
-    background-color: plum;
-    box-shadow: 3px 3px 4px rebeccapurple;
+    background-color: var(--color-edit);
+    box-shadow: 3px 3px 4px var(--color-main);
   }
   
   .note-flex-row {

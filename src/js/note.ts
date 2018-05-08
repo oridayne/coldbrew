@@ -160,11 +160,6 @@ export default class Note {
 
         const form = document.createElement("form");
 
-        const noteTextLabel = document.createElement("label");
-        noteTextLabel.innerText = "note";
-        noteTextLabel.setAttribute("for", "noteText");
-        form.appendChild(noteTextLabel);
-
         const textarea = document.createElement("textarea");
         const textareaId = this.getElementId() + "-text";
         textarea.id = textareaId;
