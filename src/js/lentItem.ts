@@ -12,7 +12,7 @@ export default class LentItem {
 
     constructor(obj: {
         firstname: string, lastname: string, item: string,
-        comments?: string
+        comments?: string,
     }) {
         this.firstname = obj.firstname;
         this.lastname = obj.lastname;
@@ -41,7 +41,6 @@ export default class LentItem {
         const hiddenDetailsDiv = document.createElement("div");
         shownDiv.classList.add("hiddenItem");
 
-
         hiddenDetailsDiv.id = "hidden" + li.id;
         li.appendChild(shownDiv);
 
@@ -55,7 +54,7 @@ export default class LentItem {
             const smallItemNameSpan = document.createElement("span");
             smallItemNameSpan.innerText = ` ${this.item}`;
             smallItemName.appendChild(smallItemNameSpan);
-            
+
             shownDiv.classList.add("collapsed");
 
             const commentsDetail = document.createElement("p");

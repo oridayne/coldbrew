@@ -31,16 +31,16 @@ const lastnames = [
 ];
 
 const itemsToLend = [
-    "Men In Black", 
+    "Men In Black",
     "Avatar",
-    "Basketball", 
-    "Bike Pump", 
-    "Extension Cord", 
-    "Smash", 
-    "Inception", 
-    "Ping Pong Ball", 
-    "Monopoly", 
-    "Avengers", 
+    "Basketball",
+    "Bike Pump",
+    "Extension Cord",
+    "Smash",
+    "Inception",
+    "Ping Pong Ball",
+    "Monopoly",
+    "Avengers",
 ];
 
 const randomComments = [
@@ -60,8 +60,6 @@ function randInt(max: number): number {
 function pick<T>(array: T[]): T {
     return array[randInt(array.length)];
 }
-
-
 
 for (const lastname of lastnames) {
     const firstname = lastname === "Zeng" ? "Aaron" : pick(firstnames);

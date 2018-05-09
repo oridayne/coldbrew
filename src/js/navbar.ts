@@ -17,23 +17,21 @@ const pages: IPage[] = [
         link: "index.html",
         pagename: "home",
     },
-  
+
     {
         displayName: "Lent Items",
         link: "lend.html",
         pagename: "lend",
     },
-  
+
 ];
-
-
 
 document.addEventListener("DOMContentLoaded", () => {
 
     // Hide the lend columns...
-    var lendCols = document.getElementsByClassName("lendCol");
-    for(var i=0; i<lendCols.length; i++){
-        lendCols[i].classList.add("hidden");
+    const lendCols = document.getElementsByClassName("lendCol");
+    for (const lendCol of lendCols) {
+        lendCol.classList.add("hidden");
     }
     // navbar ul
     const navbar = getElementById("navbar");
@@ -67,32 +65,27 @@ document.addEventListener("DOMContentLoaded", () => {
     Util.getElementById("nav-home").addEventListener("click", showPackagePage);
 });
 
-function showLendPage(){
-    var lendCols = document.getElementsByClassName("lendCol");
-    var pkgCols = document.getElementsByClassName("packageCol");
+function showLendPage() {
+    const lendCols = document.getElementsByClassName("lendCol");
+    const pkgCols = document.getElementsByClassName("packageCol");
 
-    for(var i=0; i<pkgCols.length; i++){
-        pkgCols[i].classList.add("hidden");
+    for (const pkgCol of pkgCols) {
+        pkgCol.classList.add("hidden");
     }
-    for(var i=0; i<lendCols.length; i++){
-        lendCols[i].classList.remove("hidden");
-    }  
-
+    for (const lendCol of lendCols) {
+        lendCol.classList.remove("hidden");
+    }
 
 }
 
-function showPackagePage(){
-    var pkgCols = document.getElementsByClassName("packageCol");
-    var lendCols = document.getElementsByClassName("lendCol");
+function showPackagePage() {
+    const pkgCols = document.getElementsByClassName("packageCol");
+    const lendCols = document.getElementsByClassName("lendCol");
 
-    for(var i=0; i<lendCols.length; i++){
-        lendCols[i].classList.add("hidden");
+    for (const lendCol of lendCols) {
+        lendCol.classList.add("hidden");
     }
-    for(var i=0; i<pkgCols.length; i++){
-        pkgCols[i].classList.remove("hidden");
-    }  
+    for (const pkgCol of pkgCols) {
+        pkgCol.classList.remove("hidden");
+    }
 }
-
-
-
-

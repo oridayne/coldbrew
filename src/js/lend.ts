@@ -1,6 +1,6 @@
-import * as Util from "./util";
-import LentItem from "./lentItem";
 import dummyItems from "./dummy-items";
+import LentItem from "./lentItem";
+import * as Util from "./util";
 
 // stack of package objects deleted. This helps with undo.
 const deletedItems: LentItem[] = [];
@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     Util.getElementById("undoItem").addEventListener("click", undoDeleteItems);
 
-   Util.getElementById("LendForm").addEventListener("submit", (e) => {
+    Util.getElementById("LendForm").addEventListener("submit", (e) => {
         e.preventDefault();
 
         const item = makeLendItemFromInputs();
@@ -33,9 +33,6 @@ document.addEventListener("DOMContentLoaded", () => {
     redrawItems();
 });
 
-
-
-
 function makeLendItemFromInputs(): LentItem {
     // FIXME should fail if user enters in only spaces
     const firstname = Util.getInputValueById("firstnameLend");
@@ -48,10 +45,10 @@ function makeLendItemFromInputs(): LentItem {
     }
 
     return new LentItem({
-        firstname,
-        lastname,
-        item,
         comments,
+        firstname,
+        item,
+        lastname,
     });
 }
 
@@ -67,10 +64,9 @@ function redrawItems() {
     for (const it of items) {
         ol.appendChild(it.render(deleteItem));
     }
-   
+
     filterItems(Util.getInputValueById("itemsearch"));
 }
-
 
 function deleteItem(it: LentItem) {
     deletedItems.push(it);
@@ -85,13 +81,13 @@ function filterItems(query: string) {
 
     const ol = Util.getElementById("itemList");
     for (const li of ol.children) {
-       
+
         console.log(li);
         const summary = li.querySelector(".hiddenItem") as HTMLElement;
         const itemName = li.querySelector(".smallText") as HTMLElement;
         const fcSummaryText = summary.innerText.toLocaleLowerCase();
         const itemText = itemName.innerText.toLocaleLowerCase();
-        const containsQuery = fcSummaryText.indexOf(fcQuery) !== -1 || itemText.indexOf(fcQuery)!==-1;
+        const containsQuery = fcSummaryText.indexOf(fcQuery) !== -1 || itemText.indexOf(fcQuery) !== -1;
 
         li.classList.toggle("filtered-out", !containsQuery);
     }
@@ -123,11 +119,6 @@ function undoDeleteItems() {
     allItems.add(lastDelete);
     addListItem(lastDelete.render(deleteItem));
 }
-
-
-
-
-
 
 function clearItemInput() {
     const inputs = Util.getElementById("LendForm").getElementsByTagName("input");

@@ -14,7 +14,7 @@ export default class Package {
 
     constructor(obj: {
         firstname: string, lastname: string, packageNumber: string,
-        location: string, carrier: string, comments?: string
+        location: string, carrier: string, comments?: string,
     }) {
         this.firstname = obj.firstname;
         this.lastname = obj.lastname;
@@ -77,7 +77,6 @@ export default class Package {
         const smallBinSpan = document.createElement("span");
         smallBinSpan.innerText = ` ${this.location}`;
         smallBin.appendChild(smallBinSpan);
-
 
         const pickupButton = document.createElement("button");
         pickupButton.type = "button";
